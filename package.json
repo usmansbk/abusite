@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prepare": "husky install"
   },
   "dependencies": {
     "react": "18.1.0",
@@ -22,12 +23,25 @@
     "@types/react": "^18.0.21",
     "@types/react-native": "^0.70.6",
     "@types/react-test-renderer": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.37.0",
-    "@typescript-eslint/parser": "^5.37.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
     "babel-jest": "^26.6.3",
-    "eslint": "^7.32.0",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^8.0.3",
     "jest": "^26.6.3",
+    "lint-staged": "^13.1.0",
     "metro-react-native-babel-preset": "0.72.3",
+    "prettier": "2.8.2",
     "react-test-renderer": "18.1.0",
     "typescript": "^4.8.3"
   },
@@ -41,5 +55,9 @@
       "json",
       "node"
     ]
+  },
+  "lint-staged": {
+    "**/*.ts?(x)": "eslint --fix",
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
