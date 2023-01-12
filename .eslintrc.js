@@ -19,7 +19,9 @@ module.exports = {
     project: "./tsconfig.json",
   },
   plugins: ["react", "@typescript-eslint"],
-  rules: {},
+  rules: {
+    "react/no-unstable-nested-components": "off",
+  },
   settings: {
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"],

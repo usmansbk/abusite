@@ -36,9 +36,16 @@ const CombinedDarkTheme = {
   },
 };
 
-const theme: typeof CombinedDefaultTheme = {
-  ...CombinedDarkTheme,
-  fonts: configureFonts({ config: fontConfig }),
+const fonts = configureFonts({ config: fontConfig });
+
+export const AppDefaultTheme = {
+  ...CombinedDefaultTheme,
+  fonts,
 };
 
-export default theme;
+export const AppDarkTheme = {
+  ...CombinedDarkTheme,
+  fonts,
+};
+
+export default AppDarkTheme;

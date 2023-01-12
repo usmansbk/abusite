@@ -1,13 +1,9 @@
 import React from "react";
 import { StatusBar, View } from "react-native";
-import {
-  Button,
-  Provider as PaperProvider,
-  Text,
-  useTheme,
-} from "react-native-paper";
+import { Provider as PaperProvider, useTheme } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import theme from "~config/theme";
+import BottomTabs from "~screens";
 
 function Main() {
   const { colors, dark } = useTheme();
@@ -22,9 +18,7 @@ function Main() {
         backgroundColor={colors.background}
         barStyle={dark ? "light-content" : "dark-content"}
       />
-      <Text variant="displayLarge">Hello</Text>
-      <Text>Hello World</Text>
-      <Button mode="contained">Hello</Button>
+      <BottomTabs />
     </View>
   );
 }
