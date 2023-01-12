@@ -3,7 +3,7 @@ import { StatusBar, View } from "react-native";
 import { Provider as PaperProvider, useTheme } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import theme from "~config/theme";
-import BottomTabs from "~screens";
+import Screens from "~screens";
 
 function Main() {
   const { colors, dark } = useTheme();
@@ -18,7 +18,7 @@ function Main() {
         backgroundColor={colors.background}
         barStyle={dark ? "light-content" : "dark-content"}
       />
-      <BottomTabs />
+      <Screens />
     </View>
   );
 }

@@ -1,14 +1,15 @@
 import React, { memo } from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { useTheme } from "react-native-paper";
 import Icon from "~components/Icon";
+import Calendar from "./Calendar";
+import Explore from "./Explore";
+import Notifications from "./Notifications";
 
 const Tab = createMaterialBottomTabNavigator();
 
-function Stub() {
-  return null;
-}
-
 function BottomTabs() {
+  const { colors } = useTheme();
   return (
     <Tab.Navigator
       labeled={false}
@@ -18,11 +19,9 @@ function BottomTabs() {
 
           if (route.name === "Calendar") {
             iconName = "calendar";
-          } else if (route.name === "Settings") {
-            iconName = "settings";
           } else if (route.name === "Notifications") {
             iconName = "bell";
-          } else if (route.name === "Search") {
+          } else if (route.name === "Explore") {
             iconName = "search";
           } else {
             iconName = "" as never;
@@ -33,18 +32,12 @@ function BottomTabs() {
       })}
       barStyle={{
         height: 72,
+        backgroundColor: colors.background,
       }}
     >
-      <Tab.Screen name="Calendar" component={Stub} />
-      <Tab.Screen
-        name="Search"
-        component={Stub}
-        options={{
-          title: "Explore",
-        }}
-      />
-      <Tab.Screen name="Notifications" component={Stub} />
-      <Tab.Screen name="Settings" component={Stub} />
+      <Tab.Screen name="Calendar" component={Calendar} />
+      <Tab.Screen name="Explore" component={Explore} />
+      <Tab.Screen name="Notifications" component={Notifications} />
     </Tab.Navigator>
   );
 }
