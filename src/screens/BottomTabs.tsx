@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "~components/Icon";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -11,25 +11,29 @@ function Stub() {
 function BottomTabs() {
   return (
     <Tab.Navigator
+      labeled={false}
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color }) => {
+        tabBarIcon: ({ color }) => {
           let iconName;
 
           if (route.name === "Calendar") {
             iconName = "calendar";
           } else if (route.name === "Settings") {
-            iconName = focused ? "cog" : "cog-outline";
+            iconName = "settings";
           } else if (route.name === "Notifications") {
-            iconName = focused ? "bell" : "bell-outline";
+            iconName = "bell";
           } else if (route.name === "Search") {
-            iconName = "magnify";
+            iconName = "search";
           } else {
             iconName = "" as never;
           }
 
-          return <MaterialIcon name={iconName} size={24} color={color} />;
+          return <Icon name={iconName} size={24} color={color} />;
         },
       })}
+      barStyle={{
+        height: 72,
+      }}
     >
       <Tab.Screen name="Calendar" component={Stub} />
       <Tab.Screen
