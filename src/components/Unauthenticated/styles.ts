@@ -11,6 +11,11 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  footer: {
+    padding: 16,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   centeredText: {
     textAlign: "center",
   },

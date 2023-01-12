@@ -17,9 +17,11 @@ export default function Unauthenticated({ title, message }: Props) {
         </Text>
         <Text style={[styles.centeredText, styles.gap]}>{message}</Text>
       </View>
-      <Button onPress={() => null} mode="contained" style={styles.gap}>
-        Login to continue
-      </Button>
+      <View style={styles.footer}>
+        <Button onPress={() => null} mode="contained" style={styles.gap}>
+          Login to continue
+        </Button>
+      </View>
     </ScrollView>
   );
 }
