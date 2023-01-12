@@ -29,7 +29,7 @@ A User can be a student or staff. Each user can create events. Users do not have
 
 Events can be organized into groups and shared with other users. Users can save individual or grouped events and receive live updates and offline reminders.
 
-Users and guests can also pay a fee to advertise their public events to a larger audience based on their interests.
+Users can also pay a fee to advertise their public events to a larger audience based on their interests.
 
 ## Authors
 

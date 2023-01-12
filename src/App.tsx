@@ -1,9 +1,23 @@
 import React from "react";
-import { Text } from "react-native";
-import hello from "~config/hello";
+import { Text, View } from "react-native";
+import { Button, Provider as PaperProvider } from "react-native-paper";
+import theme from "~config/theme";
+
+function Main() {
+  return (
+    <View>
+      <Text>Hello</Text>
+      <Button mode="contained">Hello</Button>
+    </View>
+  );
+}
 
 function App() {
-  return <Text>{hello}</Text>;
+  return (
+    <PaperProvider theme={theme}>
+      <Main />
+    </PaperProvider>
+  );
 }
 
 export default App;
