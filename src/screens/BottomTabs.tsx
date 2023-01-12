@@ -2,12 +2,12 @@ import React, { memo } from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { useTheme } from "react-native-paper";
 import Icon from "~components/Icon";
-import type { BottomTabParamList } from "~types";
+import type { HomeTabParamList } from "~types";
 import Calendar from "./Calendar";
 import Explore from "./Explore";
 import Notifications from "./Notifications";
 
-const Tab = createMaterialBottomTabNavigator<BottomTabParamList>();
+const Tab = createMaterialBottomTabNavigator<HomeTabParamList>();
 
 function BottomTabs() {
   const { colors } = useTheme();
