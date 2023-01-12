@@ -46,7 +46,7 @@ export const AppDefaultTheme = {
 export const AppDarkTheme = {
   ...CombinedDarkTheme,
   fonts,
-  roundness: 1,
+  roundness: 2,
 };
 
 export default AppDarkTheme;
