@@ -5,7 +5,7 @@ export default function Notifications() {
   return (
     <Unauthenticated
       title="Stay in the loop"
-      message="Don't miss out on fixed tests and lectures."
+      message="Get notified when an event is updated."
     />
   );
 }

@@ -21,6 +21,7 @@ module.exports = {
   plugins: ["react", "@typescript-eslint"],
   rules: {
     "react/no-unstable-nested-components": "off",
+    "react/jsx-props-no-spreading": "off",
   },
   settings: {
     "import/parsers": {
