@@ -1,12 +1,29 @@
 import React from "react";
-import { View } from "react-native";
-import { Button, Provider as PaperProvider, Text } from "react-native-paper";
+import { StatusBar, View } from "react-native";
+import {
+  Button,
+  Provider as PaperProvider,
+  Text,
+  useTheme,
+} from "react-native-paper";
+import { NavigationContainer } from "@react-navigation/native";
 import theme from "~config/theme";
 
 function Main() {
+  const { colors, dark } = useTheme();
   return (
-    <View>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: colors.background,
+      }}
+    >
+      <StatusBar
+        backgroundColor={colors.background}
+        barStyle={dark ? "light-content" : "dark-content"}
+      />
       <Text variant="displayLarge">Hello</Text>
+      <Text>Hello World</Text>
       <Button mode="contained">Hello</Button>
     </View>
   );
@@ -15,7 +32,9 @@ function Main() {
 function App() {
   return (
     <PaperProvider theme={theme}>
-      <Main />
+      <NavigationContainer theme={theme}>
+        <Main />
+      </NavigationContainer>
     </PaperProvider>
   );
 }
