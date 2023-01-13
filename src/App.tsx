@@ -2,11 +2,13 @@ import React from "react";
 import { StatusBar, View } from "react-native";
 import { Provider as PaperProvider, useTheme } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
+import { ApolloProvider } from "@apollo/client";
 import theme from "~config/theme";
+import client from "~graphql/client";
 import Screens from "~screens";
 import Icon from "~components/Icon";
-import "~config/i18n";
 import ToastProvider from "~components/Toast";
+import "~config/i18n";
 
 function Main() {
   const { colors, dark } = useTheme();
@@ -30,16 +32,18 @@ function Main() {
 
 function App() {
   return (
-    <PaperProvider
-      theme={theme}
-      settings={{
-        icon: (props) => <Icon {...props} />,
-      }}
-    >
-      <NavigationContainer theme={theme}>
-        <Main />
-      </NavigationContainer>
-    </PaperProvider>
+    <ApolloProvider client={client}>
+      <PaperProvider
+        theme={theme}
+        settings={{
+          icon: (props) => <Icon {...props} />,
+        }}
+      >
+        <NavigationContainer theme={theme}>
+          <Main />
+        </NavigationContainer>
+      </PaperProvider>
+    </ApolloProvider>
   );
 }
 
