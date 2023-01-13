@@ -10,10 +10,10 @@ export default function Login() {
   return (
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.body}>
-        <Text variant="displaySmall">{t("login.pre")}</Text>
+        <Text variant="headlineSmall">{t("login.pre")}</Text>
         <Text variant="displayLarge">{t("login.lectures")}</Text>
-        <Text variant="displayLarge">{t("login.tests")}</Text>
         <Text variant="displayLarge">{t("login.exams")}</Text>
+        <Text variant="displayLarge">{t("login.tests")}</Text>
         <Text variant="displaySmall">{t("login.post")}</Text>
       </View>
       <GoogleButton />
