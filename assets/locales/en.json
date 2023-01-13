@@ -1,3 +1,24 @@
 {
-  "title": "Hello"
+  "calendar": {
+    "unauthenticated": {
+      "title": "Track your events",
+      "message": "See what you've got coming up."
+    }
+  },
+  "explore": {
+    "unauthenticated": {
+      "title": "What's happening?",
+      "message": "Discover new events happening around you."
+    }
+  },
+  "notifications": {
+    "unauthenticated": {
+      "title": "Stay in the loop",
+      "message": "Get notified when an event is updated."
+    }
+  },
+  "buttons": {
+    "login": "Login to continue",
+    "google": "Sign in to continue"
+  }
 }

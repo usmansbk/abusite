@@ -6,8 +6,8 @@ export default function Explore() {
   const { t } = useTranslation();
   return (
     <Unauthenticated
-      title={t("What's happening?")}
-      message={t("Discover new events happening around you.")}
+      title={t("explore.unauthenticated.title")}
+      message={t("explore.unauthenticated.message")}
     />
   );
 }

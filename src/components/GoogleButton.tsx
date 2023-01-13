@@ -11,7 +11,7 @@ export default function GoogleButton() {
       textColor="#ffffff"
       onPress={() => null}
     >
-      {t("Sign in with Google")}
+      {t("buttons.google")}
     </Button>
   );
 }

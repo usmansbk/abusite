@@ -6,8 +6,8 @@ export default function Calendar() {
   const { t } = useTranslation();
   return (
     <Unauthenticated
-      title={t("Track your events")}
-      message={t("See what you've got coming up.")}
+      title={t("calendar.unauthenticated.title")}
+      message={t("calendar.unauthenticated.message")}
     />
   );
 }

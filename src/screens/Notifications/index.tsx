@@ -6,8 +6,8 @@ export default function Notifications() {
   const { t } = useTranslation();
   return (
     <Unauthenticated
-      title={t("Stay in the loop")}
-      message={t("Get notified when an event is updated.")}
+      title={t("notifications.unauthenticated.title")}
+      message={t("notifications.unauthenticated.message")}
     />
   );
 }

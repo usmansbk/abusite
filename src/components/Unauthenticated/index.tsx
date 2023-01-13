@@ -28,7 +28,7 @@ export default function Unauthenticated({ title, message }: Props) {
       </View>
       <View style={styles.footer}>
         <Button onPress={handlePress} mode="contained">
-          {t("Login to continue")}
+          {t("buttons.login")}
         </Button>
       </View>
     </ScrollView>
