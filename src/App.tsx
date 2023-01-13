@@ -8,8 +8,8 @@ import client from '~graphql/client';
 import Screens from '~screens';
 import Icon from '~components/Icon';
 import ToastProvider from '~components/Toast';
-import '~config/i18n';
 import {persistor} from '~graphql/cache';
+import '~config/i18n';
 
 function Main() {
   const {colors, dark} = useTheme();

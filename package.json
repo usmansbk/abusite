@@ -10,7 +10,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "husky install",
     "postversion": "react-native-version",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "bootsplash": "yarn react-native generate-bootsplash assets/logo.png --assets-path=assets"
   },
   "dependencies": {
     "@apollo/client": "^3.7.3",
@@ -28,6 +29,7 @@
     "react": "18.1.0",
     "react-i18next": "^12.1.4",
     "react-native": "0.70.6",
+    "react-native-bootsplash": "^4.4.0",
     "react-native-gesture-handler": "^2.8.0",
     "react-native-localize": "^2.2.4",
     "react-native-paper": "^5.1.3",
