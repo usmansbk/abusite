@@ -6,6 +6,14 @@ School Timetable
 
 Abusite is an Open-Source mobile application designed to help ABU students easily share their Timetable. It's a platform for organizing gatherings and events for students and associations.
 
+## Screenshots
+
+<p float="left">
+<img src="https://user-images.githubusercontent.com/10219539/212207611-7e0a49fc-74ef-4a8a-b519-925cecb60c64.png" width="300">
+<img src="https://user-images.githubusercontent.com/10219539/212207624-57b209be-275d-4d0d-8c6a-12e1565455e7.png" width="300">
+<img src="https://user-images.githubusercontent.com/10219539/212207629-6f417bfa-dd79-497d-ad05-c485ee5389da.png" width="300">
+</p>
+
 ## How to use
 
 - Login with your email
