@@ -1,5 +1,6 @@
 import React, {useCallback} from 'react';
 import {StyleSheet} from 'react-native';
+import {RouteProp} from '@react-navigation/native';
 import {
   createMaterialBottomTabNavigator,
   MaterialBottomTabNavigationOptions,
@@ -23,7 +24,11 @@ export default function HomeTabs() {
   const {isLoggedIn} = useAuth();
 
   const screenOptions = useCallback(
-    ({route}: {route: any}): MaterialBottomTabNavigationOptions => ({
+    ({
+      route,
+    }: {
+      route: RouteProp<HomeTabParamList>;
+    }): MaterialBottomTabNavigationOptions => ({
       tabBarIcon: ({color}) => {
         let iconName;
 
@@ -46,7 +51,6 @@ export default function HomeTabs() {
   return (
     <Tab.Navigator
       initialRouteName={isLoggedIn ? 'Calendar' : 'Explore'}
-      labeled={false}
       screenOptions={screenOptions}
       barStyle={styles.barStyle}>
       <Tab.Screen name="Calendar" component={Calendar} />

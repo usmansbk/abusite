@@ -14,7 +14,7 @@ export default function useLogout() {
       },
     });
     await persistor.purge();
-    await client.clearStore();
+    client.cache.reset();
   }, [client]);
 
   return logout;
