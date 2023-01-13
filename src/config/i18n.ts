@@ -1,11 +1,12 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import resources from "assets/locales";
+import getLangauge from "~utils/getLanguage";
 
 const languageDetector = {
   type: "languageDetector",
   async: true,
-  detect: (cb: any) => cb("en"),
+  detect: (cb: any) => cb(getLangauge()),
   init: () => {},
   cacheUserLanguage: () => {},
 };
