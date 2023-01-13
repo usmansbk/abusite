@@ -9,7 +9,7 @@ import Notifications from "./Notifications";
 
 const Tab = createMaterialBottomTabNavigator<HomeTabParamList>();
 
-function BottomTabs() {
+function HomeTabs() {
   const { colors } = useTheme();
   return (
     <Tab.Navigator
@@ -43,4 +43,4 @@ function BottomTabs() {
   );
 }
 
-export default memo(BottomTabs);
+export default memo(HomeTabs);

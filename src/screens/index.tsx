@@ -5,7 +5,7 @@ import {
 } from "@react-navigation/native-stack";
 import { Appbar } from "react-native-paper";
 import type { RootStackParamList } from "~types";
-import BottomTabs from "./BottomTabs";
+import HomeTabs from "./HomeTabs";
 import Login from "./Login";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -34,7 +34,7 @@ function MainStack() {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen
         name="Home"
-        component={BottomTabs}
+        component={HomeTabs}
         options={{
           headerShown: false,
         }}
