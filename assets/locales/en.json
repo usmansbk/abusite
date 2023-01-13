@@ -14,7 +14,7 @@
   "notifications": {
     "unauthenticated": {
       "title": "What's new?",
-      "message": "Get notified when an event is scheduled."
+      "message": "Get notified when your calendar is updated."
     }
   },
   "buttons": {
