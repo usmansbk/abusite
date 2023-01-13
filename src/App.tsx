@@ -3,6 +3,7 @@ import {StatusBar, View} from 'react-native';
 import {Provider as PaperProvider, useTheme} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
 import {ApolloProvider} from '@apollo/client';
+import RNBootSplash from 'react-native-bootsplash';
 import theme from '~config/theme';
 import client from '~graphql/client';
 import Screens from '~screens';
@@ -42,7 +43,9 @@ function App() {
     initialize();
   }, []);
 
-  const onNavigatorReady = useCallback(() => {}, []);
+  const onNavigatorReady = useCallback(async () => {
+    await RNBootSplash.hide({fade: true});
+  }, []);
 
   if (loading) {
     return null;
