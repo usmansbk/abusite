@@ -6,6 +6,7 @@ import theme from "~config/theme";
 import Screens from "~screens";
 import Icon from "~components/Icon";
 import "~config/i18n";
+import ToastProvider from "~components/Toast";
 
 function Main() {
   const { colors, dark } = useTheme();
@@ -20,7 +21,9 @@ function Main() {
         backgroundColor={colors.background}
         barStyle={dark ? "light-content" : "dark-content"}
       />
-      <Screens />
+      <ToastProvider>
+        <Screens />
+      </ToastProvider>
     </View>
   );
 }

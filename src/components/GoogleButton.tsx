@@ -7,6 +7,7 @@ import {
   NativeModuleError,
 } from "@react-native-google-signin/google-signin";
 import env from "~config/env";
+import { useToast } from "./Toast";
 
 GoogleSignin.configure({
   webClientId: env.googleWebClientId,
@@ -16,6 +17,7 @@ GoogleSignin.configure({
 export default function GoogleButton() {
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
+  const toast = useToast();
 
   const handlePress = useCallback(async () => {
     setLoading(true);
@@ -28,13 +30,13 @@ export default function GoogleButton() {
       setLoading(false);
       const error = e as NativeModuleError;
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
+        toast.show(t("errors.login.cancelled"));
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        // operation (e.g. sign in) is in progress already
+        toast.show(t("errors.login.logging"));
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
+        toast.show(t("errors.login.no_play_services"));
       } else {
-        // some other error happened
+        toast.show(t("errors.login.failed"));
       }
     }
   }, []);

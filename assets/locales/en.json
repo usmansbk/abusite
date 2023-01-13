@@ -27,5 +27,13 @@
   "buttons": {
     "login": "Login to continue",
     "google": "Sign in with Google"
+  },
+  "errors": {
+    "login": {
+      "cancelled": "Cancelled by user",
+      "logging": "Please wait...",
+      "no_play_services": "Play Services not available",
+      "failed": "Login failed"
+    }
   }
 }
