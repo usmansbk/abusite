@@ -17,6 +17,13 @@
       "message": "Get notified when your calendar is updated."
     }
   },
+  "login": {
+    "pre": "Track your",
+    "lectures": "Lectures",
+    "exams": "Exams",
+    "tests": "Tests",
+    "post": "and more"
+  },
   "buttons": {
     "login": "Login to continue",
     "google": "Sign in with Google"
