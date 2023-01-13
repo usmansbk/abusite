@@ -14,7 +14,9 @@ function AppHeader({ options, back, navigation }: NativeStackHeaderProps) {
   const { title, headerRight } = options;
   return (
     <Appbar.Header>
-      {back ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
+      {back ? (
+        <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
+      ) : null}
       <Appbar.Content title={title} />
       {headerRight?.({ canGoBack: !!back })}
     </Appbar.Header>

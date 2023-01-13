@@ -2,7 +2,7 @@ import type { MD3Typescale } from "react-native-paper/lib/typescript/types";
 
 const fontConfig: MD3Typescale = {
   default: {
-    fontFamily: "FontFamily",
+    fontFamily: "Inter-Regular",
     fontWeight: "400",
     letterSpacing: 0,
   },

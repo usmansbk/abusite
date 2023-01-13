@@ -3,25 +3,16 @@ import { initReactI18next } from "react-i18next";
 import * as RNLocalize from "react-native-localize";
 import resources from "assets/locales";
 
-const languageDetector = {
-  type: "languageDetector",
-  async: true,
-  detect: (cb: any) => cb(RNLocalize.getLocales()[0]?.languageCode),
-  init: () => {},
-  cacheUserLanguage: () => {},
-};
+const [locale] = RNLocalize.getLocales();
 
-i18n
-  .use(languageDetector as any)
-  .use(initReactI18next) // passes i18n down to react-i18next
-  .init({
-    debug: __DEV__,
-    resources,
-    fallbackLng: "en",
-
-    interpolation: {
-      escapeValue: false, // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
-    },
-  });
+i18n.use(initReactI18next).init({
+  debug: __DEV__,
+  resources,
+  lng: locale.languageCode,
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default i18n;
