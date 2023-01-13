@@ -1,5 +1,6 @@
 import {useMutation} from '@apollo/client';
 import {useCallback} from 'react';
+import authState from '~graphql/localState/authState';
 import loginWithGoogle from '~graphql/queries/loginWithGoogle';
 import {SocialLoginInput} from '~graphql/__generated__/graphql';
 
@@ -11,6 +12,17 @@ export default function useSocialLogin() {
       mutate({
         variables: {
           input,
+        },
+        update(cache, {data: loginData}) {
+          if (loginData?.loginWithSocialProvider) {
+            const {token} = loginData.loginWithSocialProvider;
+            cache.writeQuery<{token: string}>({
+              query: authState,
+              data: {
+                token,
+              },
+            });
+          }
         },
       }),
     [mutate],
