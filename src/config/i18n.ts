@@ -2,19 +2,18 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import resources from "assets/locales";
 
-// const languageDetector = {
-//   type: "languageDetector",
-//   async: true,
-//   detect: (cb: any) => cb("en"),
-//   init: () => {},
-//   cacheUserLanguage: () => {},
-// };
+const languageDetector = {
+  type: "languageDetector",
+  async: true,
+  detect: (cb: any) => cb("en"),
+  init: () => {},
+  cacheUserLanguage: () => {},
+};
 
 i18n
-  // .use(languageDetector)
+  .use(languageDetector as any)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
-    lng: "en",
     resources,
     fallbackLng: "en",
 
