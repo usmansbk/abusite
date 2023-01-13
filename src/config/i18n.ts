@@ -1,15 +1,14 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import * as RNLocalize from "react-native-localize";
-import resources from "assets/locales";
+import i18n from 'i18next';
+import {initReactI18next} from 'react-i18next';
+import * as RNLocalize from 'react-native-localize';
+import resources from 'assets/locales';
 
 const [locale] = RNLocalize.getLocales();
 
 i18n.use(initReactI18next).init({
-  debug: __DEV__,
   resources,
   lng: locale.languageCode,
-  fallbackLng: "en",
+  fallbackLng: 'en',
   interpolation: {
     escapeValue: false,
   },
