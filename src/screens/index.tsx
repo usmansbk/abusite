@@ -26,6 +26,7 @@ function AppHeader({options, back, navigation}: NativeStackHeaderProps) {
 
 function MainStack() {
   const {isLoggedIn} = useAuth();
+
   return (
     <Stack.Navigator
       initialRouteName="Home"
