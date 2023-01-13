@@ -13,6 +13,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
+    "\n\tquery Me {\n\t\tme {\n\t\t\tid\n\t\t\tfirstName\n\t\t\tlastName\n\t\t\tfullName\n\t\t\temail\n\t\t\temailVerified\n\t\t\tisMe\n\t\t\tlanguage\n\t\t\tpicture\n\t\t\tcreatedAt\n\t\t\tupdatedAt\n\t\t}\n\t}\n": types.MeDocument,
     "\nmutation LoginWithSocialProvider($input: SocialLoginInput!) {\n  loginWithSocialProvider(input: $input) {\n    token\n  }\n}": types.LoginWithSocialProviderDocument,
 };
 
@@ -30,6 +31,10 @@ const documents = {
  */
 export function gql(source: string): unknown;
 
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n\tquery Me {\n\t\tme {\n\t\t\tid\n\t\t\tfirstName\n\t\t\tlastName\n\t\t\tfullName\n\t\t\temail\n\t\t\temailVerified\n\t\t\tisMe\n\t\t\tlanguage\n\t\t\tpicture\n\t\t\tcreatedAt\n\t\t\tupdatedAt\n\t\t}\n\t}\n"): (typeof documents)["\n\tquery Me {\n\t\tme {\n\t\t\tid\n\t\t\tfirstName\n\t\t\tlastName\n\t\t\tfullName\n\t\t\temail\n\t\t\temailVerified\n\t\t\tisMe\n\t\t\tlanguage\n\t\t\tpicture\n\t\t\tcreatedAt\n\t\t\tupdatedAt\n\t\t}\n\t}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
