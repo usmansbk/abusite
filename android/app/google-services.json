@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "482568716820",
+    "project_id": "abusite-78e07",
+    "storage_bucket": "abusite-78e07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482568716820:android:6fe7ed988586c30c075d01",
+        "android_client_info": {
+          "package_name": "com.abusite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482568716820-0mrsk5tsd18gc1v4bikifu0iupajsc78.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.abusite",
+            "certificate_hash": "4b527de1eb9c3969c4b02d09c31f6e7608457d2f"
+          }
+        },
+        {
+          "client_id": "482568716820-a60o87unffeehs3ike1p0csvvvf12r44.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.abusite",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "482568716820-nu0o4lej1c4htj1q3e3pl6nnosv6rj53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgQFvQx1HudQBAQBSF-RAvsen8vfWW43c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482568716820-nu0o4lej1c4htj1q3e3pl6nnosv6rj53.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

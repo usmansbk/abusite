@@ -12,6 +12,7 @@
     "postversion": "react-native-version"
   },
   "dependencies": {
+    "@react-native-google-signin/google-signin": "^9.0.2",
     "@react-navigation/bottom-tabs": "^6.5.3",
     "@react-navigation/drawer": "^6.5.7",
     "@react-navigation/material-bottom-tabs": "^6.2.11",
