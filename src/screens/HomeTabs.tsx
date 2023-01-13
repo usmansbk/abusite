@@ -1,6 +1,9 @@
-import React, {memo} from 'react';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import {useTheme} from 'react-native-paper';
+import React, {useCallback} from 'react';
+import {StyleSheet} from 'react-native';
+import {
+  createMaterialBottomTabNavigator,
+  MaterialBottomTabNavigationOptions,
+} from '@react-navigation/material-bottom-tabs';
 import Icon from '~components/Icon';
 import useAuth from '~hooks/useAuth';
 import type {HomeTabParamList} from '~types';
@@ -10,39 +13,45 @@ import Notifications from './Notifications';
 
 const Tab = createMaterialBottomTabNavigator<HomeTabParamList>();
 
-function HomeTabs() {
-  const {colors} = useTheme();
+const styles = StyleSheet.create({
+  barStyle: {
+    backgroundColor: 'transparent',
+  },
+});
+
+export default function HomeTabs() {
   const {isLoggedIn} = useAuth();
+
+  const screenOptions = useCallback(
+    ({route}: {route: any}): MaterialBottomTabNavigationOptions => ({
+      tabBarIcon: ({color}) => {
+        let iconName;
+
+        if (route.name === 'Calendar') {
+          iconName = 'calendar';
+        } else if (route.name === 'Notifications') {
+          iconName = 'bell';
+        } else if (route.name === 'Explore') {
+          iconName = 'search';
+        } else {
+          iconName = '' as never;
+        }
+
+        return <Icon name={iconName} size={24} color={color} />;
+      },
+    }),
+    [],
+  );
+
   return (
     <Tab.Navigator
       initialRouteName={isLoggedIn ? 'Calendar' : 'Explore'}
       labeled={false}
-      screenOptions={({route}) => ({
-        tabBarIcon: ({color}) => {
-          let iconName;
-
-          if (route.name === 'Calendar') {
-            iconName = 'calendar';
-          } else if (route.name === 'Notifications') {
-            iconName = 'bell';
-          } else if (route.name === 'Explore') {
-            iconName = 'search';
-          } else {
-            iconName = '' as never;
-          }
-
-          return <Icon name={iconName} size={24} color={color} />;
-        },
-      })}
-      barStyle={{
-        height: 72,
-        backgroundColor: colors.background,
-      }}>
+      screenOptions={screenOptions}
+      barStyle={styles.barStyle}>
       <Tab.Screen name="Calendar" component={Calendar} />
       <Tab.Screen name="Explore" component={Explore} />
       <Tab.Screen name="Notifications" component={Notifications} />
     </Tab.Navigator>
   );
 }
-
-export default memo(HomeTabs);
