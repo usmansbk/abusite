@@ -1,13 +1,13 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import Unauthenticated from "~components/Unauthenticated";
+import React from 'react';
+import {useTranslation} from 'react-i18next';
+import EmptyState from '~components/EmptyState';
 
 export default function Explore() {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   return (
-    <Unauthenticated
-      title={t("explore.unauthenticated.title")}
-      message={t("explore.unauthenticated.message")}
+    <EmptyState
+      title={t('explore.unauthenticated.title')}
+      message={t('explore.unauthenticated.message')}
     />
   );
 }
