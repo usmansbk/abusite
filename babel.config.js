@@ -8,6 +8,7 @@ module.exports = {
         alias: {
           "^~(.+)": "./src/\\1",
           tests: "./__tests__",
+          assets: "./assets",
         },
       },
     ],

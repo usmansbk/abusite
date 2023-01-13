@@ -4,6 +4,7 @@ import { Provider as PaperProvider, useTheme } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import theme from "~config/theme";
 import Screens from "~screens";
+import "~config/i18n";
 
 function Main() {
   const { colors, dark } = useTheme();

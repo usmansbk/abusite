@@ -1,7 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "react-native-paper";
 
 export default function GoogleButton() {
+  const { t } = useTranslation();
   return (
     <Button
       mode="contained"
@@ -9,7 +11,7 @@ export default function GoogleButton() {
       textColor="#ffffff"
       onPress={() => null}
     >
-      Sign in with Google
+      {t("Login with Google")}
     </Button>
   );
 }

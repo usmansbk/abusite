@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView, View } from "react-native";
 import { Button, Text } from "react-native-paper";
+import { useTranslation } from "react-i18next";
 import styles from "./styles";
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default function Unauthenticated({ title, message }: Props) {
+  const { t } = useTranslation();
   const navigation = useNavigation();
 
   const handlePress = useCallback(() => {
@@ -26,7 +28,7 @@ export default function Unauthenticated({ title, message }: Props) {
       </View>
       <View style={styles.footer}>
         <Button onPress={handlePress} mode="contained">
-          Login to continue
+          {t("Login to continue")}
         </Button>
       </View>
     </ScrollView>
