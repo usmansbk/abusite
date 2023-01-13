@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/native-stack';
 import {Appbar} from 'react-native-paper';
 import type {RootStackParamList} from '~types';
-import useAuth from '~hooks/api/useAuth';
+import useAuth from '~hooks/useAuth';
 import HomeTabs from './HomeTabs';
 import Login from './Login';
 

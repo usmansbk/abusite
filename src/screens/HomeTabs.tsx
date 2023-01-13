@@ -2,7 +2,7 @@ import React, {memo} from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {useTheme} from 'react-native-paper';
 import Icon from '~components/Icon';
-import useAuth from '~hooks/api/useAuth';
+import useAuth from '~hooks/useAuth';
 import type {HomeTabParamList} from '~types';
 import Calendar from './Calendar';
 import Explore from './Explore';

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import Unauthenticated from '~components/Unauthenticated';
-import useAuth from '~hooks/api/useAuth';
+import useAuth from '~hooks/useAuth';
 
 export default function Notifications() {
   const {t} = useTranslation();
