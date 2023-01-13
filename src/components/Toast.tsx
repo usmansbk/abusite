@@ -28,9 +28,7 @@ function ToastProvider({ children }: PropsWithChildren) {
   const [message, setMessage] = useState("");
 
   const hide = useCallback(() => setMessage(""), []);
-  const show = useCallback((msg: string) => {
-    setMessage(msg);
-  }, []);
+  const show = useCallback((msg: string) => setMessage(msg), []);
 
   const ctx = useMemo(
     () => ({
