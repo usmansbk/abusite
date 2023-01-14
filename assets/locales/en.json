@@ -1,5 +1,6 @@
 {
   "calendar": {
+    "title": "Calendar",
     "unauthenticated": {
       "title": "What's next?",
       "message": "See what you've got coming up."
@@ -10,12 +11,14 @@
     }
   },
   "explore": {
+    "title": "Explore",
     "empty": {
       "title": "What's happening?",
       "message": "Discover events happening around you."
     }
   },
   "notifications": {
+    "title": "Notifications",
     "unauthenticated": {
       "title": "What's new?"
     },

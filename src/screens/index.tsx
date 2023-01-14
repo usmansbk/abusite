@@ -71,7 +71,7 @@ function MainStack() {
         name="ExploreSettings"
         component={Settings}
         options={{
-          title: t('settings.title'),
+          title: t('explore.title'),
         }}
       />
       {isLoggedIn && (
@@ -101,14 +101,14 @@ function MainStack() {
             name="CalendarSettings"
             component={Settings}
             options={{
-              title: t('settings.title'),
+              title: t('calendar.title'),
             }}
           />
           <Stack.Screen
             name="NotificationSettings"
             component={Settings}
             options={{
-              title: t('settings.title'),
+              title: t('notifications.title'),
             }}
           />
           <Stack.Screen
