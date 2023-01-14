@@ -1,5 +1,6 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
+import EmptyState from '~components/EmptyState';
 import Unauthenticated from '~components/Unauthenticated';
 import useAuth from '~hooks/useAuth';
 
@@ -16,5 +17,10 @@ export default function Notifications() {
     );
   }
 
-  return null;
+  return (
+    <EmptyState
+      title={t('notifications.empty.title')}
+      message={t('notifications.empty.message')}
+    />
+  );
 }

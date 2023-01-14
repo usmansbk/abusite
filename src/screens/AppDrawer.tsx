@@ -13,6 +13,7 @@ const Drawer = createDrawerNavigator<AppDrawerParamList>();
 
 function AppDrawerContent(props: DrawerContentComponentProps) {
   const {t} = useTranslation();
+  const {navigation} = props;
 
   const items = useMemo(
     () => [
@@ -20,31 +21,31 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
         key: 'profile',
         icon: 'user',
         label: t('drawer.profile'),
-        onPress: () => {},
+        onPress: () => navigation.navigate('Profile'),
       },
       {
         key: 'bookmarks',
         icon: 'bookmark',
         label: t('drawer.bookmarks'),
-        onPress: () => {},
+        onPress: () => navigation.navigate('Bookmarks'),
       },
       {
         key: 'archive',
         icon: 'archive',
         label: t('drawer.archive'),
-        onPress: () => {},
+        onPress: () => navigation.navigate('Archive'),
       },
       {
         key: 'settings',
         icon: 'settings',
         label: t('drawer.settings'),
-        onPress: () => {},
+        onPress: () => navigation.navigate('Settings'),
       },
       {
         key: 'help',
         icon: 'help-circle',
         label: t('drawer.help'),
-        onPress: () => {},
+        onPress: () => navigation.navigate('Help'),
       },
     ],
     [],

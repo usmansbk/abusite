@@ -3,6 +3,10 @@
     "unauthenticated": {
       "title": "What's next?",
       "message": "See what you've got coming up."
+    },
+    "empty": {
+      "title": "No events",
+      "message": "Create or get a timetable"
     }
   },
   "explore": {
@@ -15,6 +19,10 @@
     "unauthenticated": {
       "title": "What's new?",
       "message": "Get notified when your calendar is updated."
+    },
+    "empty": {
+      "title": "No notifications",
+      "message": "Changes to your calendar, announcements, and school bulletins will appear here."
     }
   },
   "login": {
@@ -23,6 +31,21 @@
     "exams": "Exams",
     "tests": "Tests",
     "post": "and more"
+  },
+  "profile": {
+    "title": "Profile"
+  },
+  "bookmarks": {
+    "title": "Bookmarks"
+  },
+  "archive": {
+    "title": "Archive"
+  },
+  "settings": {
+    "title": "Settings"
+  },
+  "help": {
+    "title": "Help"
   },
   "drawer": {
     "help": "Help & feedback",

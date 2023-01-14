@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 
 interface Props {
   title: string;
-  message: string;
+  message?: string;
 }
 
 export default function EmptyState({title, message}: Props) {
@@ -33,7 +33,9 @@ export default function EmptyState({title, message}: Props) {
         <Text variant="displaySmall" style={styles.centeredText}>
           {title}
         </Text>
-        <Text style={[styles.centeredText, styles.gap]}>{message}</Text>
+        {!!message && (
+          <Text style={[styles.centeredText, styles.gap]}>{message}</Text>
+        )}
       </View>
     </ScrollView>
   );
