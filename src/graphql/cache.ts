@@ -12,7 +12,7 @@ const cache = new InMemoryCache({
           },
         },
         themeMode: {
-          read(mode = 'light') {
+          read(mode = 'system') {
             return mode;
           },
         },
