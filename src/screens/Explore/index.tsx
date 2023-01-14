@@ -15,7 +15,10 @@ export default function Explore({navigation}: HomeTabScreenProps<'Explore'>) {
           icon="search"
           onPress={() => navigation.navigate('Search')}
         />
-        <Appbar.Action icon="sliders" onPress={() => null} />
+        <Appbar.Action
+          icon="sliders"
+          onPress={() => navigation.navigate('ExploreSettings')}
+        />
       </Appbar>
       <EmptyState
         title={t('explore.unauthenticated.title')}

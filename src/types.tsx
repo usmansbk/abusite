@@ -19,15 +19,18 @@ export type AppDrawerParamList = {
 export type RootStackParamList = {
   Login: undefined;
   Home: NavigatorScreenParams<AppDrawerParamList>;
+  Timetable: {id: string};
   NewTimetable: undefined;
   EditTimetable: {id: string};
   DuplicateTimetable: {id: string};
   Profile: undefined;
   Bookmarks: undefined;
   Archive: undefined;
-  Settings: undefined;
   Help: undefined;
   Search: undefined;
+  CalendarSettings: undefined;
+  NotificationSettings: undefined;
+  ExploreSettings: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

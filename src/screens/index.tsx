@@ -15,6 +15,10 @@ import Bookmarks from './Bookmarks';
 import Settings from './Settings';
 import Help from './Help';
 import Search from './Search';
+import Timetable from './Timetable';
+import NewTimetable from './NewTimetable';
+import DuplicateTimetable from './DuplicateTimetable';
+import EditTimetable from './EditTimetable';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -80,7 +84,21 @@ function MainStack() {
             }}
           />
           <Stack.Screen
-            name="Settings"
+            name="CalendarSettings"
+            component={Settings}
+            options={{
+              title: t('settings.title'),
+            }}
+          />
+          <Stack.Screen
+            name="ExploreSettings"
+            component={Settings}
+            options={{
+              title: t('settings.title'),
+            }}
+          />
+          <Stack.Screen
+            name="NotificationSettings"
             component={Settings}
             options={{
               title: t('settings.title'),
@@ -91,6 +109,34 @@ function MainStack() {
             component={Help}
             options={{
               title: t('help.title'),
+            }}
+          />
+          <Stack.Screen
+            name="Timetable"
+            component={Timetable}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="NewTimetable"
+            component={NewTimetable}
+            options={{
+              headerShown: true,
+            }}
+          />
+          <Stack.Screen
+            name="EditTimetable"
+            component={EditTimetable}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="DuplicateTimetable"
+            component={DuplicateTimetable}
+            options={{
+              headerShown: false,
             }}
           />
         </>

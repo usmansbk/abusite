@@ -5,8 +5,11 @@ import Container from '~components/Container';
 import EmptyState from '~components/EmptyState';
 import Unauthenticated from '~components/Unauthenticated';
 import useAuth from '~hooks/useAuth';
+import {HomeTabScreenProps} from '~types';
 
-export default function Notifications() {
+export default function Notifications({
+  navigation,
+}: HomeTabScreenProps<'Notifications'>) {
   const {t} = useTranslation();
   const {isLoggedIn} = useAuth();
 
@@ -24,7 +27,10 @@ export default function Notifications() {
       <Appbar>
         <Appbar.Content title="" />
         <Appbar.Action disabled icon="trash" />
-        <Appbar.Action icon="sliders" onPress={() => null} />
+        <Appbar.Action
+          icon="sliders"
+          onPress={() => navigation.navigate('NotificationSettings')}
+        />
       </Appbar>
       <EmptyState
         title={t('notifications.empty.title')}

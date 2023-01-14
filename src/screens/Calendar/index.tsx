@@ -32,7 +32,10 @@ export default function Calendar({navigation}: HomeTabScreenProps<'Calendar'>) {
           icon={dark ? 'moon' : 'sun'}
           onPress={() => setOpenTheme(true)}
         />
-        <Appbar.Action icon="sliders" onPress={() => null} />
+        <Appbar.Action
+          icon="sliders"
+          onPress={() => navigation.navigate('CalendarSettings')}
+        />
       </Appbar>
       <Timeline />
       <ThemeDialog visible={openTheme} onDismiss={() => setOpenTheme(false)} />
