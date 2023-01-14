@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
     padding: 16,
     justifyContent: 'center',
   },
+  gap: {
+    marginVertical: 8,
+  },
 });
 
 interface Props {
@@ -24,7 +27,7 @@ export default function EmptyState({title, message}: Props) {
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.body}>
         <Text variant="displaySmall">{title}</Text>
-        {!!message && <Text>{message}</Text>}
+        {!!message && <Text style={styles.gap}>{message}</Text>}
       </View>
     </ScrollView>
   );

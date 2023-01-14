@@ -14,4 +14,7 @@ export default StyleSheet.create({
     padding: 16,
     justifyContent: 'center',
   },
+  gap: {
+    marginVertical: 8,
+  },
 });

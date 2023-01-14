@@ -22,7 +22,7 @@ export default function Unauthenticated({title, message}: Props) {
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.body}>
         <Text variant="displaySmall">{title}</Text>
-        <Text>{message}</Text>
+        <Text style={styles.gap}>{message}</Text>
       </View>
       <View style={styles.footer}>
         <Button onPress={handlePress} mode="contained">
