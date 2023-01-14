@@ -52,6 +52,7 @@
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>MaterialCommunityIcons.ttf</string>
 		<string>Feather.ttf</string>
 		<string>Inter-Black.ttf</string>
 		<string>Inter-Bold.ttf</string>

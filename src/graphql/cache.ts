@@ -11,6 +11,11 @@ const cache = new InMemoryCache({
             return token;
           },
         },
+        themeMode: {
+          read(mode = 'system') {
+            return mode;
+          },
+        },
       },
     },
   },

@@ -1,15 +1,16 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {StatusBar, View} from 'react-native';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import {StatusBar, useColorScheme, View} from 'react-native';
 import {Provider as PaperProvider, useTheme} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
 import {ApolloProvider} from '@apollo/client';
 import RNBootSplash from 'react-native-bootsplash';
-import theme from '~config/theme';
+import {AppDarkTheme, AppDefaultTheme} from '~config/theme';
 import client from '~graphql/client';
 import Screens from '~screens';
 import Icon from '~components/Icon';
 import ToastProvider from '~components/Toast';
 import {persistor} from '~graphql/cache';
+import useThemeMode from '~hooks/useThemeMode';
 import '~config/i18n';
 
 function Main() {
@@ -31,6 +32,34 @@ function Main() {
   );
 }
 
+function ThemedApp() {
+  const scheme = useColorScheme();
+  const {mode} = useThemeMode();
+
+  const theme = useMemo(() => {
+    if (mode === 'system') {
+      return scheme === 'dark' ? AppDarkTheme : AppDefaultTheme;
+    }
+    return mode === 'dark' ? AppDarkTheme : AppDefaultTheme;
+  }, [mode, scheme]);
+
+  const onNavigatorReady = useCallback(async () => {
+    await RNBootSplash.hide({fade: true});
+  }, []);
+
+  return (
+    <PaperProvider
+      theme={theme}
+      settings={{
+        icon: props => <Icon {...props} />,
+      }}>
+      <NavigationContainer theme={theme} onReady={onNavigatorReady}>
+        <Main />
+      </NavigationContainer>
+    </PaperProvider>
+  );
+}
+
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -43,25 +72,13 @@ function App() {
     initialize();
   }, []);
 
-  const onNavigatorReady = useCallback(async () => {
-    await RNBootSplash.hide({fade: true});
-  }, []);
-
   if (loading) {
     return null;
   }
 
   return (
     <ApolloProvider client={client}>
-      <PaperProvider
-        theme={theme}
-        settings={{
-          icon: props => <Icon {...props} />,
-        }}>
-        <NavigationContainer theme={theme} onReady={onNavigatorReady}>
-          <Main />
-        </NavigationContainer>
-      </PaperProvider>
+      <ThemedApp />
     </ApolloProvider>
   );
 }

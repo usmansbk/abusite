@@ -3,6 +3,10 @@
     "unauthenticated": {
       "title": "What's next?",
       "message": "See what you've got coming up."
+    },
+    "empty": {
+      "title": "No events",
+      "message": "Create or get a timetable"
     }
   },
   "explore": {
@@ -15,6 +19,10 @@
     "unauthenticated": {
       "title": "What's new?",
       "message": "Get notified when your calendar is updated."
+    },
+    "empty": {
+      "title": "No notifications",
+      "message": "Changes to your calendar, announcements, and school bulletins will appear here."
     }
   },
   "login": {
@@ -24,9 +32,35 @@
     "tests": "Tests",
     "post": "and more"
   },
+  "profile": {
+    "title": "Profile"
+  },
+  "bookmarks": {
+    "title": "Bookmarks"
+  },
+  "archive": {
+    "title": "Archive"
+  },
+  "settings": {
+    "title": "Settings"
+  },
+  "help": {
+    "title": "Help"
+  },
+  "search": {
+    "title": "Search"
+  },
+  "drawer": {
+    "help": "Help & feedback",
+    "settings": "Settings",
+    "bookmarks": "Bookmarks",
+    "profile": "Profile",
+    "archive": "Archive"
+  },
   "buttons": {
     "login": "Login to continue",
-    "google": "Sign in with Google"
+    "google": "Sign in with Google",
+    "timetable": "Timetable"
   },
   "errors": {
     "login": {
@@ -35,5 +69,15 @@
       "no_play_services": "Play Services not available",
       "failed": "Login failed"
     }
+  },
+  "dialogs": {
+    "theme": {
+      "title": "Theme"
+    }
+  },
+  "themes": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
   }
 }
