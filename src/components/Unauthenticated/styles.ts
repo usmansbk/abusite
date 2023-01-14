@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   contentContainer: {
@@ -8,18 +8,10 @@ export default StyleSheet.create({
   body: {
     flexGrow: 1,
     padding: 16,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
   },
   footer: {
     padding: 16,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  centeredText: {
-    textAlign: "center",
-  },
-  gap: {
-    marginVertical: 8,
+    justifyContent: 'center',
   },
 });

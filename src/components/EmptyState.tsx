@@ -11,13 +11,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: 16,
     justifyContent: 'center',
-    alignItems: 'center',
-  },
-  centeredText: {
-    textAlign: 'center',
-  },
-  gap: {
-    marginVertical: 8,
   },
 });
 
@@ -30,12 +23,8 @@ export default function EmptyState({title, message}: Props) {
   return (
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.body}>
-        <Text variant="displaySmall" style={styles.centeredText}>
-          {title}
-        </Text>
-        {!!message && (
-          <Text style={[styles.centeredText, styles.gap]}>{message}</Text>
-        )}
+        <Text variant="displaySmall">{title}</Text>
+        {!!message && <Text>{message}</Text>}
       </View>
     </ScrollView>
   );

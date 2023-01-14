@@ -6,7 +6,7 @@
       "message": "See what you've got coming up."
     },
     "empty": {
-      "title": "No events",
+      "title": "No upcoming event",
       "message": "Create or get a timetable"
     }
   },
@@ -38,10 +38,17 @@
     "title": "Profile"
   },
   "bookmarks": {
-    "title": "Bookmarks"
+    "title": "Bookmarks",
+    "empty": {
+      "title": "Save special events",
+      "message": "Bookmark events of your interest without saving their timetable."
+    }
   },
   "archive": {
-    "title": "Archive"
+    "title": "Archive",
+    "empty": {
+      "title": "Nothing in archive"
+    }
   },
   "settings": {
     "title": "Settings"
