@@ -1,29 +1,42 @@
 import React, {useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
-import {FlatList} from 'react-native';
+import {FlatList, Linking, Platform} from 'react-native';
 import {Divider, List} from 'react-native-paper';
 import Container from '~components/Container';
+import {useToast} from '~components/Toast';
+import env from '~config/env';
 
 export default function Help() {
   const {t} = useTranslation();
+  const toast = useToast();
 
   const items = useMemo(
     () => [
       {
         id: 'terms',
         label: t('help.items.terms'),
+        onPress: () => {
+          Linking.openURL(env.termsUrl);
+        },
       },
       {
         id: 'privacy',
         label: t('help.items.privacy'),
-      },
-      {
-        id: 'review',
-        label: t('help.items.review'),
+        onPress: () => {
+          Linking.openURL(env.privacyUrl);
+        },
       },
       {
         id: 'support',
         label: t('help.items.support'),
+        onPress: async () => {
+          const url = `mailto:${env.contactEmail}?subject=[${Platform.OS}]`;
+          try {
+            await Linking.openURL(url);
+          } catch (e) {
+            toast.show((e as Error).message);
+          }
+        },
       },
     ],
     [],
@@ -34,8 +47,8 @@ export default function Help() {
       <FlatList
         data={items}
         ItemSeparatorComponent={Divider}
-        renderItem={({item: {label}}) => (
-          <List.Item title={label} onPress={() => null} />
+        renderItem={({item: {label, onPress}}) => (
+          <List.Item title={label} onPress={onPress} />
         )}
       />
     </Container>

@@ -22,7 +22,6 @@
     "@react-navigation/material-bottom-tabs": "^6.2.11",
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/native-stack": "^6.9.8",
-    "@shopify/flash-list": "^1.4.0",
     "apollo3-cache-persist": "^0.14.1",
     "dayjs": "^1.11.7",
     "graphql": "^16.6.0",
