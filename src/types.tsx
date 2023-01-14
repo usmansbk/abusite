@@ -27,6 +27,7 @@ export type RootStackParamList = {
   Archive: undefined;
   Settings: undefined;
   Help: undefined;
+  Search: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

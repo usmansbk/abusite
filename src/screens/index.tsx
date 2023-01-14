@@ -14,6 +14,7 @@ import Archive from './Archive';
 import Bookmarks from './Bookmarks';
 import Settings from './Settings';
 import Help from './Help';
+import Search from './Search';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -44,6 +45,13 @@ function MainStack() {
       <Stack.Screen
         name="Home"
         component={AppDrawer}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Search"
+        component={Search}
         options={{
           headerShown: false,
         }}

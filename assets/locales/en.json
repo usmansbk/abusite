@@ -47,6 +47,9 @@
   "help": {
     "title": "Help"
   },
+  "search": {
+    "title": "Search"
+  },
   "drawer": {
     "help": "Help & feedback",
     "settings": "Settings",
