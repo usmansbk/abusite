@@ -25,7 +25,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function AppHeader({options, back, navigation}: NativeStackHeaderProps) {
   const {title, headerRight} = options;
   return (
-    <Appbar.Header>
+    <Appbar.Header mode="center-aligned">
       {back ? (
         <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
       ) : null}
@@ -67,6 +67,13 @@ function MainStack() {
           title: t('help.title'),
         }}
       />
+      <Stack.Screen
+        name="ExploreSettings"
+        component={Settings}
+        options={{
+          title: t('settings.title'),
+        }}
+      />
       {isLoggedIn && (
         <>
           <Stack.Screen
@@ -92,13 +99,6 @@ function MainStack() {
           />
           <Stack.Screen
             name="CalendarSettings"
-            component={Settings}
-            options={{
-              title: t('settings.title'),
-            }}
-          />
-          <Stack.Screen
-            name="ExploreSettings"
             component={Settings}
             options={{
               title: t('settings.title'),
