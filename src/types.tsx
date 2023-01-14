@@ -1,9 +1,10 @@
 import type {
   CompositeScreenProps,
   NavigatorScreenParams,
-} from "@react-navigation/native";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+} from '@react-navigation/native';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import type {DrawerScreenProps} from '@react-navigation/drawer';
 
 export type HomeTabParamList = {
   Calendar: undefined;
@@ -11,18 +12,36 @@ export type HomeTabParamList = {
   Notifications: undefined;
 };
 
+export type AppDrawerParamList = {
+  HomeTabs: NavigatorScreenParams<HomeTabParamList>;
+};
+
 export type RootStackParamList = {
   Login: undefined;
-  Home: NavigatorScreenParams<HomeTabParamList>;
+  Home: NavigatorScreenParams<AppDrawerParamList>;
+  NewTimetable: undefined;
+  EditTimetable: {id: string};
+  DuplicateTimetable: {id: string};
+  Profile: undefined;
+  Bookmarks: undefined;
+  Archive: undefined;
+  Settings: undefined;
+  Help: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, T>;
 
+export type AppDrawerScreenProps<T extends keyof AppDrawerParamList> =
+  CompositeScreenProps<
+    DrawerScreenProps<AppDrawerParamList, T>,
+    RootStackScreenProps<keyof RootStackParamList>
+  >;
+
 export type HomeTabScreenProps<T extends keyof HomeTabParamList> =
   CompositeScreenProps<
     BottomTabScreenProps<HomeTabParamList, T>,
-    RootStackScreenProps<keyof RootStackParamList>
+    AppDrawerScreenProps<keyof AppDrawerParamList>
   >;
 
 declare global {

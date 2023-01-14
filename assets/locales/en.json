@@ -24,6 +24,13 @@
     "tests": "Tests",
     "post": "and more"
   },
+  "drawer": {
+    "help": "Help & feedback",
+    "settings": "Settings",
+    "bookmarks": "Bookmarks",
+    "profile": "Profile",
+    "archive": "Archive"
+  },
   "buttons": {
     "login": "Login to continue",
     "google": "Sign in with Google",

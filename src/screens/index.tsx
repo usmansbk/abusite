@@ -6,7 +6,7 @@ import {
 import {Appbar} from 'react-native-paper';
 import type {RootStackParamList} from '~types';
 import useAuth from '~hooks/useAuth';
-import HomeTabs from './HomeTabs';
+import AppDrawer from './AppDrawer';
 import Login from './Login';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -36,7 +36,7 @@ function MainStack() {
       {!isLoggedIn && <Stack.Screen name="Login" component={Login} />}
       <Stack.Screen
         name="Home"
-        component={HomeTabs}
+        component={AppDrawer}
         options={{
           headerShown: false,
         }}
