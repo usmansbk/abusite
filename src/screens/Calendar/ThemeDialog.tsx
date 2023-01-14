@@ -1,6 +1,7 @@
-import React, {useMemo} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Dialog, Portal, RadioButton} from 'react-native-paper';
+import useThemeMode, {AppThemeMode} from '~hooks/useThemeMode';
 
 interface Props {
   visible: boolean;
@@ -9,7 +10,7 @@ interface Props {
 
 export default function ThemeDialog({visible, onDismiss}: Props) {
   const {t} = useTranslation();
-  const [value, setValue] = React.useState('light');
+  const {mode: value, setThemeMode} = useThemeMode();
 
   const modes = useMemo(
     () => [
@@ -29,12 +30,18 @@ export default function ThemeDialog({visible, onDismiss}: Props) {
     [],
   );
 
+  const onValueChange = useCallback((newValue: string) => {
+    setThemeMode(newValue as AppThemeMode);
+  }, []);
+
   return (
     <Portal>
       <Dialog visible={visible} onDismiss={onDismiss}>
         <Dialog.Title>{t('dialogs.theme.title')}</Dialog.Title>
         <Dialog.Content>
-          <RadioButton.Group onValueChange={val => setValue(val)} value={value}>
+          <RadioButton.Group
+            onValueChange={onValueChange}
+            value={value as string}>
             {modes.map(({mode, label}) => (
               <RadioButton.Item key={mode} value={mode} label={label} />
             ))}
