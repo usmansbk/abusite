@@ -10,7 +10,7 @@
     }
   },
   "explore": {
-    "unauthenticated": {
+    "empty": {
       "title": "What's happening?",
       "message": "Discover events happening around you."
     }

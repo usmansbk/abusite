@@ -14,15 +14,6 @@ export default function Calendar({navigation}: HomeTabScreenProps<'Calendar'>) {
   const {isLoggedIn} = useAuth();
   const [openTheme, setOpenTheme] = useState(false);
 
-  if (!isLoggedIn) {
-    return (
-      <Unauthenticated
-        title={t('calendar.unauthenticated.title')}
-        message={t('calendar.unauthenticated.message')}
-      />
-    );
-  }
-
   return (
     <Container>
       <Appbar>
@@ -33,11 +24,19 @@ export default function Calendar({navigation}: HomeTabScreenProps<'Calendar'>) {
           onPress={() => setOpenTheme(true)}
         />
         <Appbar.Action
+          disabled={!isLoggedIn}
           icon="sliders"
           onPress={() => navigation.navigate('CalendarSettings')}
         />
       </Appbar>
-      <Timeline />
+      {isLoggedIn ? (
+        <Timeline />
+      ) : (
+        <Unauthenticated
+          title={t('calendar.unauthenticated.title')}
+          message={t('calendar.unauthenticated.message')}
+        />
+      )}
       <ThemeDialog visible={openTheme} onDismiss={() => setOpenTheme(false)} />
     </Container>
   );

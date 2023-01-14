@@ -13,29 +13,28 @@ export default function Notifications({
   const {t} = useTranslation();
   const {isLoggedIn} = useAuth();
 
-  if (!isLoggedIn) {
-    return (
-      <Unauthenticated
-        title={t('notifications.unauthenticated.title')}
-        message={t('notifications.unauthenticated.message')}
-      />
-    );
-  }
-
   return (
     <Container>
       <Appbar>
         <Appbar.Content title="" />
         <Appbar.Action disabled icon="trash" />
         <Appbar.Action
+          disabled={!isLoggedIn}
           icon="sliders"
           onPress={() => navigation.navigate('NotificationSettings')}
         />
       </Appbar>
-      <EmptyState
-        title={t('notifications.empty.title')}
-        message={t('notifications.empty.message')}
-      />
+      {isLoggedIn ? (
+        <EmptyState
+          title={t('notifications.empty.title')}
+          message={t('notifications.empty.message')}
+        />
+      ) : (
+        <Unauthenticated
+          title={t('notifications.unauthenticated.title')}
+          message={t('notifications.unauthenticated.message')}
+        />
+      )}
     </Container>
   );
 }

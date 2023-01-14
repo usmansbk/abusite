@@ -14,6 +14,7 @@ const Drawer = createDrawerNavigator<AppDrawerParamList>();
 
 function AppDrawerContent(props: DrawerContentComponentProps) {
   const {t} = useTranslation();
+  const {isLoggedIn} = useAuth();
   const {navigation} = props;
 
   const items = useMemo(
@@ -36,12 +37,6 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
         label: t('drawer.archive'),
         onPress: () => navigation.navigate('Archive'),
       },
-      {
-        key: 'help',
-        icon: 'help-circle',
-        label: t('drawer.help'),
-        onPress: () => navigation.navigate('Help'),
-      },
     ],
     [],
   );
@@ -49,21 +44,26 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
   return (
     <DrawerContentScrollView {...props}>
       <PaperDrawer.Section>
-        {items.map(({key, label, onPress, icon}) => (
-          <PaperDrawer.Item
-            key={key}
-            label={label}
-            icon={icon}
-            onPress={onPress}
-          />
-        ))}
+        {isLoggedIn &&
+          items.map(({key, label, onPress, icon}) => (
+            <PaperDrawer.Item
+              key={key}
+              label={label}
+              icon={icon}
+              onPress={onPress}
+            />
+          ))}
+        <PaperDrawer.Item
+          label={t('drawer.help')}
+          icon="help-circle"
+          onPress={() => navigation.navigate('Help')}
+        />
       </PaperDrawer.Section>
     </DrawerContentScrollView>
   );
 }
 
 export default function AppDrawer() {
-  const {isLoggedIn} = useAuth();
   return (
     <Drawer.Navigator
       initialRouteName="HomeTabs"
@@ -71,7 +71,6 @@ export default function AppDrawer() {
       screenOptions={{
         drawerType: 'slide',
         headerShown: false,
-        swipeEnabled: isLoggedIn,
       }}>
       <Drawer.Screen name="HomeTabs" component={HomeTabs} />
     </Drawer.Navigator>
