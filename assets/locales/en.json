@@ -47,7 +47,13 @@
     "title": "Settings"
   },
   "help": {
-    "title": "Help"
+    "title": "Help",
+    "items": {
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "review": "Rate Us",
+      "support": "Contact Us"
+    }
   },
   "search": {
     "title": "Search"
