@@ -23,7 +23,8 @@ export default function Notifications() {
     <Container>
       <Appbar>
         <Appbar.Content title="" />
-        <Appbar.Action disabled icon="check" />
+        <Appbar.Action disabled icon="trash" />
+        <Appbar.Action icon="sliders" onPress={() => null} />
       </Appbar>
       <EmptyState
         title={t('notifications.empty.title')}

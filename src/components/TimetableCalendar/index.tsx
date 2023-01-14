@@ -1,15 +1,13 @@
 import React from 'react';
-import {Appbar} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
+import EmptyState from '~components/EmptyState';
 
-interface Props {
-  onPressMenu: () => void;
-}
-
-export default function TimetableCalendar({onPressMenu}: Props) {
+export default function TimetableCalendar() {
+  const {t} = useTranslation();
   return (
-    <Appbar>
-      <Appbar.Action icon="menu" onPress={onPressMenu} />
-      <Appbar.Content title="" />
-    </Appbar>
+    <EmptyState
+      title={t('calendar.empty.title')}
+      message={t('calendar.empty.message')}
+    />
   );
 }

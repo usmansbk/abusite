@@ -6,6 +6,7 @@ import {
 } from '@react-navigation/drawer';
 import {Drawer as PaperDrawer} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
+import useAuth from '~hooks/useAuth';
 import {AppDrawerParamList} from '~types';
 import HomeTabs from './HomeTabs';
 
@@ -36,12 +37,6 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
         onPress: () => navigation.navigate('Archive'),
       },
       {
-        key: 'settings',
-        icon: 'settings',
-        label: t('drawer.settings'),
-        onPress: () => navigation.navigate('Settings'),
-      },
-      {
         key: 'help',
         icon: 'help-circle',
         label: t('drawer.help'),
@@ -68,6 +63,7 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
 }
 
 export default function AppDrawer() {
+  const {isLoggedIn} = useAuth();
   return (
     <Drawer.Navigator
       initialRouteName="HomeTabs"
@@ -75,6 +71,7 @@ export default function AppDrawer() {
       screenOptions={{
         drawerType: 'slide',
         headerShown: false,
+        swipeEnabled: isLoggedIn,
       }}>
       <Drawer.Screen name="HomeTabs" component={HomeTabs} />
     </Drawer.Navigator>
