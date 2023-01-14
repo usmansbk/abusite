@@ -25,7 +25,7 @@ export default function Calendar({navigation}: HomeTabScreenProps<'Calendar'>) {
         />
         <Appbar.Action
           disabled={!isLoggedIn}
-          icon="sliders"
+          icon="settings"
           onPress={() => navigation.navigate('CalendarSettings')}
         />
       </Appbar>

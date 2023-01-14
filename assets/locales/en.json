@@ -17,8 +17,7 @@
   },
   "notifications": {
     "unauthenticated": {
-      "title": "What's new?",
-      "message": "Get notified when your calendar is updated."
+      "title": "What's new?"
     },
     "empty": {
       "title": "No notifications",

@@ -20,7 +20,7 @@ export default function Notifications({
         <Appbar.Action disabled icon="trash" />
         <Appbar.Action
           disabled={!isLoggedIn}
-          icon="sliders"
+          icon="settings"
           onPress={() => navigation.navigate('NotificationSettings')}
         />
       </Appbar>
@@ -32,7 +32,7 @@ export default function Notifications({
       ) : (
         <Unauthenticated
           title={t('notifications.unauthenticated.title')}
-          message={t('notifications.unauthenticated.message')}
+          message={t('notifications.empty.message')}
         />
       )}
     </Container>
