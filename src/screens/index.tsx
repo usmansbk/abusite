@@ -122,7 +122,7 @@ function MainStack() {
             name="NewTimetable"
             component={NewTimetable}
             options={{
-              headerShown: true,
+              headerShown: false,
             }}
           />
           <Stack.Screen

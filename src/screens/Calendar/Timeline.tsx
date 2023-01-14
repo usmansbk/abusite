@@ -37,17 +37,19 @@ export default function Timeline() {
   return (
     <>
       <TimetableCalendar />
-      <Portal>
-        <FAB.Group
-          visible={isFocused && drawerStatus === 'closed'}
-          open={open}
-          icon={open ? 'edit-2' : 'plus'}
-          style={styles.fab}
-          onStateChange={onStateChange}
-          onPress={handlePress}
-          actions={actions}
-        />
-      </Portal>
+      {isFocused && (
+        <Portal>
+          <FAB.Group
+            visible={drawerStatus === 'closed'}
+            open={open}
+            icon={open ? 'edit-2' : 'plus'}
+            style={styles.fab}
+            onStateChange={onStateChange}
+            onPress={handlePress}
+            actions={actions}
+          />
+        </Portal>
+      )}
     </>
   );
 }

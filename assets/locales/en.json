@@ -64,6 +64,9 @@
   "search": {
     "title": "Search"
   },
+  "newTimetable": {
+    "title": "New"
+  },
   "drawer": {
     "help": "Help & feedback",
     "settings": "Settings",
