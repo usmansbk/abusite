@@ -69,6 +69,7 @@ export default function Profile() {
       />
       <ConfirmDialog
         title="Deactivate your account?"
+        message="Your account data will be permanently deleted in 3 months. Log back in to cancel deletion before the deadline."
         onDismiss={() => setOpenConfirmDeactivate(false)}
         onConfirm={logout}
         visible={openConfirmDeactivate}
