@@ -1,9 +1,10 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {FAB, Portal} from 'react-native-paper';
+import {FAB, Portal, ProgressBar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useDrawerStatus} from '@react-navigation/drawer';
 import TimetableCalendar from '~components/TimetableCalendar';
+import useMe from '~hooks/api/useMe';
 import styles from './styles';
 
 export default function Timeline() {
@@ -11,6 +12,7 @@ export default function Timeline() {
   const {t} = useTranslation();
   const drawerStatus = useDrawerStatus();
   const navigation = useNavigation();
+  const {loading} = useMe();
 
   const [open, setOpen] = useState(false);
   const onStateChange = useCallback((value: {open: boolean}) => {
@@ -36,6 +38,7 @@ export default function Timeline() {
 
   return (
     <>
+      {loading && <ProgressBar indeterminate />}
       <TimetableCalendar />
       {isFocused && (
         <Portal>
