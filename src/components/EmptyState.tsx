@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, ScrollView, View} from 'react-native';
+import {StyleSheet, ScrollView, View, ViewStyle} from 'react-native';
 import {Text} from 'react-native-paper';
 
 const styles = StyleSheet.create({
@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
   },
   body: {
     flexGrow: 1,
-    padding: 16,
     justifyContent: 'center',
   },
   gap: {
@@ -20,11 +19,12 @@ const styles = StyleSheet.create({
 interface Props {
   title: string;
   message?: string;
+  style?: ViewStyle;
 }
 
-export default function EmptyState({title, message}: Props) {
+export default function EmptyState({title, message, style}: Props) {
   return (
-    <ScrollView contentContainerStyle={styles.contentContainer}>
+    <ScrollView contentContainerStyle={[styles.contentContainer, style]}>
       <View style={styles.body}>
         <Text variant="displaySmall">{title}</Text>
         {!!message && <Text style={styles.gap}>{message}</Text>}
