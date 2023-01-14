@@ -69,5 +69,15 @@
       "no_play_services": "Play Services not available",
       "failed": "Login failed"
     }
+  },
+  "dialogs": {
+    "theme": {
+      "title": "Theme"
+    }
+  },
+  "themes": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
   }
 }
