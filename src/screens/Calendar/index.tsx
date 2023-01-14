@@ -2,9 +2,10 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import Unauthenticated from '~components/Unauthenticated';
 import useAuth from '~hooks/useAuth';
+import {HomeTabScreenProps} from '~types';
 import Timeline from './Timeline';
 
-export default function Calendar() {
+export default function Calendar({navigation}: HomeTabScreenProps<'Calendar'>) {
   const {t} = useTranslation();
   const {isLoggedIn} = useAuth();
 
@@ -17,5 +18,5 @@ export default function Calendar() {
     );
   }
 
-  return <Timeline />;
+  return <Timeline openDrawer={navigation.openDrawer} />;
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
+import {Appbar} from 'react-native-paper';
+import Container from '~components/Container';
 import EmptyState from '~components/EmptyState';
 import Unauthenticated from '~components/Unauthenticated';
 import useAuth from '~hooks/useAuth';
@@ -18,9 +20,15 @@ export default function Notifications() {
   }
 
   return (
-    <EmptyState
-      title={t('notifications.empty.title')}
-      message={t('notifications.empty.message')}
-    />
+    <Container>
+      <Appbar>
+        <Appbar.Content title="" />
+        <Appbar.Action disabled icon="check" />
+      </Appbar>
+      <EmptyState
+        title={t('notifications.empty.title')}
+        message={t('notifications.empty.message')}
+      />
+    </Container>
   );
 }

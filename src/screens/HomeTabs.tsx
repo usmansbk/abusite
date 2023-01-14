@@ -37,7 +37,7 @@ export default function HomeTabs() {
         } else if (route.name === 'Notifications') {
           iconName = 'bell';
         } else if (route.name === 'Explore') {
-          iconName = 'search';
+          iconName = 'compass';
         } else {
           iconName = '' as never;
         }

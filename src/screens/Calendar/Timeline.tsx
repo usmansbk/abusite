@@ -1,14 +1,18 @@
 import React, {useCallback, useMemo, useState} from 'react';
 import {FAB, Portal} from 'react-native-paper';
-import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useIsFocused} from '@react-navigation/native';
 import {useDrawerStatus} from '@react-navigation/drawer';
 import Container from '~components/Container';
 import EmptyState from '~components/EmptyState';
+import TimetableCalendar from '~components/TimetableCalendar';
 import styles from './styles';
 
-export default function Timeline() {
+interface Props {
+  openDrawer: () => void;
+}
+
+export default function Timeline({openDrawer}: Props) {
   const isFocused = useIsFocused();
   const {t} = useTranslation();
   const drawerStatus = useDrawerStatus();
@@ -37,12 +41,11 @@ export default function Timeline() {
 
   return (
     <Container>
-      <View style={styles.container}>
-        <EmptyState
-          title={t('calendar.empty.title')}
-          message={t('calendar.empty.message')}
-        />
-      </View>
+      <TimetableCalendar onPressMenu={openDrawer} />
+      <EmptyState
+        title={t('calendar.empty.title')}
+        message={t('calendar.empty.message')}
+      />
       <Portal>
         <FAB.Group
           visible={isFocused && drawerStatus === 'closed'}
