@@ -1,13 +1,13 @@
 import React from 'react';
 import {Avatar} from 'react-native-paper';
 
-interface Props {
+export interface UserAvatarProps {
   size?: number;
   name?: string;
   uri?: string;
 }
 
-export default function UserAvatar({size, name, uri}: Props) {
+export default function UserAvatar({size, name, uri}: UserAvatarProps) {
   if (uri) {
     return <Avatar.Image size={size} source={{uri}} />;
   }
