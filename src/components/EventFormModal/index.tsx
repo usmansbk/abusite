@@ -51,7 +51,7 @@ export default function EventFormModal({
             />
             <View style={styles.gap}>
               <PickerInput
-                value="Today"
+                value={null}
                 required={false}
                 label="Date"
                 placeholder="When"
@@ -61,6 +61,7 @@ export default function EventFormModal({
             <View style={[styles.row, styles.gap]}>
               <View style={styles.span}>
                 <PickerInput
+                  value={null}
                   label="From"
                   placeholder="Start time"
                   onPress={() => console.log('Hello')}
@@ -69,6 +70,7 @@ export default function EventFormModal({
               <View style={styles.rowGap} />
               <View style={styles.span}>
                 <PickerInput
+                  value={null}
                   label="To"
                   placeholder="End time"
                   onPress={() => console.log('Hello')}
@@ -77,12 +79,14 @@ export default function EventFormModal({
             </View>
             <View style={styles.gap}>
               <PickerInput
+                value={null}
                 label="Repeat"
                 onPress={() => console.log('Hello')}
               />
             </View>
             <View style={styles.gap}>
               <PickerInput
+                value={null}
                 label="Timetable"
                 onPress={() => console.log('Hello')}
               />

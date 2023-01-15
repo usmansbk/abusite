@@ -2,7 +2,7 @@ import React from 'react';
 import {TextInput} from 'react-native-paper';
 
 interface Props {
-  value?: string | null;
+  value: string | null;
   placeholder?: string;
   label?: string;
   disabled?: boolean;
