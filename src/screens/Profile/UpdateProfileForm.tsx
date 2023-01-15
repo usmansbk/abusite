@@ -4,6 +4,7 @@ import {TextInput, Button, HelperText} from 'react-native-paper';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import {useTranslation} from 'react-i18next';
 import {UpdateUserProfileInput, User} from '~graphql/__generated__/graphql';
 import useUpdateProfile from '~hooks/api/useUpdateProfile';
 import UploadUserAvatar from './UploadUserAvatar';
@@ -16,6 +17,7 @@ interface Props {
 export default function UpdateProfileForm({user}: Props) {
   const {firstName, lastName, picture, email} = user;
   const {loading, update} = useUpdateProfile();
+  const {t} = useTranslation();
 
   const schema = useMemo(
     () =>
@@ -34,7 +36,7 @@ export default function UpdateProfileForm({user}: Props) {
         })
         .noUnknown()
         .required(),
-    [],
+    [t],
   );
 
   const {
