@@ -7,9 +7,8 @@ interface Props {
   label?: string;
   disabled?: boolean;
   error?: boolean;
-  required?: boolean;
   onPress?: () => void;
-  onClearInput?: () => void;
+  onClear?: () => void;
 }
 
 export default function PickerInput({
@@ -19,8 +18,7 @@ export default function PickerInput({
   onPress,
   disabled,
   error,
-  onClearInput,
-  required = true,
+  onClear,
 }: Props) {
   return (
     <TextInput
@@ -35,11 +33,11 @@ export default function PickerInput({
       onFocus={onPress}
       showSoftInputOnFocus={false}
       right={
-        !required && !!value ? (
+        value && onClear ? (
           <TextInput.Icon
             forceTextInputFocus={false}
             icon="x"
-            onPress={onClearInput}
+            onPress={onClear}
           />
         ) : null
       }

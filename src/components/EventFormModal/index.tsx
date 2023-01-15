@@ -52,7 +52,6 @@ export default function EventFormModal({
             <View style={styles.gap}>
               <PickerInput
                 value={null}
-                required={false}
                 label="Date"
                 placeholder="When"
                 onPress={() => console.log('Hello')}
