@@ -9,6 +9,7 @@ import {
   useTheme,
 } from 'react-native-paper';
 import PickerInput from '~components/PickerInput';
+import {Timetable} from '~graphql/__generated__/graphql';
 import styles from './styles';
 
 interface Props {
@@ -17,6 +18,7 @@ interface Props {
   title?: string;
   autoFocus?: boolean;
   loading?: boolean;
+  timetables?: Timetable[];
 }
 
 export default function EventFormModal({
@@ -25,6 +27,7 @@ export default function EventFormModal({
   title,
   autoFocus,
   loading,
+  timetables,
 }: Props) {
   const {colors} = useTheme();
 
@@ -83,13 +86,15 @@ export default function EventFormModal({
                 onPress={() => console.log('Hello')}
               />
             </View>
-            <View style={styles.gap}>
-              <PickerInput
-                value={null}
-                label="Timetable"
-                onPress={() => console.log('Hello')}
-              />
-            </View>
+            {timetables && (
+              <View style={styles.gap}>
+                <PickerInput
+                  value={null}
+                  label="Timetable"
+                  onPress={() => console.log('Hello')}
+                />
+              </View>
+            )}
             <TextInput
               multiline
               label="Description"
