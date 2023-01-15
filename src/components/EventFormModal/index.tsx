@@ -50,19 +50,36 @@ export default function EventFormModal({
               autoFocus={autoFocus}
             />
             <View style={styles.gap}>
-              <PickerInput label="Date" onPress={() => console.log('Hello')} />
+              <PickerInput
+                value="Today"
+                required={false}
+                label="Date"
+                placeholder="When"
+                onPress={() => console.log('Hello')}
+              />
             </View>
-            <View style={styles.row}>
+            <View style={[styles.row, styles.gap]}>
               <View style={styles.span}>
                 <PickerInput
                   label="From"
+                  placeholder="Start time"
                   onPress={() => console.log('Hello')}
                 />
               </View>
               <View style={styles.rowGap} />
               <View style={styles.span}>
-                <PickerInput label="To" onPress={() => console.log('Hello')} />
+                <PickerInput
+                  label="To"
+                  placeholder="End time"
+                  onPress={() => console.log('Hello')}
+                />
               </View>
+            </View>
+            <View style={styles.gap}>
+              <PickerInput
+                label="Repeat"
+                onPress={() => console.log('Hello')}
+              />
             </View>
             <View style={styles.gap}>
               <PickerInput
@@ -75,6 +92,7 @@ export default function EventFormModal({
               label="Description"
               mode="outlined"
               placeholder="Add description"
+              style={styles.gap}
             />
           </ScrollView>
         </SafeAreaView>

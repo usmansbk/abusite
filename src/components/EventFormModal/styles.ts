@@ -14,7 +14,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
   },
   gap: {
-    marginVertical: 8,
+    marginTop: 8,
   },
   row: {
     flexDirection: 'row',
