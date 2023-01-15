@@ -41,7 +41,7 @@ const schema = yup
       .trim()
       .max(10, () => 'Title is too long')
       .required(() => 'Title is required'),
-    events: yup.array().ensure().of(eventSchema).required(),
+    events: yup.array().ensure().of(eventSchema.optional()).required(),
   })
   .noUnknown()
   .required();
