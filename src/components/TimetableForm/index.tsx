@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {StackActions, useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useForm, Controller, useFieldArray} from 'react-hook-form';
-import {FlatList, View} from 'react-native';
+import {BackHandler, FlatList, View} from 'react-native';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {
@@ -61,10 +61,6 @@ export default function TimetableForm({
     [],
   );
 
-  const onConfirmDiscard = useCallback(() => {
-    navigation.dispatch(StackActions.pop());
-  }, [navigation]);
-
   const {
     control,
     formState: {isDirty, touchedFields, errors},
@@ -87,24 +83,32 @@ export default function TimetableForm({
     });
   }, []);
 
-  useEffect(
-    () =>
-      navigation.addListener('beforeRemove', e => {
-        if (!isDirty) {
-          return;
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        if (isDirty) {
+          toggleConfirmDialog();
+          return true;
         }
+        return false;
+      };
 
-        e.preventDefault();
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress,
+      );
 
-        toggleConfirmDialog();
-      }),
-    [navigation, isDirty],
+      return () => subscription.remove();
+    }, [isDirty]),
   );
 
   return (
     <View style={styles.container}>
       <Appbar>
-        <Appbar.Action onPress={navigation.goBack} icon="x" />
+        <Appbar.Action
+          onPress={isDirty ? toggleConfirmDialog : navigation.goBack}
+          icon="x"
+        />
         <Appbar.Content title="" />
         <Appbar.Action
           icon="check"
@@ -161,7 +165,7 @@ export default function TimetableForm({
         visible={confirmDiscardVisible}
         title="Discard changes?"
         message="You have unsaved changes. Are you sure to discard them and leave the screen?"
-        onConfirm={onConfirmDiscard}
+        onConfirm={navigation.goBack}
         onDismiss={toggleConfirmDialog}
       />
     </View>
