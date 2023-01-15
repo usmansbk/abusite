@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller, useFieldArray} from 'react-hook-form';
 import {FlatList, View} from 'react-native';
@@ -52,6 +52,11 @@ export default function TimetableForm({
   onSubmit,
 }: Props) {
   const navigation = useNavigation();
+  const [, setAddEventFormVisible] = useState(false);
+
+  const openAddEventForm = useCallback(() => {
+    setAddEventFormVisible(visible => !visible);
+  }, []);
 
   const {
     control,
@@ -117,7 +122,7 @@ export default function TimetableForm({
           />
         }
       />
-      <FAB icon="edit-2" style={styles.fab} onPress={() => null} />
+      <FAB icon="edit-2" style={styles.fab} onPress={openAddEventForm} />
     </View>
   );
 }

@@ -13,6 +13,7 @@ export default function Timeline() {
   const drawerStatus = useDrawerStatus();
   const navigation = useNavigation();
   const {loading} = useMe();
+  const [, setEventFormVisible] = useState(false);
 
   const [open, setOpen] = useState(false);
   const onStateChange = useCallback((value: {open: boolean}) => {
@@ -32,7 +33,7 @@ export default function Timeline() {
 
   const handlePress = useCallback(() => {
     if (open) {
-      console.log('Hello');
+      setEventFormVisible(true);
     }
   }, [open]);
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Appbar, useTheme} from 'react-native-paper';
 import Container from '~components/Container';
@@ -12,7 +12,11 @@ export default function Calendar({navigation}: HomeTabScreenProps<'Calendar'>) {
   const {t} = useTranslation();
   const {dark} = useTheme();
   const {isLoggedIn} = useAuth();
-  const [openTheme, setOpenTheme] = useState(false);
+  const [themeDialogVisible, setOpenTheme] = useState(false);
+
+  const closeThemeDialog = useCallback(() => {
+    setOpenTheme(false);
+  }, []);
 
   return (
     <Container>
@@ -37,7 +41,7 @@ export default function Calendar({navigation}: HomeTabScreenProps<'Calendar'>) {
           message={t('calendar.unauthenticated.message')}
         />
       )}
-      <ThemeDialog visible={openTheme} onDismiss={() => setOpenTheme(false)} />
+      <ThemeDialog visible={themeDialogVisible} onDismiss={closeThemeDialog} />
     </Container>
   );
 }

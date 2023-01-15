@@ -5,7 +5,7 @@ import TimetableForm from '~components/TimetableForm';
 export default function DuplicateTimetable() {
   return (
     <Container>
-      <TimetableForm />
+      <TimetableForm onSubmit={console.log} />
     </Container>
   );
 }
