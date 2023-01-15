@@ -150,7 +150,7 @@ export default function TimetableForm({
         ListEmptyComponent={
           <EmptyState
             title="Add events"
-            message="Example: Lectures, Exams, Tests, Social events etc."
+            message="Example: Lectures, Exams, and Tests."
             style={styles.emptyList}
           />
         }
