@@ -48,7 +48,7 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
           active
           label={t('drawer.home')}
           icon="home"
-          onPress={() => navigation.navigate('Calendar')}
+          onPress={navigation.goBack}
         />
         {isLoggedIn &&
           items.map(({key, label, onPress, icon}) => (
