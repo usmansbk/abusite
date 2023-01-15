@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, View, TouchableOpacity} from 'react-native';
 import {Button, Divider, List, TextInput} from 'react-native-paper';
 import UserAvatar from '~components/UserAvatar';
 import Container from '~components/Container';
@@ -22,7 +22,9 @@ export default function Profile() {
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.form}>
           <View style={styles.avatar}>
-            <UserAvatar size={100} name={firstName} uri={picture} />
+            <TouchableOpacity onPress={() => null}>
+              <UserAvatar size={100} name={firstName} uri={picture} />
+            </TouchableOpacity>
           </View>
           <TextInput
             autoComplete="name-given"
