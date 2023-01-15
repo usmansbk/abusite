@@ -192,6 +192,31 @@ export enum AuthStrategy {
   Owner = 'owner'
 }
 
+export type CreateEventInput = {
+  description?: InputMaybe<Scalars['NonEmptyString']>;
+  timetableId?: InputMaybe<Scalars['ID']>;
+  title: Scalars['NonEmptyString'];
+};
+
+export type CreateTimetableInput = {
+  description?: InputMaybe<Scalars['NonEmptyString']>;
+  events?: InputMaybe<Array<InputMaybe<CreateEventInput>>>;
+  title: Scalars['NonEmptyString'];
+};
+
+export type Event = {
+  __typename?: 'Event';
+  code?: Maybe<Scalars['ID']>;
+  createdAt: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  isOwner: Scalars['Boolean'];
+  owner: User;
+  timetable: Timetable;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
 export enum Frequency {
   Daily = 'DAILY',
   Monthly = 'MONTHLY',
@@ -201,8 +226,14 @@ export enum Frequency {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createTimetable?: Maybe<Timetable>;
   loginWithSocialProvider: AuthPayload;
   updateProfile: User;
+};
+
+
+export type MutationCreateTimetableArgs = {
+  input: CreateTimetableInput;
 };
 
 
@@ -217,18 +248,26 @@ export type MutationUpdateProfileArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  getTimetableById: Timetable;
   me: User;
+};
+
+
+export type QueryGetTimetableByIdArgs = {
+  id: Scalars['ID'];
 };
 
 export type Recurrence = {
   __typename?: 'Recurrence';
   freq: Frequency;
   interval: Scalars['Int'];
+  until?: Maybe<Scalars['Date']>;
 };
 
 export type RecurrenceInput = {
   freq: Frequency;
   interval: Scalars['PositiveInt'];
+  until?: InputMaybe<Scalars['Date']>;
 };
 
 export type SocialLoginInput = {
@@ -239,6 +278,19 @@ export type SocialLoginInput = {
 export enum SocialProvider {
   Google = 'GOOGLE'
 }
+
+export type Timetable = {
+  __typename?: 'Timetable';
+  code?: Maybe<Scalars['ID']>;
+  createdAt: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']>;
+  events: Array<Maybe<Event>>;
+  id: Scalars['ID'];
+  isOwner: Scalars['Boolean'];
+  owner: User;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
 
 export type UpdateUserProfileInput = {
   firstName: Scalars['NonEmptyString'];
@@ -267,6 +319,13 @@ export type UserPictureArgs = {
   width?: InputMaybe<Scalars['PositiveInt']>;
 };
 
+export type CreateTimetableMutationVariables = Exact<{
+  input: CreateTimetableInput;
+}>;
+
+
+export type CreateTimetableMutation = { __typename?: 'Mutation', createTimetable?: { __typename?: 'Timetable', id: string, title: string, description?: string | null, code?: string | null, createdAt: any, updatedAt?: any | null, isOwner: boolean, owner: { __typename?: 'User', id: string, picture?: any | null, fullName: string }, events: Array<{ __typename?: 'Event', id: string, title: string, description?: string | null, code?: string | null, createdAt: any, updatedAt?: any | null, isOwner: boolean, owner: { __typename?: 'User', id: string, picture?: any | null, fullName: string }, timetable: { __typename?: 'Timetable', id: string, title: string } } | null> } | null };
+
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -287,6 +346,7 @@ export type UpdateProfileMutationVariables = Exact<{
 export type UpdateProfileMutation = { __typename?: 'Mutation', updateProfile: { __typename?: 'User', id: string, fullName: string, firstName: string, lastName: string, updatedAt?: any | null } };
 
 
+export const CreateTimetableDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateTimetable"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateTimetableInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createTimetable"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"isOwner"}},{"kind":"Field","name":{"kind":"Name","value":"owner"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"fullName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"events"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"isOwner"}},{"kind":"Field","name":{"kind":"Name","value":"owner"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"fullName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"timetable"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateTimetableMutation, CreateTimetableMutationVariables>;
 export const MeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Me"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"me"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"fullName"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"emailVerified"}},{"kind":"Field","name":{"kind":"Name","value":"isMe"}},{"kind":"Field","name":{"kind":"Name","value":"language"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<MeQuery, MeQueryVariables>;
 export const LoginWithSocialProviderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"LoginWithSocialProvider"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SocialLoginInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"loginWithSocialProvider"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"token"}}]}}]}}]} as unknown as DocumentNode<LoginWithSocialProviderMutation, LoginWithSocialProviderMutationVariables>;
 export const UpdateProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateUserProfileInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProfile"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"fullName"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<UpdateProfileMutation, UpdateProfileMutationVariables>;

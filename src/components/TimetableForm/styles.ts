@@ -4,7 +4,6 @@ export default StyleSheet.create({
   contentContainer: {
     flexGrow: 1,
     padding: 16,
-    paddingTop: 0,
   },
   container: {
     flex: 1,
