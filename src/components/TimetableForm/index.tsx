@@ -1,6 +1,6 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {useForm, Controller} from 'react-hook-form';
+import {useForm, Controller, useFieldArray} from 'react-hook-form';
 import {FlatList, View} from 'react-native';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -31,17 +31,17 @@ const eventSchema = yup.object({
 const schema = yup
   .object({
     id: yup.string().optional(),
+    title: yup
+      .string()
+      .trim()
+      .max(2, () => 'Title is too long')
+      .required('Title is required'),
     description: yup
       .string()
       .trim()
       .max(2048, () => 'Description is too long')
       .nullable(),
-    title: yup
-      .string()
-      .trim()
-      .max(10, () => 'Title is too long')
-      .required(() => 'Title is required'),
-    events: yup.array().ensure().of(eventSchema.optional()).required(),
+    events: yup.array().of(eventSchema).required(),
   })
   .noUnknown()
   .required();
@@ -61,6 +61,12 @@ export default function TimetableForm({
     resolver: yupResolver(schema),
   });
 
+  const {fields} = useFieldArray({
+    control,
+    name: 'events',
+    keyName: 'key',
+  });
+
   return (
     <View style={styles.container}>
       <Appbar>
@@ -74,9 +80,10 @@ export default function TimetableForm({
       </Appbar>
       <ProgressBar visible={loading} />
       <FlatList
-        data={[]}
+        data={fields}
         contentContainerStyle={styles.contentContainer}
         renderItem={() => null}
+        keyExtractor={item => item.key}
         ListHeaderComponent={
           <Controller
             control={control}

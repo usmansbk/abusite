@@ -19,12 +19,12 @@ const schema = yup
       .string()
       .trim()
       .max(100, () => 'First name is too long')
-      .required(() => "What's your first name?"),
+      .required("What's your first name?"),
     lastName: yup
       .string()
       .trim()
       .max(100, () => 'Last name is too long')
-      .required(() => "What's your last name?"),
+      .required("What's your last name?"),
   })
   .noUnknown()
   .required();
