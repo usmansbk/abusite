@@ -10,7 +10,6 @@ import useMe from './useMe';
 export default function useUploadAvatar() {
   const toast = useToast();
   const client = useApolloClient();
-  const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
   const {me} = useMe();
 
@@ -52,9 +51,7 @@ export default function useUploadAvatar() {
         },
       });
     } catch (e) {
-      const reqError = e as Error;
-      setError(reqError);
-      toast.show(reqError.message);
+      toast.show((e as Error).message);
     }
     setLoading(false);
   }, []);
@@ -62,6 +59,5 @@ export default function useUploadAvatar() {
   return {
     loading,
     upload,
-    error,
   };
 }
