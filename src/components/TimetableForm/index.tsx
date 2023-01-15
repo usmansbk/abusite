@@ -125,6 +125,7 @@ export default function TimetableForm({
       />
       <FAB icon="edit-2" style={styles.fab} onPress={toggleAddEventForm} />
       <EventFormModal
+        autoFocus
         visible={addEventModalVisible}
         onDismiss={toggleAddEventForm}
       />

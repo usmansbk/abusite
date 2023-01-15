@@ -4,6 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useDrawerStatus} from '@react-navigation/drawer';
 import TimetableCalendar from '~components/TimetableCalendar';
+import EventFormModal from '~components/EventFormModal';
 import useMe from '~hooks/api/useMe';
 import styles from './styles';
 
@@ -13,9 +14,15 @@ export default function Timeline() {
   const drawerStatus = useDrawerStatus();
   const navigation = useNavigation();
   const {loading} = useMe();
-  const [, setEventFormVisible] = useState(false);
+  const [eventFormVisible, setEventFormVisible] = useState(false);
 
   const [open, setOpen] = useState(false);
+
+  const toggleEventFormVisible = useCallback(
+    () => setEventFormVisible(visible => !visible),
+    [],
+  );
+
   const onStateChange = useCallback((value: {open: boolean}) => {
     setOpen(value.open);
   }, []);
@@ -33,7 +40,7 @@ export default function Timeline() {
 
   const handlePress = useCallback(() => {
     if (open) {
-      setEventFormVisible(true);
+      toggleEventFormVisible();
     }
   }, [open]);
 
@@ -44,7 +51,7 @@ export default function Timeline() {
       {isFocused && (
         <Portal>
           <FAB.Group
-            visible={drawerStatus === 'closed'}
+            visible={drawerStatus === 'closed' && !eventFormVisible}
             open={open}
             icon={open ? 'edit-2' : 'plus'}
             style={styles.fab}
@@ -54,6 +61,11 @@ export default function Timeline() {
           />
         </Portal>
       )}
+      <EventFormModal
+        autoFocus
+        visible={eventFormVisible}
+        onDismiss={toggleEventFormVisible}
+      />
     </>
   );
 }
