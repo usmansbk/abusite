@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {StackActions, useNavigation} from '@react-navigation/native';
 import {useForm, Controller, useFieldArray} from 'react-hook-form';
 import {FlatList, View} from 'react-native';
 import {yupResolver} from '@hookform/resolvers/yup';
@@ -13,6 +13,7 @@ import {
 } from 'react-native-paper';
 import EventFormModal from '~components/EventFormModal';
 import EmptyState from '~components/EmptyState';
+import ConfirmDialog from '~components/ConfirmDialog';
 import {EditTimetableInput} from '~graphql/__generated__/graphql';
 import styles from './styles';
 
@@ -49,10 +50,20 @@ export default function TimetableForm({
 }: Props) {
   const navigation = useNavigation();
   const [addEventModalVisible, setAddEventFormVisible] = useState(false);
+  const [confirmDiscardVisible, setConfirmDiscardVisible] = useState(false);
 
   const toggleAddEventForm = useCallback(() => {
     setAddEventFormVisible(visible => !visible);
   }, []);
+
+  const toggleConfirmDialog = useCallback(
+    () => setConfirmDiscardVisible(visible => !visible),
+    [],
+  );
+
+  const onConfirmDiscard = useCallback(() => {
+    navigation.dispatch(StackActions.pop());
+  }, [navigation]);
 
   const {
     control,
@@ -75,6 +86,20 @@ export default function TimetableForm({
       events: [],
     });
   }, []);
+
+  useEffect(
+    () =>
+      navigation.addListener('beforeRemove', e => {
+        if (!isDirty) {
+          return;
+        }
+
+        e.preventDefault();
+
+        toggleConfirmDialog();
+      }),
+    [navigation, isDirty],
+  );
 
   return (
     <View style={styles.container}>
@@ -131,6 +156,13 @@ export default function TimetableForm({
         autoFocus
         visible={addEventModalVisible}
         onDismiss={toggleAddEventForm}
+      />
+      <ConfirmDialog
+        visible={confirmDiscardVisible}
+        title="Discard changes?"
+        message="You have unsaved changes. Are you sure to discard them and leave the screen?"
+        onConfirm={onConfirmDiscard}
+        onDismiss={toggleConfirmDialog}
       />
     </View>
   );
