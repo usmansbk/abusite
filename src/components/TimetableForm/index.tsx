@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller, useFieldArray} from 'react-hook-form';
 import {FlatList, View} from 'react-native';
@@ -37,11 +37,6 @@ const schema = yup
       .trim()
       .max(2, () => 'Title is too long')
       .required('Title is required'),
-    description: yup
-      .string()
-      .trim()
-      .max(2048, () => 'Description is too long')
-      .nullable(),
     events: yup.array().of(eventSchema).required(),
   })
   .noUnknown()
@@ -63,6 +58,7 @@ export default function TimetableForm({
     control,
     formState: {isDirty, touchedFields, errors},
     handleSubmit,
+    reset,
   } = useForm<EditTimetableInput>({
     resolver: yupResolver(schema),
   });
@@ -72,6 +68,13 @@ export default function TimetableForm({
     name: 'events',
     keyName: 'key',
   });
+
+  useEffect(() => {
+    reset({
+      title: '',
+      events: [],
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
