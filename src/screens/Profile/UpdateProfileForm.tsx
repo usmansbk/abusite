@@ -1,10 +1,9 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {TextInput, Button, HelperText} from 'react-native-paper';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import {useTranslation} from 'react-i18next';
 import {UpdateUserProfileInput, User} from '~graphql/__generated__/graphql';
 import useUpdateProfile from '~hooks/api/useUpdateProfile';
 import UploadUserAvatar from './UploadUserAvatar';
@@ -14,30 +13,25 @@ interface Props {
   user: User;
 }
 
+const schema = yup
+  .object<UpdateUserProfileInput>({
+    firstName: yup
+      .string()
+      .trim()
+      .max(100, () => 'First name is too long')
+      .required(() => "What's your first name?"),
+    lastName: yup
+      .string()
+      .trim()
+      .max(100, () => 'Last name is too long')
+      .required(() => "What's your last name?"),
+  })
+  .noUnknown()
+  .required();
+
 export default function UpdateProfileForm({user}: Props) {
   const {firstName, lastName, picture, email} = user;
   const {loading, update} = useUpdateProfile();
-  const {t} = useTranslation();
-
-  const schema = useMemo(
-    () =>
-      yup
-        .object<UpdateUserProfileInput>({
-          firstName: yup
-            .string()
-            .trim()
-            .max(100, () => 'Name too long')
-            .required(() => "What's your first name?"),
-          lastName: yup
-            .string()
-            .trim()
-            .max(100, () => 'Name too long')
-            .required(() => "What's your last name?"),
-        })
-        .noUnknown()
-        .required(),
-    [t],
-  );
 
   const {
     control,

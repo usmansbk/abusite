@@ -1,23 +1,65 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
 import {FlatList, View} from 'react-native';
-import {Appbar, TextInput, FAB, ProgressBar} from 'react-native-paper';
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import {
+  Appbar,
+  TextInput,
+  FAB,
+  ProgressBar,
+  HelperText,
+} from 'react-native-paper';
 import EmptyState from '~components/EmptyState';
+import {EditTimetableInput} from '~graphql/__generated__/graphql';
 import styles from './styles';
 
 interface Props {
   autoFocus?: boolean;
   loading?: boolean;
+  onSubmit: (values: EditTimetableInput) => void;
 }
 
-export default function TimetableForm({autoFocus = true, loading}: Props) {
+const eventSchema = yup.object({
+  id: yup.string().optional(),
+  title: yup.string().required(),
+  description: yup.string().nullable(),
+  timetableId: yup.string().optional(),
+});
+
+const schema = yup
+  .object({
+    id: yup.string().optional(),
+    description: yup
+      .string()
+      .trim()
+      .max(2048, () => 'Description is too long')
+      .nullable(),
+    title: yup
+      .string()
+      .trim()
+      .max(10, () => 'Title is too long')
+      .required(() => 'Title is required'),
+    events: yup.array().ensure().of(eventSchema).required(),
+  })
+  .noUnknown()
+  .required();
+
+export default function TimetableForm({
+  autoFocus = true,
+  loading,
+  onSubmit,
+}: Props) {
   const navigation = useNavigation();
+
   const {
     control,
-    formState: {isDirty},
+    formState: {isDirty, touchedFields, errors},
     handleSubmit,
-  } = useForm();
+  } = useForm<EditTimetableInput>({
+    resolver: yupResolver(schema),
+  });
 
   return (
     <View style={styles.container}>
@@ -27,7 +69,7 @@ export default function TimetableForm({autoFocus = true, loading}: Props) {
         <Appbar.Action
           icon="check"
           disabled={loading || !isDirty}
-          onPress={handleSubmit(() => null)}
+          onPress={handleSubmit(onSubmit)}
         />
       </Appbar>
       <ProgressBar visible={loading} />
@@ -40,15 +82,23 @@ export default function TimetableForm({autoFocus = true, loading}: Props) {
             control={control}
             name="title"
             render={({field: {value, onBlur, onChange}}) => (
-              <TextInput
-                mode="outlined"
-                label="Title"
-                autoFocus={autoFocus}
-                placeholder="Example: My Lectures"
-                value={value}
-                onBlur={onBlur}
-                onChangeText={onChange}
-              />
+              <>
+                <TextInput
+                  mode="outlined"
+                  label="Title"
+                  autoFocus={autoFocus}
+                  placeholder="Example: My Lectures"
+                  value={value}
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  error={Boolean(touchedFields.title && errors.title?.message)}
+                />
+                {Boolean(touchedFields.title && errors.title?.message) && (
+                  <HelperText type="error">
+                    {errors.title?.message as string}
+                  </HelperText>
+                )}
+              </>
             )}
           />
         }
