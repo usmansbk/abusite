@@ -11,6 +11,7 @@ import {
   ProgressBar,
   HelperText,
 } from 'react-native-paper';
+import EventFormModal from '~components/EventFormModal';
 import EmptyState from '~components/EmptyState';
 import {EditTimetableInput} from '~graphql/__generated__/graphql';
 import styles from './styles';
@@ -52,9 +53,9 @@ export default function TimetableForm({
   onSubmit,
 }: Props) {
   const navigation = useNavigation();
-  const [, setAddEventFormVisible] = useState(false);
+  const [addEventModalVisible, setAddEventFormVisible] = useState(false);
 
-  const openAddEventForm = useCallback(() => {
+  const toggleAddEventForm = useCallback(() => {
     setAddEventFormVisible(visible => !visible);
   }, []);
 
@@ -106,7 +107,7 @@ export default function TimetableForm({
                   error={Boolean(touchedFields.title && errors.title?.message)}
                 />
                 {Boolean(touchedFields.title && errors.title?.message) && (
-                  <HelperText type="error">
+                  <HelperText padding="none" type="error">
                     {errors.title?.message as string}
                   </HelperText>
                 )}
@@ -122,7 +123,11 @@ export default function TimetableForm({
           />
         }
       />
-      <FAB icon="edit-2" style={styles.fab} onPress={openAddEventForm} />
+      <FAB icon="edit-2" style={styles.fab} onPress={toggleAddEventForm} />
+      <EventFormModal
+        visible={addEventModalVisible}
+        onDismiss={toggleAddEventForm}
+      />
     </View>
   );
 }

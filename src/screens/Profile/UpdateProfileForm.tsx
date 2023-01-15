@@ -72,7 +72,7 @@ export default function UpdateProfileForm({user}: Props) {
               )}
             />
             {Boolean(touchedFields.firstName && errors.firstName?.message) && (
-              <HelperText type="error">
+              <HelperText padding="none" type="error">
                 {errors.firstName?.message as string}
               </HelperText>
             )}
@@ -97,7 +97,7 @@ export default function UpdateProfileForm({user}: Props) {
               )}
             />
             {Boolean(touchedFields.lastName && errors.lastName?.message) && (
-              <HelperText type="error">
+              <HelperText padding="none" type="error">
                 {errors.lastName?.message as string}
               </HelperText>
             )}

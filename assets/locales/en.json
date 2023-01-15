@@ -77,7 +77,7 @@
   "buttons": {
     "login": "Login to continue",
     "google": "Sign in with Google",
-    "timetable": "Timetable"
+    "timetable": "New Timetable"
   },
   "errors": {
     "login": {
