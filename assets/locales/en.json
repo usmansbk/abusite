@@ -68,6 +68,7 @@
     "title": "New"
   },
   "drawer": {
+    "home": "Home",
     "help": "Help & feedback",
     "settings": "Settings",
     "bookmarks": "Bookmarks",

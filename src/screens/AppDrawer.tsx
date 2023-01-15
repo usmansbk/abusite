@@ -44,6 +44,12 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
   return (
     <DrawerContentScrollView {...props}>
       <PaperDrawer.Section>
+        <PaperDrawer.Item
+          active
+          label={t('drawer.home')}
+          icon="home"
+          onPress={() => navigation.navigate('Calendar')}
+        />
         {isLoggedIn &&
           items.map(({key, label, onPress, icon}) => (
             <PaperDrawer.Item

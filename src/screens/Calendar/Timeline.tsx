@@ -65,6 +65,7 @@ export default function Timeline() {
         autoFocus
         visible={eventFormVisible}
         onDismiss={toggleEventFormVisible}
+        timetables={[]}
       />
     </>
   );

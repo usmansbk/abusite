@@ -11,6 +11,7 @@ export default function Explore({navigation}: HomeTabScreenProps<'Explore'>) {
   return (
     <Container>
       <Appbar>
+        <Appbar.Action icon="menu" onPress={navigation.openDrawer} />
         <Appbar.Content title="" />
         <Appbar.Action
           icon="search"
