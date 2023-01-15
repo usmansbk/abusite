@@ -5,13 +5,14 @@ import {Asset} from 'react-native-image-picker';
 import {useToast} from '~components/Toast';
 import env from '~config/env';
 import authState from '~graphql/localState/authState';
+import useMe from './useMe';
 
 export default function useUploadAvatar() {
   const toast = useToast();
   const client = useApolloClient();
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(null);
+  const {me} = useMe();
 
   const upload = useCallback(async (file: Asset) => {
     setLoading(true);
@@ -42,7 +43,14 @@ export default function useUploadAvatar() {
         throw new Error(result.message);
       }
 
-      setData(result);
+      client.cache.modify({
+        id: client.cache.identify(me!),
+        fields: {
+          picture() {
+            return result.picture;
+          },
+        },
+      });
     } catch (e) {
       const reqError = e as Error;
       setError(reqError);
@@ -55,6 +63,5 @@ export default function useUploadAvatar() {
     loading,
     upload,
     error,
-    data,
   };
 }
