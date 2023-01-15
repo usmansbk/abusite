@@ -56,7 +56,7 @@ export default function EventFormModal({
               <PickerInput
                 value={null}
                 label="Date"
-                placeholder="When"
+                placeholder="Happening on?"
                 onPress={() => console.log('Hello')}
               />
             </View>
@@ -83,6 +83,7 @@ export default function EventFormModal({
               <PickerInput
                 value={null}
                 label="Repeat"
+                placeholder="Every when?"
                 onPress={() => console.log('Hello')}
               />
             </View>
