@@ -15,6 +15,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
 const documents = {
     "\n\tquery Me {\n\t\tme {\n\t\t\tid\n\t\t\tfirstName\n\t\t\tlastName\n\t\t\tfullName\n\t\t\temail\n\t\t\temailVerified\n\t\t\tisMe\n\t\t\tlanguage\n\t\t\tpicture\n\t\t\tcreatedAt\n\t\t\tupdatedAt\n\t\t}\n\t}\n": types.MeDocument,
     "\nmutation LoginWithSocialProvider($input: SocialLoginInput!) {\n  loginWithSocialProvider(input: $input) {\n    token\n  }\n}": types.LoginWithSocialProviderDocument,
+    "\nmutation UpdateProfile($input: UpdateUserProfileInput!) {\n  updateProfile(input: $input) {\n    id\n    fullName\n    firstName\n    lastName\n    updatedAt\n  }\n}\n": types.UpdateProfileDocument,
 };
 
 /**
@@ -39,6 +40,10 @@ export function gql(source: "\n\tquery Me {\n\t\tme {\n\t\t\tid\n\t\t\tfirstName
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\nmutation LoginWithSocialProvider($input: SocialLoginInput!) {\n  loginWithSocialProvider(input: $input) {\n    token\n  }\n}"): (typeof documents)["\nmutation LoginWithSocialProvider($input: SocialLoginInput!) {\n  loginWithSocialProvider(input: $input) {\n    token\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nmutation UpdateProfile($input: UpdateUserProfileInput!) {\n  updateProfile(input: $input) {\n    id\n    fullName\n    firstName\n    lastName\n    updatedAt\n  }\n}\n"): (typeof documents)["\nmutation UpdateProfile($input: UpdateUserProfileInput!) {\n  updateProfile(input: $input) {\n    id\n    fullName\n    firstName\n    lastName\n    updatedAt\n  }\n}\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
