@@ -10,8 +10,10 @@ mutation UpdateTimetable($input: EditTimetableInput!) {
       id
       title
       description
-      updatedAt
       code
+      startAt
+      endAt
+      updatedAt
       createdAt
       isOwner
       owner {

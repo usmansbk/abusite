@@ -20,6 +20,8 @@ mutation CreateTimetable($input: EditTimetableInput!) {
       title
       description
       code
+      startAt
+      endAt
       createdAt
       updatedAt
       isOwner
