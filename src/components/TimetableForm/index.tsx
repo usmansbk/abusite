@@ -11,7 +11,9 @@ import {
   ProgressBar,
   HelperText,
 } from 'react-native-paper';
-import EventFormModal from '~components/EventFormModal';
+import EventFormModal, {
+  schema as eventSchema,
+} from '~components/EventFormModal';
 import EmptyState from '~components/EmptyState';
 import ConfirmDialog from '~components/ConfirmDialog';
 import {EditTimetableInput} from '~graphql/__generated__/graphql';
@@ -22,13 +24,6 @@ interface Props {
   loading?: boolean;
   onSubmit: (values: EditTimetableInput) => void;
 }
-
-const eventSchema = yup.object({
-  id: yup.string().optional(),
-  title: yup.string().required(),
-  description: yup.string().nullable(),
-  timetableId: yup.string().optional(),
-});
 
 const schema = yup
   .object({
