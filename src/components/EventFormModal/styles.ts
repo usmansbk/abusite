@@ -23,6 +23,6 @@ export default StyleSheet.create({
     flex: 1,
   },
   rowGap: {
-    marginHorizontal: 8,
+    marginHorizontal: 4,
   },
 });

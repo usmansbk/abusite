@@ -107,50 +107,65 @@ export default function EventFormModal({
                 </>
               )}
             />
-            <View style={styles.gap}>
-              <PickerInput
-                value={null}
-                label="Date"
-                placeholder="Happening on?"
-                onPress={() => console.log('Hello')}
-              />
-            </View>
+
             <View style={[styles.row, styles.gap]}>
               <View style={styles.span}>
                 <PickerInput
                   value={null}
                   label="From"
-                  placeholder="Start time"
-                  onPress={() => console.log('Hello')}
+                  placeholder="Date"
+                  onPress={() => null}
                 />
               </View>
               <View style={styles.rowGap} />
+              <View>
+                <PickerInput
+                  value={null}
+                  placeholder="Time"
+                  onPress={() => null}
+                />
+              </View>
+            </View>
+
+            <View style={[styles.row, styles.gap]}>
               <View style={styles.span}>
                 <PickerInput
                   value={null}
                   label="To"
-                  placeholder="End time"
-                  onPress={() => console.log('Hello')}
+                  placeholder="Date"
+                  onPress={() => null}
+                />
+              </View>
+              <View style={styles.rowGap} />
+              <View>
+                <PickerInput
+                  value={null}
+                  placeholder="Time"
+                  onPress={() => null}
                 />
               </View>
             </View>
+
             <View style={styles.gap}>
               <PickerInput
                 value={null}
                 label="Repeat"
                 placeholder="Every when?"
-                onPress={() => console.log('Hello')}
+                onPress={() => null}
+                onClear={() => null}
               />
             </View>
+
             {timetables && (
               <View style={styles.gap}>
                 <PickerInput
                   value={null}
                   label="Timetable"
-                  onPress={() => console.log('Hello')}
+                  onPress={() => null}
                 />
               </View>
             )}
+
             <Controller
               control={control}
               name="description"
