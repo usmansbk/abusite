@@ -10,10 +10,10 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@apollo/client@^3.7.3":
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.7.3.tgz#ab3fe31046e74bc1a3762363a185ba5bcfffc58b"
-  integrity sha512-nzZ6d6a4flLpm3pZOGpuAUxLlp9heob7QcCkyIqZlCLvciUibgufRfYTwfkWCc4NaGHGSZyodzvfr79H6oUwGQ==
+"@apollo/client@^3.7.4":
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.7.4.tgz#28c3fb7f89365ccaf185bc8b51860041f37629b3"
+  integrity sha512-bgiCKRmLSBImX4JRrw8NjqGo0AQE/mowCdHX1PJp2r5zIXrJx0UeaAYmx1qJY69Oz/KR7SKlLt4xK+bOP1jx7A==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     "@wry/context" "^0.7.0"
@@ -8466,10 +8466,10 @@ react-is@^17.0.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-native-bootsplash@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-bootsplash/-/react-native-bootsplash-4.4.0.tgz#aa4cb8bdd66d4c3a844018fa9b4b5d66e7cc8220"
-  integrity sha512-vqZhCMPcAD+1sScCppFnMfks77GENJsiU11nnYkLwc6isEHKJgj1NSbmxzi1W/Qpj0YZ8okXxk4PiljD9Iz2bg==
+react-native-bootsplash@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-bootsplash/-/react-native-bootsplash-4.4.1.tgz#c9a8af36666879a3f6c413c73180833721374de4"
+  integrity sha512-TgDIih5HHuvcMO97ayjgYBSlUcEJwUnxw3xP4wz7epO+dJQAvMaNqtI1uQNcy6JzagM9q7xExR+1KFRv/4kxQg==
   dependencies:
     fs-extra "^11.1.0"
     jimp "^0.16.2"
@@ -8520,10 +8520,10 @@ react-native-paper@^5.1.3:
     color "^3.1.2"
     use-event-callback "^0.1.0"
 
-react-native-reanimated@^2.14.1:
-  version "2.14.1"
-  resolved "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-2.14.1.tgz"
-  integrity sha512-o5fAcfYqgRENguVd1Xxd7PPwBgmqTA9yzrIlUk/I0iHeV+5lRLjYwya+Oz3muefUQoQk9hlVyEvZeEdwClC5AQ==
+react-native-reanimated@^2.14.2:
+  version "2.14.2"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.14.2.tgz#7f20f01052ea4902e320be8725d55b40b1d21d62"
+  integrity sha512-zj05BBafk38rE78PhHc6q0vg9M4WeJY/RExHUGFiP1miJyyAaJzs2jLQR+HY0zbutCE+/yNJyOE3dca2BslsGg==
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.16.7"
     "@babel/preset-typescript" "^7.16.7"
@@ -8538,10 +8538,10 @@ react-native-safe-area-context@^4.4.1:
   resolved "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-4.4.1.tgz"
   integrity sha512-N9XTjiuD73ZpVlejHrUWIFZc+6Z14co1K/p1IFMkImU7+avD69F3y+lhkqA2hN/+vljdZrBSiOwXPkuo43nFQA==
 
-react-native-screens@^3.18.2:
-  version "3.18.2"
-  resolved "https://registry.npmjs.org/react-native-screens/-/react-native-screens-3.18.2.tgz"
-  integrity sha512-ANUEuvMUlsYJ1QKukEhzhfrvOUO9BVH9Nzg+6eWxpn3cfD/O83yPBOF8Mx6x5H/2+sMy+VS5x/chWOOo/U7QJw==
+react-native-screens@^3.19.0:
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-3.19.0.tgz#ec68685e04b074ebce4641b3a0ae7e2571629b75"
+  integrity sha512-Ehsmy7jr3H3j5pmN+/FqsAaIAD+k+xkcdePfLcg4rYRbN5X7fJPgaqhcmiCcZ0YxsU8ttsstP9IvRLNQuIkRRA==
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
