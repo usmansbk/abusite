@@ -108,40 +108,33 @@ export default function EventFormModal({
               )}
             />
 
-            <View style={[styles.row, styles.gap]}>
-              <View style={styles.span}>
-                <PickerInput
-                  value={null}
-                  label="From"
-                  placeholder="Date"
-                  onPress={() => null}
-                />
-              </View>
-              <View style={styles.rowGap} />
-              <View>
-                <PickerInput
-                  value={null}
-                  placeholder="Time"
-                  onPress={() => null}
-                />
-              </View>
+            <View style={styles.gap}>
+              <PickerInput
+                value={null}
+                label="Date"
+                placeholder="Date"
+                onPress={() => null}
+              />
             </View>
 
             <View style={[styles.row, styles.gap]}>
               <View style={styles.span}>
                 <PickerInput
                   value={null}
-                  label="To"
-                  placeholder="Date"
+                  label="From"
+                  placeholder="Time"
                   onPress={() => null}
+                  onClear={() => null}
                 />
               </View>
               <View style={styles.rowGap} />
-              <View>
+              <View style={styles.span}>
                 <PickerInput
+                  label="To"
                   value={null}
                   placeholder="Time"
                   onPress={() => null}
+                  onClear={() => null}
                 />
               </View>
             </View>
