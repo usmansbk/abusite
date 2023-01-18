@@ -1,7 +1,7 @@
 import React from 'react';
 import {TextInput} from 'react-native-paper';
 
-interface Props {
+export interface PickerInputProps {
   value: string | null;
   placeholder?: string;
   label?: string;
@@ -19,7 +19,7 @@ export default function PickerInput({
   disabled,
   error,
   onClear,
-}: Props) {
+}: PickerInputProps) {
   return (
     <TextInput
       caretHidden
@@ -30,7 +30,7 @@ export default function PickerInput({
       mode="outlined"
       label={label}
       placeholder={placeholder}
-      onFocus={onPress}
+      onPressIn={onPress}
       showSoftInputOnFocus={false}
       right={
         value && onClear ? (

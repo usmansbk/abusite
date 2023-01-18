@@ -13,6 +13,7 @@ import {
   HelperText,
 } from 'react-native-paper';
 import PickerInput from '~components/PickerInput';
+import DateTimeInput from '~components/DateTimeInput';
 import {EditEventInput, Timetable} from '~graphql/__generated__/graphql';
 import styles from './styles';
 
@@ -111,32 +112,32 @@ export default function EventFormModal({
             />
 
             <View style={styles.gap}>
-              <PickerInput
+              <DateTimeInput
+                mode="date"
                 value={null}
                 label="Date"
                 placeholder="Date"
-                onPress={() => null}
+                onChange={value => console.log(value)}
               />
             </View>
-
             <View style={[styles.row, styles.gap]}>
               <View style={styles.span}>
-                <PickerInput
+                <DateTimeInput
+                  mode="time"
                   value={null}
                   label="From"
                   placeholder="Time"
-                  onPress={() => null}
-                  onClear={() => null}
+                  onChange={value => console.log(value)}
                 />
               </View>
               <View style={styles.rowGap} />
               <View style={styles.span}>
-                <PickerInput
-                  label="To"
+                <DateTimeInput
+                  mode="time"
                   value={null}
+                  label="To"
                   placeholder="Time"
-                  onPress={() => null}
-                  onClear={() => null}
+                  onChange={value => console.log(value)}
                 />
               </View>
             </View>
