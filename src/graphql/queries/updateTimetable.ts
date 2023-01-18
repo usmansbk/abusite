@@ -11,8 +11,9 @@ mutation UpdateTimetable($input: EditTimetableInput!) {
       title
       description
       code
-      startAt
-      endAt
+      startDate
+      startTime
+      endTime
       updatedAt
       createdAt
       isOwner

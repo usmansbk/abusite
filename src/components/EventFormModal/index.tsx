@@ -63,7 +63,9 @@ export default function EventFormModal({
     reset({
       title: '',
       description: '',
-      endAt: null,
+      startDate: null,
+      startTime: null,
+      endTime: null,
     });
   }, []);
 
