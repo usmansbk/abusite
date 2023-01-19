@@ -16,6 +16,7 @@ interface Props extends PickerInputProps {
   mode: 'date' | 'time';
   placeholder?: string;
   label?: string;
+  required?: boolean;
 }
 
 export default function DateTimeInput({
@@ -23,6 +24,7 @@ export default function DateTimeInput({
   onChange,
   placeholder,
   label,
+  required,
   mode = 'date',
 }: Props) {
   const [visible, setVisible] = useState(false);
@@ -67,6 +69,8 @@ export default function DateTimeInput({
     return parseTime(value);
   }, [mode, value]);
 
+  const onClear = useCallback(() => onChange(null), []);
+
   return (
     <>
       <PickerInput
@@ -74,6 +78,7 @@ export default function DateTimeInput({
         onPress={showPicker}
         placeholder={placeholder}
         label={label}
+        onClear={required ? undefined : onClear}
       />
       <DateTimePicker
         date={date}

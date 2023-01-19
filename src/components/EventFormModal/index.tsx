@@ -119,6 +119,7 @@ export default function EventFormModal({
                 name="startDate"
                 render={({field: {value, onChange}}) => (
                   <DateTimeInput
+                    required
                     mode="date"
                     value={value}
                     label="Date"
