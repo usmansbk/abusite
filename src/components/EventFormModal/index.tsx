@@ -15,6 +15,7 @@ import {
 import PickerInput from '~components/PickerInput';
 import DateTimeInput from '~components/DateTimeInput';
 import {EditEventInput, Timetable} from '~graphql/__generated__/graphql';
+import {getCurrentDate} from '~utils/dateTime';
 import styles from './styles';
 
 interface Props {
@@ -64,7 +65,7 @@ export default function EventFormModal({
     reset({
       title: '',
       description: '',
-      startDate: null,
+      startDate: getCurrentDate(),
       startTime: null,
       endTime: null,
     });
@@ -112,32 +113,50 @@ export default function EventFormModal({
             />
 
             <View style={styles.gap}>
-              <DateTimeInput
-                mode="date"
-                value={null}
-                label="Date"
-                placeholder="Date"
-                onChange={value => console.log(value)}
+              <Controller
+                control={control}
+                name="startDate"
+                render={({field: {value, onChange}}) => (
+                  <DateTimeInput
+                    mode="date"
+                    value={value}
+                    label="Date"
+                    placeholder="Date"
+                    onChange={onChange}
+                  />
+                )}
               />
             </View>
             <View style={[styles.row, styles.gap]}>
               <View style={styles.span}>
-                <DateTimeInput
-                  mode="time"
-                  value={null}
-                  label="From"
-                  placeholder="Time"
-                  onChange={value => console.log(value)}
+                <Controller
+                  control={control}
+                  name="startTime"
+                  render={({field: {value, onChange}}) => (
+                    <DateTimeInput
+                      mode="time"
+                      value={value}
+                      label="From"
+                      placeholder="Time"
+                      onChange={onChange}
+                    />
+                  )}
                 />
               </View>
               <View style={styles.rowGap} />
               <View style={styles.span}>
-                <DateTimeInput
-                  mode="time"
-                  value={null}
-                  label="To"
-                  placeholder="Time"
-                  onChange={value => console.log(value)}
+                <Controller
+                  control={control}
+                  name="endTime"
+                  render={({field: {value, onChange}}) => (
+                    <DateTimeInput
+                      mode="time"
+                      value={value}
+                      label="To"
+                      placeholder="Time"
+                      onChange={onChange}
+                    />
+                  )}
                 />
               </View>
             </View>
@@ -174,7 +193,7 @@ export default function EventFormModal({
                     placeholder="Add description"
                     style={styles.gap}
                     onBlur={onBlur}
-                    onChange={onChange}
+                    onChangeText={onChange}
                     value={value}
                     error={Boolean(
                       touchedFields.description && errors.description?.message,
