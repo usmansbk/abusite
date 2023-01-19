@@ -40,7 +40,14 @@ export function formatTime(time: string | null) {
 }
 
 export function formatCalendarDate(date: string | null) {
-  return dayjs(date).calendar();
+  return dayjs(date).calendar(null, {
+    sameDay: '[Today], dddd DD',
+    nextDay: '[Tomorrow], dddd DD',
+    nextWeek: 'dddd DD',
+    lastDay: '[Yesterday], dddd DD',
+    lastWeek: '[Last] dddd, DD MMM',
+    sameElse: 'ddd, DD MMM YYYY',
+  });
 }
 
 export function formatDateToTime(date: Date) {

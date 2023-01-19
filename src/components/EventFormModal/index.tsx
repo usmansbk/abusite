@@ -37,8 +37,9 @@ export const schema = yup
       .max(2048, () => 'Description is too long')
       .nullable(),
     timetableId: yup.string().optional(),
-    startAt: yup.date().required(),
-    endAt: yup.date().optional().nullable(),
+    startDate: yup.date().required(),
+    startTime: yup.string().optional().nullable(),
+    endTime: yup.string().optional().nullable(),
   })
   .noUnknown()
   .required();

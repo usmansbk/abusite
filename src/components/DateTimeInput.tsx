@@ -13,7 +13,7 @@ import PickerInput, {PickerInputProps} from './PickerInput';
 interface Props extends PickerInputProps {
   onChange: (date: string | null) => void;
   value: string | null;
-  mode?: 'date' | 'time';
+  mode: 'date' | 'time';
   placeholder?: string;
   label?: string;
 }
@@ -35,8 +35,9 @@ export default function DateTimeInput({
       if (date) {
         if (mode === 'date') {
           onChange(date.toISOString());
+        } else {
+          onChange(formatDateToTime(date));
         }
-        onChange(formatDateToTime(date));
       }
       hidePicker();
     },
