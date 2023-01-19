@@ -63,14 +63,16 @@ export default function EventFormModal({
   });
 
   useEffect(() => {
-    reset({
-      title: '',
-      description: '',
-      startDate: getCurrentDate(),
-      startTime: null,
-      endTime: null,
-    });
-  }, []);
+    if (visible) {
+      reset({
+        title: '',
+        description: '',
+        startDate: getCurrentDate(),
+        startTime: null,
+        endTime: null,
+      });
+    }
+  }, [visible]);
 
   return (
     <Portal>
