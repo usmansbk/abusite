@@ -15,6 +15,7 @@ interface Props {
   onChange: (value: string | null) => void;
   options: SelectOption[];
   required?: boolean;
+  hideOnSelect?: boolean;
 }
 
 export default function SelectInput({
@@ -24,6 +25,7 @@ export default function SelectInput({
   required,
   onChange,
   options,
+  hideOnSelect = true,
 }: Props) {
   const [visible, setVisible] = useState(false);
 
@@ -43,10 +45,15 @@ export default function SelectInput({
         label={item.label}
         value={item.value}
         status={item.value === value ? 'checked' : 'unchecked'}
-        onPress={() => onChange(item.value)}
+        onPress={() => {
+          onChange(item.value);
+          if (hideOnSelect) {
+            hideOptions();
+          }
+        }}
       />
     ),
-    [value, onChange],
+    [value, onChange, hideOnSelect],
   );
 
   return (
