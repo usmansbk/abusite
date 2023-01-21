@@ -31,12 +31,12 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
         label: t('drawer.bookmarks'),
         onPress: () => navigation.navigate('Bookmarks'),
       },
-      {
-        key: 'archive',
-        icon: 'archive',
-        label: t('drawer.archive'),
-        onPress: () => navigation.navigate('Archive'),
-      },
+      // {
+      //   key: 'archive',
+      //   icon: 'archive',
+      //   label: t('drawer.archive'),
+      //   onPress: () => navigation.navigate('Archive'),
+      // },
     ],
     [],
   );

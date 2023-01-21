@@ -6,10 +6,9 @@ import {
   MaterialBottomTabNavigationOptions,
 } from '@react-navigation/material-bottom-tabs';
 import Icon from '~components/Icon';
-import useAuth from '~hooks/useAuth';
 import type {HomeTabParamList} from '~types';
 import Calendar from './Calendar';
-import Explore from './Explore';
+// import Explore from './Explore';
 import Notifications from './Notifications';
 
 const Tab = createMaterialBottomTabNavigator<HomeTabParamList>();
@@ -21,8 +20,6 @@ const styles = StyleSheet.create({
 });
 
 export default function HomeTabs() {
-  const {isLoggedIn} = useAuth();
-
   const screenOptions = useCallback(
     ({
       route,
@@ -49,12 +46,9 @@ export default function HomeTabs() {
   );
 
   return (
-    <Tab.Navigator
-      initialRouteName={isLoggedIn ? 'Calendar' : 'Explore'}
-      screenOptions={screenOptions}
-      barStyle={styles.barStyle}>
+    <Tab.Navigator screenOptions={screenOptions} barStyle={styles.barStyle}>
       <Tab.Screen name="Calendar" component={Calendar} />
-      <Tab.Screen name="Explore" component={Explore} />
+      {/* <Tab.Screen name="Explore" component={Explore} /> */}
       <Tab.Screen name="Notifications" component={Notifications} />
     </Tab.Navigator>
   );
