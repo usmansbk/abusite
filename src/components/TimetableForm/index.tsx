@@ -121,11 +121,13 @@ export default function TimetableForm({
       Object.entries(groupBy(fields, 'startDate'))
         .map(([title, data]) => ({
           title,
-          data: data.sort((a, b) =>
-            a.startTime && b.startTime
-              ? a.startTime?.localeCompare(b.startTime)
-              : 1,
-          ),
+          data: data.sort((a, b) => {
+            if (a.startTime && b.startTime) {
+              return a.startTime.localeCompare(b.startTime);
+            }
+
+            return !a.startTime ? -1 : 0;
+          }),
         }))
         .sort((a, b) => a.title.localeCompare(b.title)),
     [fields],
