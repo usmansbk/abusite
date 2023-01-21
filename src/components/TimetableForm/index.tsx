@@ -115,18 +115,18 @@ export default function TimetableForm({
     [],
   );
 
-  const sections = useMemo(() => {
-    const grouped = groupBy(fields, 'startDate');
-
-    return Object.entries(grouped)
-      .map(([title, data]) => ({
-        title,
-        data: data.sort(
-          (a, b) => a.startTime?.localeCompare(b.startTime) || -1,
-        ),
-      }))
-      .sort((a, b) => a.title.localeCompare(b.title));
-  }, [fields]);
+  const sections = useMemo(
+    () =>
+      Object.entries(groupBy(fields, 'startDate'))
+        .map(([title, data]) => ({
+          title,
+          data: data.sort(
+            (a, b) => a.startTime?.localeCompare(b.startTime) || -1,
+          ),
+        }))
+        .sort((a, b) => a.title.localeCompare(b.title)),
+    [fields],
+  );
 
   return (
     <View style={styles.container}>
