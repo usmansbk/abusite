@@ -140,8 +140,10 @@ export default function TimetableForm({
             render={({field: {value, onBlur, onChange}}) => (
               <>
                 <TextInput
-                  mode="outlined"
                   label="Title"
+                  theme={{
+                    roundness: 0,
+                  }}
                   autoFocus={autoFocus}
                   placeholder="Example: My Lectures"
                   value={value}
@@ -162,7 +164,6 @@ export default function TimetableForm({
           <EmptyState
             title="Add events"
             message="Example: Lectures, Exams, and Tests."
-            style={styles.emptyList}
           />
         }
         ItemSeparatorComponent={Divider}

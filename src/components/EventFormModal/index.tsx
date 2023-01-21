@@ -54,11 +54,7 @@ export const schema = yup
     startDate: yup.string().required().transform(transformDate),
     startTime: yup.string().optional().nullable(),
     endTime: yup.string().optional().nullable(),
-    repeat: yup
-      .mixed()
-      .oneOf(repeatOptions.map(opt => opt.value).concat(null))
-      .optional()
-      .nullable(),
+    repeat: yup.string().optional().nullable(),
   })
   .noUnknown()
   .required();

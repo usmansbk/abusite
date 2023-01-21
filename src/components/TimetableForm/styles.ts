@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   contentContainer: {
     flexGrow: 1,
-    padding: 16,
   },
   container: {
     flex: 1,
@@ -15,10 +14,7 @@ export default StyleSheet.create({
     marginBottom: 100,
     marginRight: 16,
   },
-  emptyList: {
-    padding: 0,
-  },
   itemContainer: {
-    paddingVertical: 16,
+    padding: 16,
   },
 });
