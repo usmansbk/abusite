@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -90,19 +90,14 @@ export default function EventFormModal({
     if (visible) {
       reset({
         title: '',
-        description: '',
         startDate: getCurrentDate(),
         startTime: null,
         endTime: null,
         repeat: null,
+        description: null,
       });
     }
   }, [visible]);
-
-  const onSubmitForm = useCallback((values: EditEventInput) => {
-    onSubmit(values);
-    onDismiss();
-  }, []);
 
   return (
     <Portal>
@@ -118,7 +113,7 @@ export default function EventFormModal({
             <Appbar.Action
               disabled={loading}
               icon="check"
-              onPress={handleSubmit(onSubmitForm)}
+              onPress={handleSubmit(onSubmit)}
             />
           </Appbar>
           <Divider />

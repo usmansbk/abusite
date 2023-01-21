@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useEffect} from 'react';
 import EventFormModal from '~components/EventFormModal';
 import useCreateEvent from '~hooks/api/useCreateEvent';
 
@@ -9,7 +9,12 @@ interface Props {
 
 function NewEventDialog({visible, onDismiss}: Props) {
   const {handleCreateEvent, loading, event} = useCreateEvent();
-  console.log(event);
+
+  useEffect(() => {
+    if (event) {
+      onDismiss();
+    }
+  }, [event]);
 
   return (
     <EventFormModal

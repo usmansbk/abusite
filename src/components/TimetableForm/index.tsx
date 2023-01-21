@@ -17,7 +17,10 @@ import EventFormModal, {
 } from '~components/EventFormModal';
 import EmptyState from '~components/EmptyState';
 import ConfirmDialog from '~components/ConfirmDialog';
-import {EditTimetableInput} from '~graphql/__generated__/graphql';
+import {
+  EditEventInput,
+  EditTimetableInput,
+} from '~graphql/__generated__/graphql';
 import styles from './styles';
 
 interface Props {
@@ -98,6 +101,11 @@ export default function TimetableForm({
     }, [isDirty]),
   );
 
+  const addEvent = useCallback((event: EditEventInput) => {
+    append(event);
+    setAddEventFormVisible(false);
+  }, []);
+
   return (
     <View style={styles.container}>
       <Appbar>
@@ -157,7 +165,7 @@ export default function TimetableForm({
         autoFocus
         visible={addEventModalVisible}
         onDismiss={toggleAddEventForm}
-        onSubmit={append}
+        onSubmit={addEvent}
       />
       <ConfirmDialog
         visible={confirmDiscardVisible}
