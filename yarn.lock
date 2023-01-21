@@ -2146,10 +2146,10 @@
     prompts "^2.4.0"
     semver "^6.3.0"
 
-"@react-native-community/datetimepicker@^6.7.1":
-  version "6.7.1"
-  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-6.7.1.tgz#a52eed9512898adef323b2fa78c6ac4611af5502"
-  integrity sha512-NPW1YITG7N+3TsqXc4LZV3c5IEpTD5iX18r0bvFsHdIblo5qi0ykpeK3TffmMM5gbTjgKJ4DNVHOjLiWKxFUxw==
+"@react-native-community/datetimepicker@^6.7.2":
+  version "6.7.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-6.7.2.tgz#e746b3bec44b90424d4cef65860e6308538e3f12"
+  integrity sha512-VOPh5iid5MZxcr29GexyVnV6cKsUl7PKuXsLXxekffpVxxhKxh+hPBvVuQQCwB+yqmpamAcsWcxmcAm+hGwtCA==
   dependencies:
     invariant "^2.2.4"
 
@@ -8508,10 +8508,10 @@ react-native-gradle-plugin@^0.70.3:
   resolved "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.3.tgz"
   integrity sha512-oOanj84fJEXUg9FoEAQomA8ISG+DVIrTZ3qF7m69VQUJyOGYyDZmPqKcjvRku4KXlEH6hWO9i4ACLzNBh8gC0A==
 
-react-native-image-picker@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-5.0.0.tgz#c3ad339c4df4c514b296dd9030e882f8b924ccdc"
-  integrity sha512-NkpMRSQ4ow3ot9VKaGlh7kge7r2mQNAL1WrlYMhNX+TcVVNbrhJm9gvEu35ELM0r9WwkKv19Zd8r/Vxw+ISL5w==
+react-native-image-picker@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-5.0.1.tgz#c9e99217396bc82a977785e39e14afb4819e8448"
+  integrity sha512-+poQTHOnEGrbxJnut591XA9006svFOyfPg/i5bv+fLuwoSHh5HW0E/PVhvT8lbX0Z5C108vh3DAsnrfFFnPBGw==
 
 react-native-localize@^2.2.4:
   version "2.2.4"
@@ -8534,10 +8534,10 @@ react-native-paper@^5.1.3:
     color "^3.1.2"
     use-event-callback "^0.1.0"
 
-react-native-reanimated@^2.14.2:
-  version "2.14.2"
-  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.14.2.tgz#7f20f01052ea4902e320be8725d55b40b1d21d62"
-  integrity sha512-zj05BBafk38rE78PhHc6q0vg9M4WeJY/RExHUGFiP1miJyyAaJzs2jLQR+HY0zbutCE+/yNJyOE3dca2BslsGg==
+react-native-reanimated@^2.14.4:
+  version "2.14.4"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.14.4.tgz#3fa3da4e7b99f5dfb28f86bcf24d9d1024d38836"
+  integrity sha512-DquSbl7P8j4SAmc+kRdd75Ianm8G+IYQ9T4AQ6lrpLVeDkhZmjWI0wkutKWnp6L7c5XNVUrFDUf69dwETLCItQ==
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.16.7"
     "@babel/preset-typescript" "^7.16.7"

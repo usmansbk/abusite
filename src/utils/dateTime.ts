@@ -43,10 +43,10 @@ export function formatCalendarDate(date: string | null) {
   return dayjs(date).calendar(null, {
     sameDay: '[Today], dddd DD',
     nextDay: '[Tomorrow], dddd DD',
-    nextWeek: 'dddd DD',
+    nextWeek: 'dddd, DD MMM',
     lastDay: '[Yesterday], dddd DD',
     lastWeek: '[Last] dddd, DD MMM',
-    sameElse: 'ddd, DD MMM YYYY',
+    sameElse: 'dddd, DD MMM YYYY',
   });
 }
 

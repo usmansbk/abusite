@@ -10,6 +10,7 @@ import {
   FAB,
   ProgressBar,
   HelperText,
+  Divider,
 } from 'react-native-paper';
 import EventFormModal, {
   schema as eventSchema,
@@ -111,7 +112,8 @@ export default function TimetableForm({
           onPress={handleSubmit(onSubmit)}
         />
       </Appbar>
-      <ProgressBar visible={loading} />
+      <Divider />
+      {loading && <ProgressBar visible={loading} />}
       <FlatList
         data={fields}
         contentContainerStyle={styles.contentContainer}

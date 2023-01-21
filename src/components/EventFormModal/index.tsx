@@ -11,10 +11,11 @@ import {
   TextInput,
   useTheme,
   HelperText,
+  Divider,
 } from 'react-native-paper';
-import PickerInput from '~components/PickerInput';
+import SelectInput, {SelectOption} from '~components/SelectInput';
 import DateTimeInput from '~components/DateTimeInput';
-import {EditEventInput, Timetable} from '~graphql/__generated__/graphql';
+import {EditEventInput} from '~graphql/__generated__/graphql';
 import {getCurrentDate} from '~utils/dateTime';
 import styles from './styles';
 
@@ -24,7 +25,7 @@ interface Props {
   title?: string;
   autoFocus?: boolean;
   loading?: boolean;
-  timetables?: Timetable[];
+  timetables?: SelectOption[];
 }
 
 export const schema = yup
@@ -43,6 +44,13 @@ export const schema = yup
   })
   .noUnknown()
   .required();
+
+const repeatOptions = [
+  {value: 'DAILY', label: 'Every day'},
+  {value: 'WEEKLY', label: 'Every week'},
+  {value: 'MONTHLY', label: 'Every month'},
+  {value: 'YEARLY', label: 'Every year'},
+];
 
 export default function EventFormModal({
   visible,
@@ -87,7 +95,8 @@ export default function EventFormModal({
             <Appbar.Content title={title} />
             <Appbar.Action disabled={loading} icon="check" />
           </Appbar>
-          <ProgressBar visible={loading} />
+          <Divider />
+          {loading && <ProgressBar visible={loading} />}
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <Controller
               control={control}
@@ -166,21 +175,22 @@ export default function EventFormModal({
             </View>
 
             <View style={styles.gap}>
-              <PickerInput
+              <SelectInput
                 value={null}
                 label="Repeat"
                 placeholder="Every when?"
-                onPress={() => null}
-                onClear={() => null}
+                onChange={console.log}
+                options={repeatOptions}
               />
             </View>
 
             {timetables && (
               <View style={styles.gap}>
-                <PickerInput
+                <SelectInput
                   value={null}
                   label="Timetable"
-                  onPress={() => null}
+                  onChange={console.log}
+                  options={timetables}
                 />
               </View>
             )}
