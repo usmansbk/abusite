@@ -98,17 +98,10 @@ function MainStack() {
             }}
           />
           <Stack.Screen
-            name="CalendarSettings"
+            name="Settings"
             component={Settings}
             options={{
-              title: t('calendar.title'),
-            }}
-          />
-          <Stack.Screen
-            name="NotificationSettings"
-            component={Settings}
-            options={{
-              title: t('notifications.title'),
+              title: t('settings.title'),
             }}
           />
           <Stack.Screen

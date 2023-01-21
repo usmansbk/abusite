@@ -18,6 +18,7 @@ dayjs.extend(isTomorrow);
 dayjs.extend(isYesterday);
 
 export const TIME_FORMAT = 'HH:mm';
+export const DATE_FORMAT = 'YYYY-MM-DD';
 
 export function getCurrentDate() {
   return dayjs().toDate();
@@ -51,6 +52,14 @@ export function formatCalendarDate(date: string | null) {
 }
 
 export function formatDateToTime(date: Date) {
+  return dayjs(date).format(TIME_FORMAT);
+}
+
+export function transformDate(date: Date) {
+  return dayjs(date).format(DATE_FORMAT);
+}
+
+export function transformTime(date: Date) {
   return dayjs(date).format(TIME_FORMAT);
 }
 

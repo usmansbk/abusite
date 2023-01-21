@@ -31,12 +31,18 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
         label: t('drawer.bookmarks'),
         onPress: () => navigation.navigate('Bookmarks'),
       },
-      // {
-      //   key: 'archive',
-      //   icon: 'archive',
-      //   label: t('drawer.archive'),
-      //   onPress: () => navigation.navigate('Archive'),
-      // },
+    ],
+    [],
+  );
+
+  const footerItems = useMemo(
+    () => [
+      {
+        key: 'settings',
+        icon: 'settings',
+        label: t('drawer.settings'),
+        onPress: () => navigation.navigate('Settings'),
+      },
     ],
     [],
   );
@@ -52,6 +58,17 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
         />
         {isLoggedIn &&
           items.map(({key, label, onPress, icon}) => (
+            <PaperDrawer.Item
+              key={key}
+              label={label}
+              icon={icon}
+              onPress={onPress}
+            />
+          ))}
+      </PaperDrawer.Section>
+      <PaperDrawer.Section showDivider={false}>
+        {isLoggedIn &&
+          footerItems.map(({key, label, onPress, icon}) => (
             <PaperDrawer.Item
               key={key}
               label={label}

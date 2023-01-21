@@ -27,11 +27,6 @@ export default function Calendar({navigation}: HomeTabScreenProps<'Calendar'>) {
           icon={dark ? 'moon' : 'sun'}
           onPress={() => setOpenTheme(true)}
         />
-        <Appbar.Action
-          disabled={!isLoggedIn}
-          icon="settings"
-          onPress={() => navigation.navigate('CalendarSettings')}
-        />
       </Appbar>
       {isLoggedIn ? (
         <Timeline />

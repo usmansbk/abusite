@@ -4,8 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useDrawerStatus} from '@react-navigation/drawer';
 import TimetableCalendar from '~components/TimetableCalendar';
-import EventFormModal from '~components/EventFormModal';
 import useMe from '~hooks/api/useMe';
+import NewEventDialog from './NewEventDialog';
 import styles from './styles';
 
 export default function Timeline() {
@@ -61,11 +61,9 @@ export default function Timeline() {
           />
         </Portal>
       )}
-      <EventFormModal
-        autoFocus
+      <NewEventDialog
         visible={eventFormVisible}
         onDismiss={toggleEventFormVisible}
-        timetables={[]}
       />
     </>
   );

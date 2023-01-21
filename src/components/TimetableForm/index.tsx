@@ -66,7 +66,7 @@ export default function TimetableForm({
     resolver: yupResolver(schema),
   });
 
-  const {fields} = useFieldArray({
+  const {fields, append} = useFieldArray({
     control,
     name: 'events',
     keyName: 'key',
@@ -157,6 +157,7 @@ export default function TimetableForm({
         autoFocus
         visible={addEventModalVisible}
         onDismiss={toggleAddEventForm}
+        onSubmit={append}
       />
       <ConfirmDialog
         visible={confirmDiscardVisible}

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -16,7 +16,7 @@ import {
 import SelectInput, {SelectOption} from '~components/SelectInput';
 import DateTimeInput from '~components/DateTimeInput';
 import {EditEventInput} from '~graphql/__generated__/graphql';
-import {getCurrentDate} from '~utils/dateTime';
+import {getCurrentDate, transformDate, transformTime} from '~utils/dateTime';
 import styles from './styles';
 
 interface Props {
@@ -26,21 +26,35 @@ interface Props {
   autoFocus?: boolean;
   loading?: boolean;
   timetables?: SelectOption[];
+  onSubmit: (values: EditEventInput) => void;
 }
 
 export const schema = yup
   .object({
     id: yup.string().optional(),
-    title: yup.string().trim().required('Title is required'),
+    title: yup
+      .string()
+      .trim()
+      .max(100, () => 'Title too long')
+      .required('Title is required'),
     description: yup
       .string()
       .trim()
       .max(2048, () => 'Description is too long')
+      .transform(value => value || null)
       .nullable(),
-    timetableId: yup.string().optional(),
-    startDate: yup.date().required(),
-    startTime: yup.string().optional().nullable(),
-    endTime: yup.string().optional().nullable(),
+    timetableId: yup.string().optional().nullable(),
+    startDate: yup.string().required().transform(transformDate),
+    startTime: yup
+      .string()
+      .optional()
+      .nullable()
+      .transform(value => value && transformTime(value)),
+    endTime: yup
+      .string()
+      .optional()
+      .nullable()
+      .transform(value => value && transformTime(value)),
   })
   .noUnknown()
   .required();
@@ -59,6 +73,7 @@ export default function EventFormModal({
   autoFocus,
   loading,
   timetables,
+  onSubmit,
 }: Props) {
   const {colors} = useTheme();
 
@@ -66,6 +81,7 @@ export default function EventFormModal({
     control,
     reset,
     formState: {touchedFields, errors},
+    handleSubmit,
   } = useForm<EditEventInput>({
     resolver: yupResolver(schema),
   });
@@ -78,9 +94,15 @@ export default function EventFormModal({
         startDate: getCurrentDate(),
         startTime: null,
         endTime: null,
+        repeat: null,
       });
     }
   }, [visible]);
+
+  const onSubmitForm = useCallback((values: EditEventInput) => {
+    onSubmit(values);
+    onDismiss();
+  }, []);
 
   return (
     <Portal>
@@ -93,7 +115,11 @@ export default function EventFormModal({
           <Appbar>
             <Appbar.Action icon="x" onPress={onDismiss} />
             <Appbar.Content title={title} />
-            <Appbar.Action disabled={loading} icon="check" />
+            <Appbar.Action
+              disabled={loading}
+              icon="check"
+              onPress={handleSubmit(onSubmitForm)}
+            />
           </Appbar>
           <Divider />
           {loading && <ProgressBar visible={loading} />}

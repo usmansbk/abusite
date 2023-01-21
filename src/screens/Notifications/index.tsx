@@ -19,11 +19,6 @@ export default function Notifications({
         <Appbar.Action icon="menu" onPress={navigation.openDrawer} />
         <Appbar.Content title="" />
         <Appbar.Action disabled icon="trash" />
-        <Appbar.Action
-          disabled={!isLoggedIn}
-          icon="settings"
-          onPress={() => navigation.navigate('NotificationSettings')}
-        />
       </Appbar>
       {isLoggedIn ? (
         <EmptyState
