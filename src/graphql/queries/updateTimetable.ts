@@ -26,6 +26,8 @@ mutation UpdateTimetable($input: EditTimetableInput!) {
         title
       }
       repeat
+      isCancelled
+      cancelledDates
     }
   }
 }

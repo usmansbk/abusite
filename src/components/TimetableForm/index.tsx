@@ -32,7 +32,7 @@ const schema = yup
     title: yup
       .string()
       .trim()
-      .max(2, () => 'Title is too long')
+      .max(100, () => 'Title is too long')
       .required('Title is required'),
     events: yup.array().of(eventSchema).required(),
   })
