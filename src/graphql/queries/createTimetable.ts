@@ -19,7 +19,6 @@ mutation CreateTimetable($input: EditTimetableInput!) {
       id
       title
       description
-      code
       startDate
       startTime
       endTime
@@ -35,6 +34,7 @@ mutation CreateTimetable($input: EditTimetableInput!) {
         id
         title
       }
+      repeat
     }
   }
 }

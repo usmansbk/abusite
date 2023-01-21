@@ -175,22 +175,34 @@ export default function EventFormModal({
             </View>
 
             <View style={styles.gap}>
-              <SelectInput
-                value={null}
-                label="Repeat"
-                placeholder="Every when?"
-                onChange={console.log}
-                options={repeatOptions}
+              <Controller
+                control={control}
+                name="repeat"
+                render={({field: {value, onChange}}) => (
+                  <SelectInput
+                    value={value}
+                    label="Repeat"
+                    placeholder="Every when?"
+                    onChange={onChange}
+                    options={repeatOptions}
+                  />
+                )}
               />
             </View>
 
             {timetables && (
               <View style={styles.gap}>
-                <SelectInput
-                  value={null}
-                  label="Timetable"
-                  onChange={console.log}
-                  options={timetables}
+                <Controller
+                  control={control}
+                  name="timetableId"
+                  render={({field: {value, onChange}}) => (
+                    <SelectInput
+                      value={value}
+                      label="Timetable"
+                      onChange={onChange}
+                      options={timetables}
+                    />
+                  )}
                 />
               </View>
             )}

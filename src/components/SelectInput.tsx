@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList, ListRenderItem, View} from 'react-native';
 import {Button, Dialog, Portal, RadioButton} from 'react-native-paper';
 import PickerInput from './PickerInput';
 
@@ -11,7 +11,7 @@ export interface SelectOption {
 interface Props {
   label?: string;
   placeholder?: string;
-  value: string | null;
+  value?: string | null;
   onChange: (value: string | null) => void;
   options: SelectOption[];
   required?: boolean;
@@ -37,12 +37,24 @@ export default function SelectInput({
     [value, options],
   );
 
+  const renderItem: ListRenderItem<SelectOption> = useCallback(
+    ({item}) => (
+      <RadioButton.Item
+        label={item.label}
+        value={item.value}
+        status={item.value === value ? 'checked' : 'unchecked'}
+        onPress={() => onChange(item.value)}
+      />
+    ),
+    [value, onChange],
+  );
+
   return (
     <>
       <PickerInput
         label={label}
         placeholder={placeholder}
-        value={selectedOption?.value || null}
+        value={selectedOption?.label || null}
         onClear={required ? undefined : onClear}
         onPress={showOptions}
       />
@@ -58,13 +70,7 @@ export default function SelectInput({
             <FlatList
               data={options}
               keyExtractor={item => item.value}
-              renderItem={({item}) => (
-                <RadioButton.Item
-                  label={item.label}
-                  value={item.value}
-                  status={item.value === value ? 'checked' : 'unchecked'}
-                />
-              )}
+              renderItem={renderItem}
             />
           </Dialog.ScrollArea>
           <Dialog.Actions>
