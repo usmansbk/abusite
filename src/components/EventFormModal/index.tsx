@@ -15,8 +15,8 @@ import {
 } from 'react-native-paper';
 import SelectInput, {SelectOption} from '~components/SelectInput';
 import DateTimeInput from '~components/DateTimeInput';
-import {EditEventInput} from '~graphql/__generated__/graphql';
-import {getCurrentDate, transformDate, transformTime} from '~utils/dateTime';
+import {EditEventInput, RepeatFrequency} from '~graphql/__generated__/graphql';
+import {getCurrentDate, transformDate} from '~utils/dateTime';
 import styles from './styles';
 
 interface Props {
@@ -28,6 +28,13 @@ interface Props {
   timetables?: SelectOption[];
   onSubmit: (values: EditEventInput) => void;
 }
+
+const repeatOptions = [
+  {value: RepeatFrequency.Daily, label: 'Every day'},
+  {value: RepeatFrequency.Weekly, label: 'Every week'},
+  {value: RepeatFrequency.Monthly, label: 'Every month'},
+  {value: RepeatFrequency.Yearly, label: 'Every year'},
+];
 
 export const schema = yup
   .object({
@@ -45,26 +52,16 @@ export const schema = yup
       .nullable(),
     timetableId: yup.string().optional().nullable(),
     startDate: yup.string().required().transform(transformDate),
-    startTime: yup
-      .string()
+    startTime: yup.string().optional().nullable(),
+    endTime: yup.string().optional().nullable(),
+    repeat: yup
+      .mixed()
+      .oneOf(repeatOptions.map(opt => opt.value))
       .optional()
-      .nullable()
-      .transform(value => value && transformTime(value)),
-    endTime: yup
-      .string()
-      .optional()
-      .nullable()
-      .transform(value => value && transformTime(value)),
+      .nullable(),
   })
   .noUnknown()
   .required();
-
-const repeatOptions = [
-  {value: 'DAILY', label: 'Every day'},
-  {value: 'WEEKLY', label: 'Every week'},
-  {value: 'MONTHLY', label: 'Every month'},
-  {value: 'YEARLY', label: 'Every year'},
-];
 
 export default function EventFormModal({
   visible,

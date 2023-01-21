@@ -25,12 +25,18 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
         label: t('drawer.profile'),
         onPress: () => navigation.navigate('Profile'),
       },
-      {
-        key: 'bookmarks',
-        icon: 'bookmark',
-        label: t('drawer.bookmarks'),
-        onPress: () => navigation.navigate('Bookmarks'),
-      },
+      // {
+      //   key: 'bookmarks',
+      //   icon: 'bookmark',
+      //   label: t('drawer.bookmarks'),
+      //   onPress: () => navigation.navigate('Bookmarks'),
+      // },
+      // {
+      //   key: 'archive',
+      //   icon: 'archive',
+      //   label: t('drawer.archive'),
+      //   onPress: () => navigation.navigate('Archive'),
+      // },
     ],
     [],
   );

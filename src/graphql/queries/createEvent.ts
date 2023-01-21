@@ -10,6 +10,7 @@ mutation CreateEvent($input: EditEventInput!) {
     startTime
     endTime
     cancelledDates
+    repeat
     isOwner
     createdAt
     updatedAt
@@ -17,7 +18,6 @@ mutation CreateEvent($input: EditEventInput!) {
       id
       title
     }
-    repeat
   }
 }
 `);

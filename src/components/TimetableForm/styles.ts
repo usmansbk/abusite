@@ -18,4 +18,7 @@ export default StyleSheet.create({
   emptyList: {
     padding: 0,
   },
+  itemContainer: {
+    paddingVertical: 16,
+  },
 });

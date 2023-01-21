@@ -25,6 +25,8 @@ mutation CreateTimetable($input: EditTimetableInput!) {
       createdAt
       updatedAt
       isOwner
+      repeat
+      cancelledDates
       owner {
         id
         picture
@@ -34,8 +36,6 @@ mutation CreateTimetable($input: EditTimetableInput!) {
         id
         title
       }
-      repeat
-      cancelledDates
     }
   }
 }

@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useForm, Controller, useFieldArray} from 'react-hook-form';
-import {BackHandler, FlatList, View} from 'react-native';
+import {BackHandler, FlatList, ListRenderItem, View} from 'react-native';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {
@@ -22,6 +22,7 @@ import {
   EditTimetableInput,
 } from '~graphql/__generated__/graphql';
 import styles from './styles';
+import EventItem from './EventItem';
 
 interface Props {
   autoFocus?: boolean;
@@ -106,6 +107,11 @@ export default function TimetableForm({
     setAddEventFormVisible(false);
   }, []);
 
+  const renderItem: ListRenderItem<EditEventInput> = useCallback(
+    ({item}) => <EventItem item={item} />,
+    [],
+  );
+
   return (
     <View style={styles.container}>
       <Appbar>
@@ -125,7 +131,7 @@ export default function TimetableForm({
       <FlatList
         data={fields}
         contentContainerStyle={styles.contentContainer}
-        renderItem={() => null}
+        renderItem={renderItem}
         keyExtractor={item => item.key}
         ListHeaderComponent={
           <Controller
@@ -159,6 +165,7 @@ export default function TimetableForm({
             style={styles.emptyList}
           />
         }
+        ItemSeparatorComponent={Divider}
       />
       <FAB icon="edit-2" style={styles.fab} onPress={toggleAddEventForm} />
       <EventFormModal
