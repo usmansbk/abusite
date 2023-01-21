@@ -56,7 +56,7 @@ export const schema = yup
     endTime: yup.string().optional().nullable(),
     repeat: yup
       .mixed()
-      .oneOf(repeatOptions.map(opt => opt.value))
+      .oneOf(repeatOptions.map(opt => opt.value).concat(null))
       .optional()
       .nullable(),
   })
