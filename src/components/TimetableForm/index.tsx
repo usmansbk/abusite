@@ -24,6 +24,7 @@ import {
   EditEventInput,
   EditTimetableInput,
 } from '~graphql/__generated__/graphql';
+import {formatCalendarDate} from '~utils/dateTime';
 import styles from './styles';
 import EventItem from './EventItem';
 
@@ -120,8 +121,10 @@ export default function TimetableForm({
       Object.entries(groupBy(fields, 'startDate'))
         .map(([title, data]) => ({
           title,
-          data: data.sort(
-            (a, b) => a.startTime?.localeCompare(b.startTime) || -1,
+          data: data.sort((a, b) =>
+            a.startTime && b.startTime
+              ? a.startTime?.localeCompare(b.startTime)
+              : 1,
           ),
         }))
         .sort((a, b) => a.title.localeCompare(b.title)),
@@ -153,7 +156,9 @@ export default function TimetableForm({
         stickySectionHeadersEnabled
         renderSectionHeader={({section}) => (
           <Surface style={styles.sectionHeader}>
-            <Text variant="titleMedium">{section.title}</Text>
+            <Text variant="titleMedium">
+              {formatCalendarDate(section.title)}
+            </Text>
           </Surface>
         )}
         ListHeaderComponent={
