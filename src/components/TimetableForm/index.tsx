@@ -74,7 +74,7 @@ export default function TimetableForm({
     resolver: yupResolver(schema),
   });
 
-  const {fields, append} = useFieldArray({
+  const {fields, append, remove} = useFieldArray({
     control,
     name: 'events',
     keyName: 'key',
@@ -106,15 +106,33 @@ export default function TimetableForm({
     }, [isDirty]),
   );
 
-  const addEvent = useCallback((event: EditEventInput) => {
-    append(event);
-    setAddEventFormVisible(false);
-  }, []);
-
-  const renderItem: ListRenderItem<EditEventInput> = useCallback(
-    ({item}) => <EventItem item={item} />,
-    [],
+  const addEvent = useCallback(
+    (event: EditEventInput) => {
+      append(event);
+      setAddEventFormVisible(false);
+    },
+    [append],
   );
+
+  const removeEvent = useCallback(
+    (event: EditEventInput & Record<'key', string>) => {
+      const index = fields.findIndex(item => item.key === event.key);
+      remove(index);
+    },
+    [fields, remove],
+  );
+
+  const renderItem: ListRenderItem<EditEventInput & Record<'key', string>> =
+    useCallback(
+      ({item}) => (
+        <EventItem
+          item={item}
+          onDuplicateItem={append}
+          onDeleteItem={removeEvent}
+        />
+      ),
+      [removeEvent],
+    );
 
   const sections = useMemo(
     () =>

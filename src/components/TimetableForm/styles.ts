@@ -18,4 +18,13 @@ export default StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
   },
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingRight: 0,
+  },
+  span: {
+    flex: 1,
+  },
 });
