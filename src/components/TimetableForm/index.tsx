@@ -14,6 +14,7 @@ import {
   Text,
   Surface,
 } from 'react-native-paper';
+import groupBy from 'lodash.groupby';
 import EventFormModal, {
   schema as eventSchema,
 } from '~components/EventFormModal';
@@ -114,7 +115,18 @@ export default function TimetableForm({
     [],
   );
 
-  const sections = useMemo(() => [{title: 'Today', data: fields}], [fields]);
+  const sections = useMemo(() => {
+    const grouped = groupBy(fields, 'startDate');
+
+    return Object.entries(grouped)
+      .map(([title, data]) => ({
+        title,
+        data: data.sort(
+          (a, b) => a.startTime?.localeCompare(b.startTime) || -1,
+        ),
+      }))
+      .sort((a, b) => a.title.localeCompare(b.title));
+  }, [fields]);
 
   return (
     <View style={styles.container}>
