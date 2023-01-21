@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useForm, Controller, useFieldArray} from 'react-hook-form';
-import {BackHandler, FlatList, ListRenderItem, View} from 'react-native';
+import {BackHandler, SectionList, ListRenderItem, View} from 'react-native';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {
@@ -11,6 +11,8 @@ import {
   ProgressBar,
   HelperText,
   Divider,
+  Text,
+  Surface,
 } from 'react-native-paper';
 import EventFormModal, {
   schema as eventSchema,
@@ -112,6 +114,8 @@ export default function TimetableForm({
     [],
   );
 
+  const sections = useMemo(() => [{title: 'Today', data: fields}], [fields]);
+
   return (
     <View style={styles.container}>
       <Appbar>
@@ -128,11 +132,18 @@ export default function TimetableForm({
       </Appbar>
       <Divider />
       {loading && <ProgressBar visible={loading} />}
-      <FlatList
-        data={fields}
+      <SectionList
+        sections={sections}
         contentContainerStyle={styles.contentContainer}
         renderItem={renderItem}
         keyExtractor={item => item.key}
+        stickyHeaderHiddenOnScroll
+        stickySectionHeadersEnabled
+        renderSectionHeader={({section}) => (
+          <Surface style={styles.sectionHeader}>
+            <Text variant="titleMedium">{section.title}</Text>
+          </Surface>
+        )}
         ListHeaderComponent={
           <Controller
             control={control}

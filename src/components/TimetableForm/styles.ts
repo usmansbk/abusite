@@ -14,7 +14,8 @@ export default StyleSheet.create({
     marginBottom: 100,
     marginRight: 16,
   },
-  itemContainer: {
-    padding: 16,
+  sectionHeader: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
   },
 });
