@@ -25,11 +25,11 @@ export default function Profile() {
           title="Logout"
           onPress={() => setOpenConfirmLogout(true)}
         />
-        <List.Item
+        {/* <List.Item
           left={props => <List.Icon {...props} icon="trash" />}
           title="Deactivate account"
           onPress={() => setOpenConfirmDeactivate(true)}
-        />
+        /> */}
       </ScrollView>
       <ConfirmDialog
         title="Log out?"
