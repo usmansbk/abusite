@@ -26,7 +26,7 @@ import {
 } from '~graphql/__generated__/graphql';
 import {formatCalendarDate} from '~utils/dateTime';
 import styles from './styles';
-import EventItem from './EventItem';
+import EventItem, {ItemT} from './EventItem';
 
 interface Props {
   autoFocus?: boolean;
@@ -54,6 +54,7 @@ export default function TimetableForm({
 }: Props) {
   const navigation = useNavigation();
   const [addEventModalVisible, setAddEventFormVisible] = useState(false);
+  const [editEvent, setEditEvent] = useState<ItemT | null>(null);
   const [confirmDiscardVisible, setConfirmDiscardVisible] = useState(false);
 
   const toggleAddEventForm = useCallback(() => {
@@ -65,6 +66,8 @@ export default function TimetableForm({
     [],
   );
 
+  const hideEditModal = useCallback(() => setEditEvent(null), []);
+
   const {
     control,
     formState: {isDirty, touchedFields, errors},
@@ -74,7 +77,7 @@ export default function TimetableForm({
     resolver: yupResolver(schema),
   });
 
-  const {fields, append, remove} = useFieldArray({
+  const {fields, append, remove, update} = useFieldArray({
     control,
     name: 'events',
     keyName: 'key',
@@ -115,24 +118,33 @@ export default function TimetableForm({
   );
 
   const removeEvent = useCallback(
-    (event: EditEventInput & Record<'key', string>) => {
+    (event: ItemT) => {
       const index = fields.findIndex(item => item.key === event.key);
       remove(index);
     },
     [fields, remove],
   );
 
-  const renderItem: ListRenderItem<EditEventInput & Record<'key', string>> =
-    useCallback(
-      ({item}) => (
-        <EventItem
-          item={item}
-          onDuplicateItem={append}
-          onDeleteItem={removeEvent}
-        />
-      ),
-      [removeEvent],
-    );
+  const updateEvent = useCallback(
+    (event: EditEventInput) => {
+      const index = fields.findIndex(item => item.key === editEvent?.key);
+      update(index, event);
+      hideEditModal();
+    },
+    [fields, update, editEvent],
+  );
+
+  const renderItem: ListRenderItem<ItemT> = useCallback(
+    ({item}) => (
+      <EventItem
+        item={item}
+        onPressItem={setEditEvent}
+        onDuplicateItem={append}
+        onDeleteItem={removeEvent}
+      />
+    ),
+    [removeEvent],
+  );
 
   const sections = useMemo(
     () =>
@@ -171,7 +183,6 @@ export default function TimetableForm({
         sections={sections}
         contentContainerStyle={styles.contentContainer}
         renderItem={renderItem}
-        keyExtractor={item => item.key}
         stickyHeaderHiddenOnScroll
         stickySectionHeadersEnabled
         renderSectionHeader={({section}) => (
@@ -222,6 +233,11 @@ export default function TimetableForm({
         visible={addEventModalVisible}
         onDismiss={toggleAddEventForm}
         onSubmit={addEvent}
+      />
+      <EventFormModal
+        visible={!!editEvent}
+        onDismiss={hideEditModal}
+        onSubmit={updateEvent}
       />
       <ConfirmDialog
         visible={confirmDiscardVisible}

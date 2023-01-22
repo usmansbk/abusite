@@ -11,7 +11,7 @@ import {
 import {EditEventInput} from '~graphql/__generated__/graphql';
 import styles from './styles';
 
-type ItemT = EditEventInput & Record<'key', string>;
+export type ItemT = EditEventInput & Record<'key', string>;
 
 interface Props {
   item: ItemT;
