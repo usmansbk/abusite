@@ -27,6 +27,7 @@ interface Props {
   loading?: boolean;
   timetables?: SelectOption[];
   onSubmit: (values: EditEventInput) => void;
+  defaultValues?: EditEventInput | null;
 }
 
 const repeatOptions = [
@@ -67,6 +68,7 @@ export default function EventFormModal({
   loading,
   timetables,
   onSubmit,
+  defaultValues,
 }: Props) {
   const {colors} = useTheme();
 
@@ -88,6 +90,7 @@ export default function EventFormModal({
         endTime: null,
         repeat: null,
         description: null,
+        ...defaultValues,
       });
     }
   }, [visible]);

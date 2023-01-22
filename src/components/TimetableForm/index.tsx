@@ -156,6 +156,10 @@ export default function TimetableForm({
               return a.startTime.localeCompare(b.startTime);
             }
 
+            if (!(a.startTime || b.startTime)) {
+              return 0;
+            }
+
             return !a.startTime ? -1 : 0;
           }),
         }))
@@ -236,6 +240,7 @@ export default function TimetableForm({
       />
       <EventFormModal
         visible={!!editEvent}
+        defaultValues={editEvent}
         onDismiss={hideEditModal}
         onSubmit={updateEvent}
       />
