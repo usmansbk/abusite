@@ -123,7 +123,7 @@ export default function EventFormModal({
                   <TextInput
                     label="Title"
                     mode="outlined"
-                    placeholder="Example: Maths101"
+                    placeholder="Example: Maths101 Test"
                     autoFocus={autoFocus}
                     value={value}
                     onBlur={onBlur}

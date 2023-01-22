@@ -211,7 +211,7 @@ export default function TimetableForm({
                     roundness: 0,
                   }}
                   autoFocus={autoFocus}
-                  placeholder="Example: My Lectures"
+                  placeholder="Example: 2022/23 Lectures"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -226,12 +226,7 @@ export default function TimetableForm({
             )}
           />
         }
-        ListEmptyComponent={
-          <EmptyState
-            title="Add events"
-            message="Example: Lectures, Exams, and Tests."
-          />
-        }
+        ListEmptyComponent={<EmptyState title="Add events" />}
         ItemSeparatorComponent={Divider}
       />
       <FAB icon="edit-2" style={styles.fab} onPress={toggleAddEventForm} />

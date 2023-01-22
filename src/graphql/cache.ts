@@ -16,6 +16,22 @@ const cache = new InMemoryCache({
             return mode;
           },
         },
+        getEventById: {
+          read(_, {toReference, args}) {
+            return toReference({
+              __typename: 'Event',
+              id: (args as {id: string}).id,
+            });
+          },
+        },
+        getTimetableById: {
+          read(_, {toReference, args}) {
+            return toReference({
+              __typename: 'Timetable',
+              id: (args as {id: string}).id,
+            });
+          },
+        },
       },
     },
   },

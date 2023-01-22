@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
-import {Divider, List} from 'react-native-paper';
+import {Divider, List, ProgressBar} from 'react-native-paper';
 import Container from '~components/Container';
 import ConfirmDialog from '~components/ConfirmDialog';
 import useMe from '~hooks/api/useMe';
@@ -12,8 +12,12 @@ export default function Profile() {
   const [openConfirmLogout, setOpenConfirmLogout] = useState(false);
   const [openConfirmDeactivate, setOpenConfirmDeactivate] = useState(false);
 
-  const {me} = useMe();
+  const {me, loading} = useMe();
   const logout = useLogout();
+
+  if (loading) {
+    return <ProgressBar indeterminate />;
+  }
 
   return (
     <Container>
