@@ -93,7 +93,7 @@ export default function EventFormModal({
         ...defaultValues,
       });
     }
-  }, [visible]);
+  }, [visible, defaultValues]);
 
   return (
     <Portal>

@@ -32,6 +32,7 @@ interface Props {
   autoFocus?: boolean;
   loading?: boolean;
   onSubmit: (values: EditTimetableInput) => void;
+  defaultValues?: EditTimetableInput | null;
 }
 
 const schema = yup
@@ -51,6 +52,7 @@ export default function TimetableForm({
   autoFocus = true,
   loading,
   onSubmit,
+  defaultValues,
 }: Props) {
   const navigation = useNavigation();
   const [addEventModalVisible, setAddEventFormVisible] = useState(false);
@@ -87,8 +89,9 @@ export default function TimetableForm({
     reset({
       title: '',
       events: [],
+      ...defaultValues,
     });
-  }, []);
+  }, [defaultValues]);
 
   useFocusEffect(
     useCallback(() => {
