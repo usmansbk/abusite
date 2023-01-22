@@ -27,7 +27,7 @@ Abusite is an Open-Source mobile application designed to help ABU students easil
 
 ## Download
 
-- [Android Play Store - Coming soon](https://play.google.com/store/apps/details?id=com.abusite)
+- [Android Play Store - Pre-register](https://play.google.com/store/apps/details?id=com.abusite)
 
 ## Usage assumptions and concepts
 
