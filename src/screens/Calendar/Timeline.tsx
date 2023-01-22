@@ -48,10 +48,10 @@ export default function Timeline() {
     <>
       {loading && <ProgressBar indeterminate />}
       <TimetableCalendar />
-      {isFocused && (
+      {isFocused && !eventFormVisible && (
         <Portal>
           <FAB.Group
-            visible={drawerStatus === 'closed' && !eventFormVisible}
+            visible={drawerStatus === 'closed'}
             open={open}
             icon={open ? 'edit-2' : 'plus'}
             style={styles.fab}
