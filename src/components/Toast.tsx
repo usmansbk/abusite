@@ -6,9 +6,9 @@ import React, {
   useContext,
   useMemo,
   useState,
-} from "react";
-import { Snackbar } from "react-native-paper";
-import Icon from "~components/Icon";
+} from 'react';
+import {Snackbar} from 'react-native-paper';
+import Icon from '~components/Icon';
 
 interface ToastContextI {
   show: (msg: string) => void;
@@ -24,10 +24,10 @@ export function useToast() {
   return useContext(ToastContext);
 }
 
-function ToastProvider({ children }: PropsWithChildren) {
-  const [message, setMessage] = useState("");
+function ToastProvider({children}: PropsWithChildren) {
+  const [message, setMessage] = useState('');
 
-  const hide = useCallback(() => setMessage(""), []);
+  const hide = useCallback(() => setMessage(''), []);
   const show = useCallback((msg: string) => setMessage(msg), []);
 
   const ctx = useMemo(
@@ -35,19 +35,19 @@ function ToastProvider({ children }: PropsWithChildren) {
       show,
       hide,
     }),
-    [show, hide]
+    [show, hide],
   );
 
   return (
     <ToastContext.Provider value={ctx}>
       {children}
+
       <Snackbar
         visible={!!message}
         onDismiss={hide}
         duration={Snackbar.DURATION_SHORT}
         onIconPress={hide}
-        icon={({ size, color }) => <Icon size={size} color={color} name="x" />}
-      >
+        icon={({size, color}) => <Icon size={size} color={color} name="x" />}>
         {message}
       </Snackbar>
     </ToastContext.Provider>
