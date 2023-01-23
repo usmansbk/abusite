@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -17,6 +17,7 @@ import SelectInput, {SelectOption} from '~components/SelectInput';
 import DateTimeInput from '~components/DateTimeInput';
 import {EditEventInput, RepeatFrequency} from '~graphql/__generated__/graphql';
 import {getCurrentDate, transformDate} from '~utils/dateTime';
+import ConfirmDialog from '~components/ConfirmDialog';
 import styles from './styles';
 
 interface Props {
@@ -71,11 +72,22 @@ export default function EventFormModal({
   defaultValues,
 }: Props) {
   const {colors} = useTheme();
+  const [confirmDiscardVisible, setConfirmDiscardVisible] = useState(false);
+
+  const toggleConfirmDialog = useCallback(
+    () => setConfirmDiscardVisible(open => !open),
+    [],
+  );
+
+  const onConfirmDiscard = useCallback(() => {
+    toggleConfirmDialog();
+    onDismiss();
+  }, []);
 
   const {
     control,
     reset,
-    formState: {touchedFields, errors},
+    formState: {touchedFields, errors, isDirty},
     handleSubmit,
   } = useForm<EditEventInput>({
     resolver: yupResolver(schema),
@@ -89,6 +101,7 @@ export default function EventFormModal({
         startTime: null,
         endTime: null,
         repeat: null,
+        timetableId: null,
         description: null,
         ...defaultValues,
       });
@@ -99,15 +112,18 @@ export default function EventFormModal({
     <Portal>
       <Modal
         visible={visible}
-        onDismiss={onDismiss}
+        onDismiss={isDirty ? toggleConfirmDialog : onDismiss}
         style={styles.modalContainer}
         contentContainerStyle={styles.modalContentContainer}>
         <SafeAreaView style={{backgroundColor: colors.background}}>
           <Appbar>
-            <Appbar.Action icon="x" onPress={onDismiss} />
+            <Appbar.Action
+              icon="x"
+              onPress={isDirty ? toggleConfirmDialog : onDismiss}
+            />
             <Appbar.Content title={title} />
             <Appbar.Action
-              disabled={loading}
+              disabled={loading || !isDirty}
               icon="check"
               onPress={handleSubmit(onSubmit)}
             />
@@ -255,6 +271,13 @@ export default function EventFormModal({
           </ScrollView>
         </SafeAreaView>
       </Modal>
+      <ConfirmDialog
+        visible={confirmDiscardVisible}
+        title="Discard changes?"
+        message="You have unsaved changes. Are you sure to discard them?"
+        onConfirm={onConfirmDiscard}
+        onDismiss={toggleConfirmDialog}
+      />
     </Portal>
   );
 }
