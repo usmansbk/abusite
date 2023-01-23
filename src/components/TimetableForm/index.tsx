@@ -211,7 +211,7 @@ export default function TimetableForm({
                     roundness: 0,
                   }}
                   autoFocus={autoFocus}
-                  placeholder="Example: 2022/23 Lectures"
+                  placeholder="Example: Class Lectures"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
