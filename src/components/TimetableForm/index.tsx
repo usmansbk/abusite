@@ -193,7 +193,7 @@ export default function TimetableForm({
         stickyHeaderHiddenOnScroll
         stickySectionHeadersEnabled
         renderSectionHeader={({section}) => (
-          <Surface style={styles.sectionHeader}>
+          <Surface elevation={0} style={styles.sectionHeader}>
             <Text variant="titleMedium">
               {formatCalendarDate(section.title)}
             </Text>
