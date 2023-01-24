@@ -14,6 +14,43 @@ export default gql(`
 			picture
 			createdAt
 			updatedAt
+
+			timetables {
+				id
+				title
+				description
+				code
+				createdAt
+				updatedAt
+				isOwner
+				owner {
+					id
+					picture
+					fullName
+				}
+				events {
+					id
+					title
+					description
+					startDate
+					startTime
+					endTime
+					createdAt
+					updatedAt
+					isOwner
+					repeat
+					cancelledDates
+					owner {
+						id
+						picture
+						fullName
+					}
+					timetable {
+						id
+						title
+					}
+				}
+			}
 		}
 	}
 `);

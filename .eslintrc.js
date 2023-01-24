@@ -23,6 +23,7 @@ module.exports = {
     'react/no-unstable-nested-components': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
+    '@typescript-eslint/no-shadow': 'off',
   },
   settings: {
     'import/parsers': {
