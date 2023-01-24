@@ -17,10 +17,14 @@ const Drawer = createDrawerNavigator<AppDrawerParamList>();
 function Timetables({navigation}: {navigation: DrawerNavigationHelpers}) {
   const {loading, me} = useMe();
 
-  const items = useMemo(
-    () => [...me!.timetables].sort((a, b) => a!.title.localeCompare(b!.title)),
-    [me?.timetables],
-  );
+  const items = useMemo(() => {
+    if (me?.timetables) {
+      return [...me!.timetables].sort((a, b) =>
+        a!.title.localeCompare(b!.title),
+      );
+    }
+    return [];
+  }, [me?.timetables]);
 
   if (loading) {
     return <ProgressBar />;
