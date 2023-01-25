@@ -1,9 +1,12 @@
 import React, {useCallback, useState} from 'react';
-import {List, useTheme} from 'react-native-paper';
+import {useTheme, Appbar} from 'react-native-paper';
 import Container from '~components/Container';
+import {RootStackScreenProps} from '~types';
 import ThemeDialog from './ThemeDialog';
 
-export default function Settings() {
+export default function Settings({
+  navigation,
+}: RootStackScreenProps<'Settings'>) {
   const {dark} = useTheme();
   const [themeDialogVisible, setOpenTheme] = useState(false);
 
@@ -13,13 +16,14 @@ export default function Settings() {
 
   return (
     <Container>
-      <List.Section title="General">
-        <List.Item
-          left={props => <List.Icon {...props} icon={dark ? 'moon' : 'sun'} />}
-          title="Theme"
+      <Appbar>
+        <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
+        <Appbar.Content title="Settings" />
+        <Appbar.Action
+          icon={dark ? 'moon' : 'sun'}
           onPress={() => setOpenTheme(true)}
         />
-      </List.Section>
+      </Appbar>
       <ThemeDialog visible={themeDialogVisible} onDismiss={closeThemeDialog} />
     </Container>
   );

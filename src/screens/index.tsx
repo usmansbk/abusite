@@ -67,13 +67,6 @@ function MainStack() {
           title: t('help.title'),
         }}
       />
-      <Stack.Screen
-        name="ExploreSettings"
-        component={Settings}
-        options={{
-          title: t('explore.title'),
-        }}
-      />
       {isLoggedIn && (
         <>
           <Stack.Screen
@@ -101,7 +94,7 @@ function MainStack() {
             name="Settings"
             component={Settings}
             options={{
-              title: t('settings.title'),
+              headerShown: false,
             }}
           />
           <Stack.Screen
