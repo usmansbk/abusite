@@ -14,11 +14,11 @@ export default function DuplicateTimetable({
   const {
     handleCreateTimetable,
     loading,
-    timetable: updatedTimetable,
+    timetable: newTimetable,
   } = useCreateTimetable();
 
   useEffect(() => {
-    if (updatedTimetable) {
+    if (newTimetable) {
       navigation.navigate('Home', {
         screen: 'HomeTabs',
         params: {
@@ -26,7 +26,7 @@ export default function DuplicateTimetable({
         },
       });
     }
-  }, [navigation, updatedTimetable]);
+  }, [navigation, newTimetable]);
 
   return (
     <Container>
