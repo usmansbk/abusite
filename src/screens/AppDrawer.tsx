@@ -139,7 +139,7 @@ export default function AppDrawer() {
       initialRouteName="HomeTabs"
       drawerContent={AppDrawerContent}
       screenOptions={{
-        drawerType: 'slide',
+        drawerType: 'back',
         headerShown: false,
       }}>
       <Drawer.Screen name="HomeTabs" component={HomeTabs} />
