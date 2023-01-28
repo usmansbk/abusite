@@ -1,4 +1,3 @@
-import capitalize from 'lodash.capitalize';
 import React, {useCallback, useState} from 'react';
 import {View} from 'react-native';
 import {
@@ -37,9 +36,7 @@ export default function EventItem({
   const [visible, setVisible] = useState(false);
   const {title, repeat, startTime, endTime} = item;
 
-  const time = [formatTime(startTime, endTime), repeat && capitalize(repeat)]
-    .join(' ')
-    .trim();
+  const time = [formatTime(startTime, endTime), repeat].join(' ').trim();
 
   const openMenu = useCallback(() => setVisible(true), []);
   const closeMenu = useCallback(() => setVisible(false), []);
@@ -61,7 +58,7 @@ export default function EventItem({
       <Surface elevation={0} style={styles.itemContainer}>
         <View style={styles.span}>
           <Text variant="labelLarge">{title}</Text>
-          {time && <Text variant="labelMedium">{time}</Text>}
+          {time && <Text variant="labelSmall">{time}</Text>}
         </View>
         <Menu
           visible={visible}

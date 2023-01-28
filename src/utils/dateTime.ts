@@ -42,11 +42,11 @@ export function formatTime(time: string | null) {
 
 export function formatCalendarDate(date: string | null) {
   return dayjs(date).calendar(null, {
-    sameDay: '[Today], dddd DD',
-    nextDay: '[Tomorrow], dddd DD',
+    sameDay: 'dddd DD',
+    nextDay: 'dddd DD',
     nextWeek: 'dddd, DD MMM',
-    lastDay: '[Yesterday], dddd DD',
-    lastWeek: '[Last] dddd, DD MMM',
+    lastDay: 'dddd DD',
+    lastWeek: 'dddd, DD MMM',
     sameElse: 'dddd, DD MMM YYYY',
   });
 }

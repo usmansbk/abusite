@@ -1,10 +1,12 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {Appbar, Menu, ProgressBar} from 'react-native-paper';
+import {ScrollView} from 'react-native';
+import {Appbar, Menu, ProgressBar, Text} from 'react-native-paper';
 import ConfirmDialog from '~components/ConfirmDialog';
 import Container from '~components/Container';
 import EmptyState from '~components/EmptyState';
 import useGetTimetableById from '~hooks/api/useGetTimetableById';
 import {RootStackScreenProps} from '~types';
+import styles from './styles';
 
 export default function Timetable({
   navigation,
@@ -20,16 +22,6 @@ export default function Timetable({
 
   const menuItems = useMemo(
     () => [
-      {
-        icon: 'info',
-        title: 'Info',
-        onPress: () => null,
-      },
-      {
-        icon: 'share-2',
-        title: 'Share',
-        onPress: () => null,
-      },
       {
         icon: 'edit',
         title: 'Edit',
@@ -69,11 +61,13 @@ export default function Timetable({
     <Container>
       <Appbar>
         <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
-        <Appbar.Content onPress={() => console.log(title)} title={title} />
+        <Appbar.Content title="" />
+        <Appbar.Action icon="bookmark" onPress={() => null} />
+        <Appbar.Action icon="share-2" onPress={() => null} />
         <Menu
           visible={menuVisible}
           onDismiss={closeMenu}
-          anchor={<Appbar.Action icon="more-vertical" onPress={openMenu} />}>
+          anchor={<Appbar.Action icon="more-horizontal" onPress={openMenu} />}>
           {menuItems.map(({icon, onPress, title}) => (
             <Menu.Item
               key={title}
@@ -87,6 +81,9 @@ export default function Timetable({
           ))}
         </Menu>
       </Appbar>
+      <ScrollView style={styles.contentContainer}>
+        <Text variant="headlineLarge">{title}</Text>
+      </ScrollView>
       <ConfirmDialog
         visible={deleteVisible}
         onDismiss={() => setDeleteVisible(false)}

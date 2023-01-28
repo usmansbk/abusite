@@ -11,8 +11,6 @@ import {
   ProgressBar,
   HelperText,
   Divider,
-  Text,
-  Surface,
 } from 'react-native-paper';
 import groupBy from 'lodash.groupby';
 import EventFormModal, {
@@ -24,9 +22,9 @@ import {
   EditEventInput,
   EditTimetableInput,
 } from '~graphql/__generated__/graphql';
-import {formatCalendarDate} from '~utils/dateTime';
-import styles from './styles';
 import EventItem, {ItemT} from './EventItem';
+import DateHeader from './DateHeader';
+import styles from './styles';
 
 interface Props {
   autoFocus?: boolean;
@@ -193,14 +191,7 @@ export default function TimetableForm({
         stickyHeaderHiddenOnScroll
         stickySectionHeadersEnabled
         renderSectionHeader={({section}) => (
-          <>
-            <Surface elevation={0} style={styles.sectionHeader}>
-              <Text variant="titleMedium">
-                {formatCalendarDate(section.title)}
-              </Text>
-            </Surface>
-            <Divider />
-          </>
+          <DateHeader title={section.title} />
         )}
         ListHeaderComponent={
           <Controller
@@ -231,6 +222,7 @@ export default function TimetableForm({
         }
         ListEmptyComponent={<EmptyState title="Add events" />}
         ItemSeparatorComponent={Divider}
+        SectionSeparatorComponent={Divider}
       />
       <FAB icon="edit-2" style={styles.fab} onPress={toggleAddEventForm} />
       <EventFormModal
