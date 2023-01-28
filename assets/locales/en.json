@@ -24,7 +24,7 @@
     },
     "empty": {
       "title": "No notifications",
-      "message": "Changes to your calendar and announcements will appear here."
+      "message": "Changes to your calendar will appear here."
     }
   },
   "login": {
