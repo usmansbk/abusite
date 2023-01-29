@@ -178,7 +178,7 @@ export default function TimetableForm({
         <Appbar.Content title="" />
         <Appbar.Action
           icon="check"
-          disabled={loading || !isDirty}
+          disabled={loading}
           onPress={handleSubmit(onSubmit)}
         />
       </Appbar>

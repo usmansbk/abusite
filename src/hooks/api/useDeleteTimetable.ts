@@ -1,11 +1,13 @@
-import {useMutation} from '@apollo/client';
+import {Reference, useMutation} from '@apollo/client';
 import {useCallback} from 'react';
 import {useToast} from '~components/Toast';
 import deleteTimetable from '~graphql/queries/deleteTimetable';
 import {DeleteTimetableMutationVariables} from '~graphql/__generated__/graphql';
+import useMe from './useMe';
 
 export default function useDeleteTimetable() {
   const toast = useToast();
+  const {me} = useMe();
   const [mutate, {loading, data, error}] = useMutation(deleteTimetable, {
     onError: e => toast.show(e.message),
   });
@@ -18,14 +20,20 @@ export default function useDeleteTimetable() {
         },
         update(cache, {data}) {
           if (data?.deleteTimetable) {
-            cache.evict({
-              id: cache.identify(data.deleteTimetable),
+            cache.modify({
+              id: cache.identify(me!),
+              fields: {
+                timetables(existingRefs: Reference[], {readField}) {
+                  return existingRefs.filter(
+                    ref => readField('id', ref) !== data.deleteTimetable.id,
+                  );
+                },
+              },
             });
-            cache.gc();
           }
         },
       }),
-    [mutate],
+    [mutate, me],
   );
 
   return {
