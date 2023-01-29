@@ -1,12 +1,12 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {ScrollView} from 'react-native';
-import {Appbar, Menu, ProgressBar, Text} from 'react-native-paper';
-import ConfirmDialog from '~components/ConfirmDialog';
+import {Appbar, Menu, ProgressBar} from 'react-native-paper';
 import Container from '~components/Container';
 import EmptyState from '~components/EmptyState';
+import {Timetable as TimetableI} from '~graphql/__generated__/graphql';
 import useGetTimetableById from '~hooks/api/useGetTimetableById';
 import {RootStackScreenProps} from '~types';
-import styles from './styles';
+import DeleteDialog from './DeleteDialog';
+import InfoDialog from './InfoDialog';
 
 export default function Timetable({
   navigation,
@@ -16,9 +16,13 @@ export default function Timetable({
   const {loading, error, timetable} = useGetTimetableById(id);
   const [menuVisible, setMenuVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
+  const [infoVisible, setInfoVisible] = useState(false);
 
   const openMenu = useCallback(() => setMenuVisible(true), []);
+  const openInfo = useCallback(() => setInfoVisible(true), []);
   const closeMenu = useCallback(() => setMenuVisible(false), []);
+  const closeDeleteDialog = useCallback(() => setDeleteVisible(false), []);
+  const closeInfoDialog = useCallback(() => setInfoVisible(false), []);
 
   const menuItems = useMemo(
     () => [
@@ -61,7 +65,7 @@ export default function Timetable({
     <Container>
       <Appbar>
         <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
-        <Appbar.Content title="" />
+        <Appbar.Content title={title} onPress={openInfo} />
         <Appbar.Action icon="bookmark" onPress={() => null} />
         <Appbar.Action icon="share-2" onPress={() => null} />
         <Menu
@@ -81,14 +85,15 @@ export default function Timetable({
           ))}
         </Menu>
       </Appbar>
-      <ScrollView style={styles.contentContainer}>
-        <Text variant="headlineLarge">{title}</Text>
-      </ScrollView>
-      <ConfirmDialog
+      <DeleteDialog
+        id={id}
         visible={deleteVisible}
-        onDismiss={() => setDeleteVisible(false)}
-        title="Delete this timetable?"
-        onConfirm={console.log}
+        onDismiss={closeDeleteDialog}
+      />
+      <InfoDialog
+        visible={infoVisible}
+        onDismiss={closeInfoDialog}
+        timetable={timetable as TimetableI}
       />
     </Container>
   );
