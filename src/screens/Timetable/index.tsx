@@ -71,31 +71,35 @@ export default function Timetable({
     return <EmptyState title="Something went wrong..." />;
   }
 
-  const {title} = timetable!;
+  const {title, isOwner} = timetable!;
 
   return (
     <Container>
       <Appbar>
         <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
         <Appbar.Content title={title} onPress={openInfo} />
-        <Appbar.Action icon="bookmark" onPress={() => null} />
+        {!isOwner && <Appbar.Action icon="bookmark" onPress={() => null} />}
         <Appbar.Action icon="share-2" onPress={() => null} />
-        <Menu
-          visible={menuVisible}
-          onDismiss={closeMenu}
-          anchor={<Appbar.Action icon="more-horizontal" onPress={openMenu} />}>
-          {menuItems.map(({icon, onPress, title}) => (
-            <Menu.Item
-              key={title}
-              title={title}
-              leadingIcon={icon}
-              onPress={() => {
-                closeMenu();
-                onPress();
-              }}
-            />
-          ))}
-        </Menu>
+        {isOwner && (
+          <Menu
+            visible={menuVisible}
+            onDismiss={closeMenu}
+            anchor={
+              <Appbar.Action icon="more-horizontal" onPress={openMenu} />
+            }>
+            {menuItems.map(({icon, onPress, title}) => (
+              <Menu.Item
+                key={title}
+                title={title}
+                leadingIcon={icon}
+                onPress={() => {
+                  closeMenu();
+                  onPress();
+                }}
+              />
+            ))}
+          </Menu>
+        )}
       </Appbar>
       {isDeleting && <ProgressBar visible />}
       <ConfirmDialog

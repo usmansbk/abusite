@@ -16,6 +16,14 @@ export default function useDeleteTimetable() {
         variables: {
           deleteTimetableId: id,
         },
+        update(cache, {data}) {
+          if (data?.deleteTimetable) {
+            cache.evict({
+              id: cache.identify(data.deleteTimetable),
+            });
+            cache.gc();
+          }
+        },
       }),
     [mutate],
   );
