@@ -1,11 +1,12 @@
-import React, {useCallback, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {Appbar, Menu, ProgressBar} from 'react-native-paper';
+import ConfirmDialog from '~components/ConfirmDialog';
 import Container from '~components/Container';
 import EmptyState from '~components/EmptyState';
 import {Timetable as TimetableI} from '~graphql/__generated__/graphql';
+import useDeleteTimetable from '~hooks/api/useDeleteTimetable';
 import useGetTimetableById from '~hooks/api/useGetTimetableById';
 import {RootStackScreenProps} from '~types';
-import DeleteDialog from './DeleteDialog';
 import InfoDialog from './InfoDialog';
 
 export default function Timetable({
@@ -14,6 +15,11 @@ export default function Timetable({
 }: RootStackScreenProps<'Timetable'>) {
   const {id} = route.params;
   const {loading, error, timetable} = useGetTimetableById(id);
+  const {
+    loading: isDeleting,
+    handleDelete,
+    timetable: deletedTimetable,
+  } = useDeleteTimetable();
   const [menuVisible, setMenuVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [infoVisible, setInfoVisible] = useState(false);
@@ -23,6 +29,12 @@ export default function Timetable({
   const closeMenu = useCallback(() => setMenuVisible(false), []);
   const closeDeleteDialog = useCallback(() => setDeleteVisible(false), []);
   const closeInfoDialog = useCallback(() => setInfoVisible(false), []);
+
+  useEffect(() => {
+    if (deletedTimetable) {
+      navigation.pop();
+    }
+  }, [deletedTimetable]);
 
   const menuItems = useMemo(
     () => [
@@ -85,10 +97,12 @@ export default function Timetable({
           ))}
         </Menu>
       </Appbar>
-      <DeleteDialog
-        id={id}
+      {isDeleting && <ProgressBar visible />}
+      <ConfirmDialog
         visible={deleteVisible}
         onDismiss={closeDeleteDialog}
+        title="Delete this timetable?"
+        onConfirm={() => handleDelete(id)}
       />
       <InfoDialog
         visible={infoVisible}
