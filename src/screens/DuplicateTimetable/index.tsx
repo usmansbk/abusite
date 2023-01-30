@@ -34,6 +34,7 @@ export default function DuplicateTimetable({
         loading={loading}
         defaultValues={timetable}
         onSubmit={handleCreateTimetable}
+        disableClean={false}
       />
     </Container>
   );

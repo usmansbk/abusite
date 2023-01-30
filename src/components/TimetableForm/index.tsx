@@ -31,6 +31,7 @@ interface Props {
   loading?: boolean;
   onSubmit: (values: EditTimetableInput) => void;
   defaultValues?: EditTimetableInput | null;
+  disableClean?: boolean;
 }
 
 const schema = yup
@@ -51,6 +52,7 @@ export default function TimetableForm({
   loading,
   onSubmit,
   defaultValues,
+  disableClean = true,
 }: Props) {
   const navigation = useNavigation();
   const [addEventModalVisible, setAddEventFormVisible] = useState(false);
@@ -178,7 +180,7 @@ export default function TimetableForm({
         <Appbar.Content title="" />
         <Appbar.Action
           icon="check"
-          disabled={loading}
+          disabled={loading || (disableClean && !isDirty)}
           onPress={handleSubmit(onSubmit)}
         />
       </Appbar>
