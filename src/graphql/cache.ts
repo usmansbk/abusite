@@ -34,6 +34,15 @@ const cache = new InMemoryCache({
         },
       },
     },
+    Timetable: {
+      fields: {
+        events: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
+      },
+    },
   },
 });
 
