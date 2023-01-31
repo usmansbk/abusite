@@ -46,20 +46,13 @@ function MainStack() {
         header: props => <AppHeader {...props} />,
       }}>
       {!isLoggedIn && <Stack.Screen name="Login" component={Login} />}
-      <Stack.Screen
-        name="Home"
-        component={AppDrawer}
-        options={{
+      <Stack.Group
+        screenOptions={{
           headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Search"
-        component={Search}
-        options={{
-          headerShown: false,
-        }}
-      />
+        }}>
+        <Stack.Screen name="Home" component={AppDrawer} />
+        <Stack.Screen name="Search" component={Search} />
+      </Stack.Group>
       <Stack.Screen
         name="Help"
         component={Help}
@@ -90,41 +83,19 @@ function MainStack() {
               title: t('archive.title'),
             }}
           />
-          <Stack.Screen
-            name="Settings"
-            component={Settings}
-            options={{
+          <Stack.Group
+            screenOptions={{
               headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="Timetable"
-            component={Timetable}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="NewTimetable"
-            component={NewTimetable}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="EditTimetable"
-            component={EditTimetable}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="DuplicateTimetable"
-            component={DuplicateTimetable}
-            options={{
-              headerShown: false,
-            }}
-          />
+            }}>
+            <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="Timetable" component={Timetable} />
+            <Stack.Screen name="NewTimetable" component={NewTimetable} />
+            <Stack.Screen name="EditTimetable" component={EditTimetable} />
+            <Stack.Screen
+              name="DuplicateTimetable"
+              component={DuplicateTimetable}
+            />
+          </Stack.Group>
         </>
       )}
     </Stack.Navigator>
