@@ -63,6 +63,10 @@ export default function Timetable({
     [navigation],
   );
 
+  const share = useCallback(() => {
+    console.log(timetable?.title, timetable?.code);
+  }, [timetable]);
+
   if (loading) {
     return <ProgressBar />;
   }
@@ -79,7 +83,7 @@ export default function Timetable({
         <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
         <Appbar.Content title={title} onPress={openInfo} />
         {!isOwner && <Appbar.Action icon="bookmark" onPress={() => null} />}
-        <Appbar.Action icon="share-2" onPress={() => null} />
+        <Appbar.Action icon="share-2" onPress={share} />
         {isOwner && (
           <Menu
             visible={menuVisible}

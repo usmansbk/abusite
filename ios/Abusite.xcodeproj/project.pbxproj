@@ -58,6 +58,7 @@
 		B69A7CBC2971FB3200D7F2B5 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = Abusite/BootSplash.storyboard; sourceTree = "<group>"; };
 		B6B7DE4F298525D5006D460B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B6BAB39929715874007A3A50 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
+		B6C2C7792989490500893D4E /* Abusite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Abusite.entitlements; path = Abusite/Abusite.entitlements; sourceTree = "<group>"; };
 		DEDC9CED68B541029F76CE25 /* Inter-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.ttf"; path = "../assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
 		DFC314F3F22C489FB491B4D9 /* Inter-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Light.ttf"; path = "../assets/fonts/Inter-Light.ttf"; sourceTree = "<group>"; };
 		E813EB39EAF94D5182EC1EAA /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		13B07FAE1A68108700A75B9A /* Abusite */ = {
 			isa = PBXGroup;
 			children = (
+				B6C2C7792989490500893D4E /* Abusite.entitlements */,
 				B6B7DE4F298525D5006D460B /* GoogleService-Info.plist */,
 				B69A7CBC2971FB3200D7F2B5 /* BootSplash.storyboard */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -538,7 +540,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Abusite/Abusite.entitlements;
 				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 8AH6H67YHZ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Abusite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -565,7 +569,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Abusite/Abusite.entitlements;
 				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 8AH6H67YHZ;
 				INFOPLIST_FILE = Abusite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

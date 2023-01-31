@@ -6,4 +6,5 @@ export default {
   termsUrl: 'http://localhost:4000/terms',
   privacyUrl: 'http://localhost:4000/terms',
   contactEmail: 'usmansbk.dev@gmail.com',
+  uriSchema: 'abusite://',
 };
