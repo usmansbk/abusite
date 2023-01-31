@@ -6,11 +6,7 @@ export default StyleSheet.create({
     flexGrow: 1,
     paddingTop: 8,
   },
-  modalContentContainer: {
-    flexGrow: 1,
-  },
   modalContainer: {
-    flex: 1,
     justifyContent: 'flex-end',
   },
   gap: {
