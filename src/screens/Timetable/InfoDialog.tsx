@@ -20,23 +20,18 @@ export default function InfoDialog({visible, onDismiss, timetable}: Props) {
       <Modal
         visible={visible}
         onDismiss={onDismiss}
-        style={styles.infoContainer}
-        contentContainerStyle={[
-          styles.contentContainer,
-          {backgroundColor: colors.background},
-        ]}>
-        <View>
-          <Appbar>
-            <Appbar.Action icon="x" onPress={onDismiss} />
-          </Appbar>
-          <View style={styles.modalContent}>
-            <Text variant="headlineLarge">{title}</Text>
-            <View style={styles.row}>
-              <UserAvatar size={40} uri={owner?.picture} />
-              <View style={styles.gap}>
-                <Text variant="titleMedium">{owner.fullName}</Text>
-                <Text>{formatCalendarDate(createdAt)}</Text>
-              </View>
+        style={styles.infoContainer}>
+        <Appbar>
+          <Appbar.Action icon="x" onPress={onDismiss} />
+        </Appbar>
+        <View
+          style={[styles.modalContent, {backgroundColor: colors.background}]}>
+          <Text variant="headlineLarge">{title}</Text>
+          <View style={styles.row}>
+            <UserAvatar size={40} uri={owner?.picture} />
+            <View style={styles.gap}>
+              <Text variant="titleMedium">{owner.fullName}</Text>
+              <Text>{formatCalendarDate(createdAt)}</Text>
             </View>
           </View>
         </View>
