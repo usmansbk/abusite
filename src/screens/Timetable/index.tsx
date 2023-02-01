@@ -98,7 +98,9 @@ export default function Timetable({
       <Appbar>
         <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
         <Appbar.Content title={title} onPress={openInfo} />
-        {!isOwner && <SaveTimetableButton isSaved />}
+        {!isOwner && (
+          <SaveTimetableButton timetable={timetable as TimetableI} />
+        )}
         <Appbar.Action icon="share-2" onPress={share} />
         {isOwner && (
           <Menu

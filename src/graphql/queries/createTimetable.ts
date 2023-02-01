@@ -9,6 +9,7 @@ mutation CreateTimetable($input: EditTimetableInput!) {
     createdAt
     updatedAt
     isOwner
+    isSaved
     owner {
       id
       picture

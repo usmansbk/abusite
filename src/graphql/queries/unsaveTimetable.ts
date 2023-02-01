@@ -4,6 +4,7 @@ export default gql(`
 mutation UnsaveTimetable($id: ID!) {
   unsaveTimetable(id: $id) {
     id
+    isSaved
   }
 }
 `);

@@ -21,6 +21,7 @@ export default gql(`
 				createdAt
 				updatedAt
 				isOwner
+    		isSaved
 				owner {
 					id
 					picture

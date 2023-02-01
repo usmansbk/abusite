@@ -9,6 +9,7 @@ mutation SaveTimetable($id: ID!) {
     createdAt
     updatedAt
     isOwner
+    isSaved
     owner {
       id
       picture
