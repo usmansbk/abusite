@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {StatusBar, useColorScheme, View} from 'react-native';
 import {Provider as PaperProvider, useTheme} from 'react-native-paper';
-import {NavigationContainer} from '@react-navigation/native';
+import {LinkingOptions, NavigationContainer} from '@react-navigation/native';
 import {ApolloProvider} from '@apollo/client';
 import RNBootSplash from 'react-native-bootsplash';
 import {AppDarkTheme, AppDefaultTheme} from '~config/theme';
@@ -11,6 +11,8 @@ import Icon from '~components/Icon';
 import ToastProvider from '~components/Toast';
 import {persistor} from '~graphql/cache';
 import useThemeMode from '~hooks/useThemeMode';
+import {RootStackParamList} from '~types';
+import env from '~config/env';
 import '~config/i18n';
 
 function Main() {
@@ -31,6 +33,15 @@ function Main() {
     </View>
   );
 }
+
+const linking: LinkingOptions<RootStackParamList> = {
+  prefixes: [env.deepLink, env.universalLink],
+  config: {
+    screens: {
+      Timetable: 'timetable/:id',
+    },
+  },
+};
 
 function ThemedApp() {
   const scheme = useColorScheme();
@@ -53,7 +64,10 @@ function ThemedApp() {
       settings={{
         icon: props => <Icon {...props} />,
       }}>
-      <NavigationContainer theme={theme} onReady={onNavigatorReady}>
+      <NavigationContainer
+        linking={linking}
+        theme={theme}
+        onReady={onNavigatorReady}>
         <Main />
       </NavigationContainer>
     </PaperProvider>
