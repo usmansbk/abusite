@@ -4,6 +4,7 @@ import {Appbar, Menu, ProgressBar} from 'react-native-paper';
 import ConfirmDialog from '~components/ConfirmDialog';
 import Container from '~components/Container';
 import EmptyState from '~components/EmptyState';
+import SaveTimetableButton from '~components/SaveTimetableButton';
 import env from '~config/env';
 import {Timetable as TimetableI} from '~graphql/__generated__/graphql';
 import useDeleteTimetable from '~hooks/api/useDeleteTimetable';
@@ -97,7 +98,7 @@ export default function Timetable({
       <Appbar>
         <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
         <Appbar.Content title={title} onPress={openInfo} />
-        {!isOwner && <Appbar.Action icon="bookmark" onPress={() => null} />}
+        {!isOwner && <SaveTimetableButton isSaved />}
         <Appbar.Action icon="share-2" onPress={share} />
         {isOwner && (
           <Menu
