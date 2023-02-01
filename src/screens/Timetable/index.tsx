@@ -3,6 +3,7 @@ import {Appbar, Menu, ProgressBar} from 'react-native-paper';
 import ConfirmDialog from '~components/ConfirmDialog';
 import Container from '~components/Container';
 import EmptyState from '~components/EmptyState';
+import env from '~config/env';
 import {Timetable as TimetableI} from '~graphql/__generated__/graphql';
 import useDeleteTimetable from '~hooks/api/useDeleteTimetable';
 import useGetTimetableById from '~hooks/api/useGetTimetableById';
@@ -64,7 +65,7 @@ export default function Timetable({
   );
 
   const share = useCallback(() => {
-    console.log(timetable?.title, timetable?.code);
+    console.log(`${env.universalLink}/timetable/${timetable?.id}`);
   }, [timetable]);
 
   if (loading) {
