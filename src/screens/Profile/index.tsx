@@ -4,6 +4,7 @@ import {Divider, List, ProgressBar} from 'react-native-paper';
 import Container from '~components/Container';
 import ConfirmDialog from '~components/ConfirmDialog';
 import useMe from '~hooks/api/useMe';
+import {User} from '~graphql/__generated__/graphql';
 import useLogout from '~hooks/useLogout';
 import styles from './styles';
 import UpdateProfileForm from './UpdateProfileForm';
@@ -22,7 +23,7 @@ export default function Profile() {
   return (
     <Container>
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <UpdateProfileForm user={me!} />
+        <UpdateProfileForm user={me as unknown as User} />
         <Divider />
         <List.Item
           left={props => <List.Icon {...props} icon="log-out" />}

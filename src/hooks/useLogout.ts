@@ -1,4 +1,5 @@
 import {useApolloClient} from '@apollo/client';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useCallback} from 'react';
 import {persistor} from '~graphql/cache';
 import authState from '~graphql/localState/authState';
@@ -15,6 +16,7 @@ export default function useLogout() {
     });
     await persistor.purge();
     client.cache.reset();
+    await GoogleSignin.signOut();
   }, [client]);
 
   return logout;
