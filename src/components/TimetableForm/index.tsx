@@ -192,6 +192,7 @@ export default function TimetableForm({
         renderItem={renderItem}
         stickyHeaderHiddenOnScroll
         stickySectionHeadersEnabled
+        keyboardShouldPersistTaps="always"
         renderSectionHeader={({section}) => (
           <DateHeader title={section.title} />
         )}
