@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import {Platform, Share} from 'react-native';
 import {Appbar, Menu, ProgressBar} from 'react-native-paper';
 import ConfirmDialog from '~components/ConfirmDialog';
 import Container from '~components/Container';
@@ -65,7 +66,20 @@ export default function Timetable({
   );
 
   const share = useCallback(() => {
-    console.log(`${env.universalLink}/timetable/${timetable?.id}`);
+    if (timetable) {
+      const url = `${env.universalLink}/timetable/${timetable.id}`;
+      const message =
+        Platform.OS === 'ios' ? timetable.title : `${timetable.title}\n${url}`;
+
+      Share.share(
+        {
+          title: timetable.title,
+          message,
+          url,
+        },
+        {dialogTitle: timetable.title, subject: timetable.title},
+      );
+    }
   }, [timetable]);
 
   if (loading) {
