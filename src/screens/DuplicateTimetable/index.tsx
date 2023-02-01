@@ -31,6 +31,7 @@ export default function DuplicateTimetable({
   return (
     <Container>
       <TimetableForm
+        autoFocus={false}
         loading={loading}
         defaultValues={timetable}
         onSubmit={handleCreateTimetable}

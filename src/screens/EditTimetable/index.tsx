@@ -27,6 +27,7 @@ export default function EditTimetable({
   return (
     <Container>
       <TimetableForm
+        autoFocus={false}
         loading={loading}
         defaultValues={timetable}
         onSubmit={handleUpdateTimetable}
