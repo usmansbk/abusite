@@ -14,7 +14,6 @@ export default gql(`
       fullName
       picture
     }
-    code
     events {
       id
       title

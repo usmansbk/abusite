@@ -14,12 +14,10 @@ export default gql(`
 			picture
 			createdAt
 			updatedAt
-
 			timetables {
 				id
 				title
 				description
-				code
 				createdAt
 				updatedAt
 				isOwner

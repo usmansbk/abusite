@@ -6,7 +6,6 @@ mutation CreateTimetable($input: EditTimetableInput!) {
     id
     title
     description
-    code
     createdAt
     updatedAt
     isOwner
