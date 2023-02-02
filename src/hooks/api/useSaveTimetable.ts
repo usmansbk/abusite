@@ -1,19 +1,23 @@
 import {useMutation} from '@apollo/client';
 import {useCallback} from 'react';
+import {useToast} from '~components/Toast';
 import saveTimetable from '~graphql/queries/saveTimetable';
-import {SaveTimetableMutationVariables} from '~graphql/__generated__/graphql';
+import {Timetable} from '~graphql/__generated__/graphql';
 
-export default function useSaveTimetable() {
-  const [mutate, {loading, data, error}] = useMutation(saveTimetable);
+export default function useSaveTimetable(timetable: Timetable) {
+  const toast = useToast();
+  const [mutate, {loading, data, error}] = useMutation(saveTimetable, {
+    onError: e => toast.show(e.message),
+  });
 
   const handleSave = useCallback(
-    ({id}: SaveTimetableMutationVariables) =>
+    () =>
       mutate({
         variables: {
-          id,
+          id: timetable.id,
         },
       }),
-    [mutate],
+    [mutate, timetable],
   );
 
   return {

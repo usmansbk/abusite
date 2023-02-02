@@ -9,16 +9,16 @@ interface Props {
 }
 
 export default function SaveTimetableButton({timetable}: Props) {
-  const {id, isSaved} = timetable;
-  const {loading: isSaving, handleSave} = useSaveTimetable();
-  const {loading: isUnsaving, handleUnsave} = useUnsaveTimetable();
+  const {isSaved} = timetable;
+  const {loading: isSaving, handleSave} = useSaveTimetable(timetable);
+  const {loading: isUnsaving, handleUnsave} = useUnsaveTimetable(timetable);
   const onPress = useCallback(() => {
     if (isSaved) {
-      handleUnsave({id});
+      handleUnsave();
     } else {
-      handleSave({id});
+      handleSave();
     }
-  }, [id, isSaved]);
+  }, [isSaved]);
 
   return (
     <Appbar.Action
