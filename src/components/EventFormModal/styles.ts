@@ -8,6 +8,7 @@ export default StyleSheet.create({
   },
   modalContainer: {
     justifyContent: 'flex-end',
+    paddingTop: 20,
   },
   gap: {
     marginTop: 8,
