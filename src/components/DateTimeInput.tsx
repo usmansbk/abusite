@@ -1,5 +1,6 @@
 import React, {useCallback, useMemo, useState} from 'react';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import RNLocalize from 'react-native-localize';
 import {
   formatCalendarDate,
   formatDateToTime,
@@ -81,6 +82,7 @@ export default function DateTimeInput({
         onClear={required ? undefined : onClear}
       />
       <DateTimePicker
+        is24Hour={RNLocalize.uses24HourClock()}
         date={date}
         isVisible={visible}
         mode={mode}

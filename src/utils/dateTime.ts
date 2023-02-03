@@ -1,3 +1,4 @@
+import RNLocalize from 'react-native-localize';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
@@ -19,6 +20,8 @@ dayjs.extend(isYesterday);
 
 export const TIME_FORMAT = 'HH:mm';
 export const DATE_FORMAT = 'YYYY-MM-DD';
+export const TIME_12H_FORMAT = 'hh:mm A';
+export const TIME_24H_FORMAT = 'HH:mm';
 
 export function getCurrentDate() {
   return dayjs().toDate();
@@ -37,7 +40,9 @@ export function parseTime(time: string) {
 }
 
 export function formatTime(time: string | null) {
-  return dayjs(time, TIME_FORMAT).format('hh:mm A');
+  return dayjs(time, TIME_FORMAT).format(
+    RNLocalize.uses24HourClock() ? TIME_24H_FORMAT : TIME_12H_FORMAT,
+  );
 }
 
 export function formatCalendarDate(date: string | null) {

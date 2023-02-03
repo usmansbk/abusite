@@ -75,6 +75,7 @@ export default function SelectInput({
           <Dialog.Title>{label}</Dialog.Title>
           <Dialog.ScrollArea>
             <FlatList
+              keyboardShouldPersistTaps="always"
               data={options}
               keyExtractor={item => item.value}
               renderItem={renderItem}
