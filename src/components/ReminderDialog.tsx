@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dialog, Portal, RadioButton} from 'react-native-paper';
+import {Checkbox, Dialog, Portal} from 'react-native-paper';
 import {DefaultReminders} from '~types';
 
 interface Props {
@@ -54,10 +54,10 @@ export default function ReminderDialog({
         <Dialog.Title>Reminder</Dialog.Title>
         <Dialog.Content>
           {options.map(({label, value, key}) => (
-            <RadioButton.Item
+            <Checkbox.Item
               key={value}
               label={label}
-              value={
+              status={
                 values[key as keyof DefaultReminders] ? 'checked' : 'unchecked'
               }
               onPress={() => onChange(key as keyof DefaultReminders)}

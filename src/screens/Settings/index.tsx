@@ -2,6 +2,7 @@ import React, {useCallback, useState} from 'react';
 import {ScrollView} from 'react-native';
 import {useTheme, Appbar, List, Checkbox} from 'react-native-paper';
 import Container from '~components/Container';
+import useNotificationSettings from '~hooks/useNotificationSettings';
 import {RootStackScreenProps} from '~types';
 import DefaultReminder from './DefaultReminder';
 import ThemeDialog from './ThemeDialog';
@@ -12,6 +13,7 @@ export default function Settings({
   const {dark} = useTheme();
   const [themeDialogVisible, setOpenTheme] = useState(false);
   const [reminderVisible, setReminderVisible] = useState(false);
+  const {enableSound, enableVibration, toggle} = useNotificationSettings();
 
   const closeThemeDialog = useCallback(() => {
     setOpenTheme(false);
@@ -33,10 +35,14 @@ export default function Settings({
       </Appbar>
       <ScrollView>
         <List.Section title="Notifications">
-          <Checkbox.Item onPress={() => {}} status="checked" label="Sound" />
           <Checkbox.Item
-            onPress={() => {}}
-            status="checked"
+            status={enableSound ? 'checked' : 'unchecked'}
+            onPress={() => toggle('enableSound')}
+            label="Sound"
+          />
+          <Checkbox.Item
+            status={enableVibration ? 'checked' : 'unchecked'}
+            onPress={() => toggle('enableVibration')}
             label="Vibration"
           />
           <List.Item

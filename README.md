@@ -29,6 +29,10 @@ Abusite is an Open-Source mobile application designed to help ABU students easil
 
 - [Android Play Store - Pre-register](https://play.google.com/store/apps/details?id=com.abusite)
 
+## Backend
+
+- [Repo](https://github.com/usmansbk/uni)
+
 ## Usage assumptions and concepts
 
 An Event can be a lecture, test, or public event.
