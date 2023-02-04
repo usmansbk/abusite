@@ -52,3 +52,12 @@ declare global {
     interface RootParamList extends RootStackParamList {}
   }
 }
+
+export type DefaultReminders = {
+  '5m': boolean;
+  '10m': boolean;
+  '15m': boolean;
+  '30m': boolean;
+  '45m': boolean;
+  '60m': boolean;
+};
