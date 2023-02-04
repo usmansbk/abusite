@@ -16,6 +16,7 @@ interface Props {
   options: SelectOption[];
   required?: boolean;
   hideOnSelect?: boolean;
+  error?: boolean;
 }
 
 export default function SelectInput({
@@ -26,6 +27,7 @@ export default function SelectInput({
   onChange,
   options,
   hideOnSelect = true,
+  error,
 }: Props) {
   const [visible, setVisible] = useState(false);
 
@@ -64,6 +66,7 @@ export default function SelectInput({
         value={selectedOption?.label || null}
         onClear={required ? undefined : onClear}
         onPress={showOptions}
+        error={error}
       />
       <Portal>
         <Dialog
