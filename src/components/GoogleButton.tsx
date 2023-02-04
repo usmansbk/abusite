@@ -28,12 +28,12 @@ export default function GoogleButton() {
       await GoogleSignin.hasPlayServices();
 
       if (await GoogleSignin.isSignedIn()) {
-        await GoogleSignin.signOut();
         const tokens = await GoogleSignin.getTokens();
 
         if (tokens.idToken) {
           await GoogleSignin.clearCachedAccessToken(tokens.idToken);
         }
+        await GoogleSignin.signOut();
       }
 
       const userInfo = await GoogleSignin.signIn();

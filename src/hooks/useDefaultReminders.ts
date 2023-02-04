@@ -24,7 +24,7 @@ export default function useDefaultReminders() {
   );
 
   return {
-    defaultReminders: data?.defaultReminders,
+    defaultReminders: data!.defaultReminders,
     onToggle,
   };
 }

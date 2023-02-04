@@ -1,10 +1,14 @@
-import React, {useCallback, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {FAB, Portal, ProgressBar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useDrawerStatus} from '@react-navigation/drawer';
 import TimetableCalendar from '~components/TimetableCalendar';
 import useMe from '~hooks/api/useMe';
+import scheduleReminders from '~utils/notifications';
+import {EditEventInput} from '~graphql/__generated__/graphql';
+import useNotificationSettings from '~hooks/useNotificationSettings';
+import useDefaultReminders from '~hooks/useDefaultReminders';
 import NewEventDialog from './NewEventDialog';
 import styles from './styles';
 
@@ -13,8 +17,10 @@ export default function Timeline() {
   const {t} = useTranslation();
   const drawerStatus = useDrawerStatus();
   const navigation = useNavigation();
-  const {loading} = useMe();
+  const {loading, me} = useMe();
   const [eventFormVisible, setEventFormVisible] = useState(false);
+  const {enableSound, enableVibration} = useNotificationSettings();
+  const {defaultReminders} = useDefaultReminders();
 
   const [open, setOpen] = useState(false);
 
@@ -43,6 +49,21 @@ export default function Timeline() {
       toggleEventFormVisible();
     }
   }, [open]);
+
+  const events = useMemo(
+    () => me?.timetables.flatMap(timetable => timetable!.events) || [],
+    [me?.timetables],
+  );
+
+  useEffect(() => {
+    if (events.length) {
+      scheduleReminders(events as EditEventInput[], {
+        enableSound,
+        enableVibration,
+        defaultReminders,
+      });
+    }
+  }, [events, enableSound, enableVibration, defaultReminders]);
 
   return (
     <>

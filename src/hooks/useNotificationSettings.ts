@@ -24,8 +24,8 @@ export default function useNotificationSettings() {
   );
 
   return {
-    enableVibration: data?.enableVibration,
-    enableSound: data?.enableSound,
+    enableVibration: !!data?.enableVibration,
+    enableSound: !!data?.enableSound,
     toggle,
   };
 }
