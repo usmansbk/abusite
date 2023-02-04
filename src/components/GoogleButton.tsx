@@ -26,7 +26,9 @@ export default function GoogleButton() {
     setLoading(true);
     try {
       await GoogleSignin.hasPlayServices();
-      await GoogleSignin.signOut();
+      if (await GoogleSignin.isSignedIn()) {
+        await GoogleSignin.signOut();
+      }
       const userInfo = await GoogleSignin.signIn();
       await login({
         provider: SocialProvider.Google,
