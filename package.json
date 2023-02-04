@@ -14,7 +14,7 @@
     "bootsplash": "yarn react-native generate-bootsplash assets/logo.png --assets-path=assets"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.6",
+    "@apollo/client": "^3.7.7",
     "@hookform/resolvers": "^2.9.10",
     "@react-native-async-storage/async-storage": "^1.17.11",
     "@react-native-community/datetimepicker": "^6.7.3",
@@ -33,7 +33,7 @@
     "lodash.groupby": "^4.6.0",
     "react": "18.1.0",
     "react-hook-form": "^7.43.0",
-    "react-i18next": "^12.1.4",
+    "react-i18next": "^12.1.5",
     "react-native": "0.70.6",
     "react-native-bootsplash": "^4.4.2",
     "react-native-gesture-handler": "^2.9.0",
