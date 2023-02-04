@@ -26,9 +26,16 @@ export default function GoogleButton() {
     setLoading(true);
     try {
       await GoogleSignin.hasPlayServices();
+      const tokens = await GoogleSignin.getTokens();
+
+      if (tokens.idToken) {
+        await GoogleSignin.clearCachedAccessToken(tokens.idToken);
+      }
+
       if (await GoogleSignin.isSignedIn()) {
         await GoogleSignin.signOut();
       }
+
       const userInfo = await GoogleSignin.signIn();
       await login({
         provider: SocialProvider.Google,

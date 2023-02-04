@@ -8,6 +8,7 @@ export default function useLogout() {
   const client = useApolloClient();
 
   const logout = useCallback(async () => {
+    persistor.pause();
     client.writeQuery<{token: null}>({
       query: authState,
       data: {
@@ -17,6 +18,7 @@ export default function useLogout() {
     await persistor.purge();
     client.cache.reset();
     await GoogleSignin.signOut();
+    persistor.resume();
   }, [client]);
 
   return logout;
