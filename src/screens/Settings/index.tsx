@@ -1,6 +1,7 @@
 import React, {useCallback, useState} from 'react';
-import {ScrollView} from 'react-native';
+import {Platform, ScrollView} from 'react-native';
 import {useTheme, Appbar, List, Checkbox} from 'react-native-paper';
+import notifee from '@notifee/react-native';
 import Container from '~components/Container';
 import useNotificationSettings from '~hooks/useNotificationSettings';
 import {RootStackScreenProps} from '~types';
@@ -13,7 +14,7 @@ export default function Settings({
   const {dark} = useTheme();
   const [themeDialogVisible, setOpenTheme] = useState(false);
   const [reminderVisible, setReminderVisible] = useState(false);
-  const {enableSound, enableVibration, toggle} = useNotificationSettings();
+  const {mute, toggle} = useNotificationSettings();
 
   const closeThemeDialog = useCallback(() => {
     setOpenTheme(false);
@@ -36,20 +37,30 @@ export default function Settings({
       <ScrollView>
         <List.Section title="Notifications">
           <Checkbox.Item
-            status={enableSound ? 'checked' : 'unchecked'}
-            onPress={() => toggle('enableSound')}
-            label="Sound"
-          />
-          <Checkbox.Item
-            status={enableVibration ? 'checked' : 'unchecked'}
-            onPress={() => toggle('enableVibration')}
-            label="Vibration"
+            status={mute ? 'checked' : 'unchecked'}
+            onPress={() => toggle('muteNotifications')}
+            label="Mute"
           />
           <List.Item
+            disabled={mute}
             title="Default reminders"
             onPress={() => setReminderVisible(true)}
             right={props => <List.Icon icon="chevron-right" {...props} />}
           />
+          {Platform.OS === 'android' && (
+            <>
+              <List.Item
+                title="Sound and Vibration"
+                onPress={() => notifee.openNotificationSettings('default')}
+                right={props => <List.Icon icon="chevron-right" {...props} />}
+              />
+              <List.Item
+                title="Alarm settings"
+                onPress={notifee.openAlarmPermissionSettings}
+                right={props => <List.Icon icon="chevron-right" {...props} />}
+              />
+            </>
+          )}
         </List.Section>
       </ScrollView>
       <ThemeDialog visible={themeDialogVisible} onDismiss={closeThemeDialog} />

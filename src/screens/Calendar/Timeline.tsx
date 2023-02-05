@@ -18,11 +18,10 @@ export default function Timeline() {
   const drawerStatus = useDrawerStatus();
   const navigation = useNavigation();
   const {loading, me} = useMe();
-  const [eventFormVisible, setEventFormVisible] = useState(false);
-  const {enableSound, enableVibration} = useNotificationSettings();
-  const {defaultReminders} = useDefaultReminders();
-
   const [open, setOpen] = useState(false);
+  const [eventFormVisible, setEventFormVisible] = useState(false);
+  const {mute} = useNotificationSettings();
+  const {defaultReminders} = useDefaultReminders();
 
   const toggleEventFormVisible = useCallback(
     () => setEventFormVisible(visible => !visible),
@@ -56,14 +55,12 @@ export default function Timeline() {
   );
 
   useEffect(() => {
-    if (events.length) {
+    if (events.length && !mute) {
       scheduleReminders(events as EditEventInput[], {
-        enableSound,
-        enableVibration,
         defaultReminders,
       });
     }
-  }, [events, enableSound, enableVibration, defaultReminders]);
+  }, [events, mute, defaultReminders]);
 
   return (
     <>

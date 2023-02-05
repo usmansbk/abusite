@@ -21,12 +21,7 @@ const cache = new InMemoryCache({
             return value;
           },
         },
-        enableSound: {
-          read(value = true) {
-            return value;
-          },
-        },
-        enableVibration: {
+        muteNotifications: {
           read(value = true) {
             return value;
           },

@@ -34,8 +34,8 @@ interface Props {
 const repeatOptions = [
   {value: RepeatFrequency.Daily, label: 'Every day'},
   {value: RepeatFrequency.Weekly, label: 'Every week'},
-  {value: RepeatFrequency.Monthly, label: 'Every month'},
-  {value: RepeatFrequency.Yearly, label: 'Every year'},
+  // {value: RepeatFrequency.Monthly, label: 'Every month'},
+  // {value: RepeatFrequency.Yearly, label: 'Every year'},
 ];
 
 export const schema = yup

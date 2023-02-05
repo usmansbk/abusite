@@ -3,8 +3,7 @@ import {useCallback} from 'react';
 import notificationSettings from '~graphql/localState/notificationSettings';
 
 type Result = {
-  enableSound: boolean;
-  enableVibration: boolean;
+  muteNotifications: boolean;
 };
 
 export default function useNotificationSettings() {
@@ -24,8 +23,7 @@ export default function useNotificationSettings() {
   );
 
   return {
-    enableVibration: !!data?.enableVibration,
-    enableSound: !!data?.enableSound,
+    mute: data!.muteNotifications,
     toggle,
   };
 }

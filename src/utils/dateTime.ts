@@ -68,4 +68,20 @@ export function transformTime(date: Date) {
   return dayjs(date).format(TIME_FORMAT);
 }
 
+export function getTimestamp(date: Date, time?: string) {
+  let day = dayjs(date);
+
+  if (time) {
+    const dayTime = dayjs(time, TIME_FORMAT);
+
+    day = day
+      .hour(dayTime.hour())
+      .minute(dayTime.minute())
+      .second(0)
+      .millisecond(0);
+  }
+
+  return day.unix();
+}
+
 export default dayjs;
