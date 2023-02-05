@@ -55,11 +55,10 @@ export default function Timeline() {
   );
 
   useEffect(() => {
-    if (events.length && !mute) {
-      scheduleReminders(events as EditEventInput[], {
-        defaultReminders,
-      });
-    }
+    scheduleReminders(events as EditEventInput[], {
+      defaultReminders,
+      mute,
+    });
   }, [events, mute, defaultReminders]);
 
   return (

@@ -68,7 +68,7 @@ export function transformTime(date: Date) {
   return dayjs(date).format(TIME_FORMAT);
 }
 
-export function getTimestamp(date: Date, time?: string) {
+export function mergeDateTime(date: Date, time?: string) {
   let day = dayjs(date);
 
   if (time) {
@@ -81,7 +81,11 @@ export function getTimestamp(date: Date, time?: string) {
       .millisecond(0);
   }
 
-  return day.unix();
+  return day;
+}
+
+export function getTimestamp(date: Date, time?: string) {
+  return mergeDateTime(date, time).toDate().getTime();
 }
 
 export default dayjs;
