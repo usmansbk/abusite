@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {Platform, ScrollView} from 'react-native';
-import {useTheme, Appbar, List, Checkbox} from 'react-native-paper';
+import {useTheme, Appbar, List, Switch} from 'react-native-paper';
 import notifee from '@notifee/react-native';
 import Container from '~components/Container';
 import useNotificationSettings from '~hooks/useNotificationSettings';
@@ -36,10 +36,14 @@ export default function Settings({
       </Appbar>
       <ScrollView>
         <List.Section title="Notifications">
-          <Checkbox.Item
-            status={mute ? 'checked' : 'unchecked'}
-            onPress={() => toggle('muteNotifications')}
-            label="Mute"
+          <List.Item
+            title="Mute"
+            right={() => (
+              <Switch
+                onChange={() => toggle('muteNotifications')}
+                value={mute}
+              />
+            )}
           />
           <List.Item
             disabled={mute}

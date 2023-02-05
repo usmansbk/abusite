@@ -22,7 +22,7 @@ const cache = new InMemoryCache({
           },
         },
         muteNotifications: {
-          read(value = true) {
+          read(value = false) {
             return value;
           },
         },
