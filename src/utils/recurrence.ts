@@ -13,25 +13,27 @@ export const getFrequency = (repeat: RepeatFrequency | undefined | null) => {
   }
 };
 
+function createRule(dtstart: Date, repeat: RepeatFrequency | undefined | null) {
+  if (repeat) {
+    return new RRule({
+      dtstart,
+      freq: getFrequency(repeat),
+    });
+  }
+  return new RRule({
+    dtstart,
+    until: dtstart,
+    freq: Frequency.DAILY,
+  });
+}
+
 export function getNextDay(
   day: dayjs.Dayjs,
   repeat?: RepeatFrequency | null,
 ): dayjs.Dayjs {
   const dtstart = day.utc().toDate();
 
-  let rule: RRule;
-  if (repeat) {
-    rule = new RRule({
-      dtstart,
-      freq: getFrequency(repeat),
-    });
-  } else {
-    rule = new RRule({
-      dtstart,
-      until: dtstart,
-      freq: Frequency.DAILY,
-    });
-  }
+  const rule = createRule(dtstart, repeat);
 
   const nextDate = rule.after(dayjs().utc().toDate(), true);
 
