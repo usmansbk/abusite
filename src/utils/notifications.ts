@@ -69,9 +69,8 @@ export default async function scheduleReminders(
 
         Object.keys(defaultReminders).forEach(minutes => {
           if (defaultReminders[minutes as keyof DefaultReminders]) {
-            const offsetInMinutes = Number.parseInt(minutes, 10);
             const reminderFireDate = getNextDay(
-              fireDate.subtract(offsetInMinutes, 'minutes'),
+              fireDate.subtract(Number.parseInt(minutes, 10), 'minutes'),
               repeat,
             );
 
