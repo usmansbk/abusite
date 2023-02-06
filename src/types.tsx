@@ -54,10 +54,10 @@ declare global {
 }
 
 export type DefaultReminders = {
-  '5m': boolean;
-  '10m': boolean;
-  '15m': boolean;
-  '30m': boolean;
-  '45m': boolean;
-  '60m': boolean;
+  '5': boolean;
+  '10': boolean;
+  '15': boolean;
+  '30': boolean;
+  '45': boolean;
+  '60': boolean;
 };

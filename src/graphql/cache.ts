@@ -4,12 +4,12 @@ import {AsyncStorageWrapper, CachePersistor} from 'apollo3-cache-persist';
 import {DefaultReminders} from '~types';
 
 const defaultReminders: DefaultReminders = {
-  '5m': true,
-  '10m': true,
-  '15m': false,
-  '30m': false,
-  '45m': false,
-  '60m': true,
+  '5': true,
+  '10': true,
+  '15': false,
+  '30': false,
+  '45': false,
+  '60': true,
 };
 
 const cache = new InMemoryCache({

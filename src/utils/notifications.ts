@@ -1,6 +1,7 @@
 import notifee, {
+  NotificationAndroid,
   RepeatFrequency,
-  TimestampTrigger,
+  TimestampTriggerAlarmManager,
   TriggerType,
 } from '@notifee/react-native';
 import {
@@ -8,7 +9,8 @@ import {
   RepeatFrequency as RepeatFrequencyT,
 } from '~graphql/__generated__/graphql';
 import {DefaultReminders} from '~types';
-import {getTimestamp} from './dateTime';
+import {formatTime, mergeDateTime} from './dateTime';
+import {getNextDay} from './recurrence';
 
 interface ConfigOptions {
   mute: boolean;
@@ -37,27 +39,55 @@ export default async function scheduleReminders(
   });
   await notifee.cancelAllNotifications();
   if (!mute) {
-    events.flatMap(event => {
-      console.log(event, defaultReminders);
-      const trigger: TimestampTrigger = {
-        type: TriggerType.TIMESTAMP,
-        timestamp: getTimestamp(event.startDate, event.startTime),
-        repeatFrequency: getFrequency(event.repeat),
-        alarmManager: {
-          allowWhileIdle: true,
-        },
+    events.forEach(event => {
+      const {title, id, startDate, startTime, repeat} = event;
+      const android: NotificationAndroid = {
+        channelId,
+        groupId: id!,
+      };
+      const alarmManager: TimestampTriggerAlarmManager = {
+        allowWhileIdle: true,
       };
 
-      return notifee.createTriggerNotification(
+      const fireDate = getNextDay(mergeDateTime(startDate, startTime), repeat);
+
+      notifee.createTriggerNotification(
         {
-          title: event.title,
-          body: 'Hello',
-          android: {
-            channelId,
-          },
+          title,
+          android,
+          body: startTime ? formatTime(startTime) : undefined,
         },
-        trigger,
+        {
+          type: TriggerType.TIMESTAMP,
+          timestamp: fireDate.toDate().getTime(),
+          repeatFrequency: getFrequency(event.repeat),
+          alarmManager,
+        },
       );
+
+      Object.keys(defaultReminders).forEach(key => {
+        if (defaultReminders[key as keyof DefaultReminders]) {
+          const offsetInMinutes = Number.parseInt(key, 10);
+          const reminderFireDate = getNextDay(
+            fireDate.subtract(offsetInMinutes, 'minutes'),
+            repeat,
+          );
+
+          notifee.createTriggerNotification(
+            {
+              title,
+              android,
+              body: reminderFireDate.from(fireDate),
+            },
+            {
+              type: TriggerType.TIMESTAMP,
+              timestamp: reminderFireDate.toDate().getTime(),
+              repeatFrequency: getFrequency(event.repeat),
+              alarmManager,
+            },
+          );
+        }
+      });
     });
   }
 }
