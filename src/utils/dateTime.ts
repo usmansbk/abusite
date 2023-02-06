@@ -69,16 +69,12 @@ export function transformTime(date: Date) {
 }
 
 export function mergeDateTime(date: Date, time?: string) {
-  let day = dayjs(date);
+  let day = dayjs(date, DATE_FORMAT);
 
   if (time) {
     const dayTime = dayjs(time, TIME_FORMAT);
 
-    day = day
-      .hour(dayTime.hour())
-      .minute(dayTime.minute())
-      .second(0)
-      .millisecond(0);
+    day = day.hour(dayTime.hour()).minute(dayTime.minute());
   }
 
   return day;

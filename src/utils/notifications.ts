@@ -4,6 +4,7 @@ import notifee, {
   TimestampTriggerAlarmManager,
   TriggerType,
 } from '@notifee/react-native';
+import capitalize from 'lodash.capitalize';
 import {
   EditEventInput,
   RepeatFrequency as RepeatFrequencyT,
@@ -79,7 +80,7 @@ export default async function scheduleReminders(
                 {
                   title,
                   android,
-                  body: reminderFireDate.from(fireDate),
+                  body: capitalize(fireDate.from(reminderFireDate)),
                 },
                 {
                   type: TriggerType.TIMESTAMP,
