@@ -51,43 +51,47 @@ export default async function scheduleReminders(
 
       const fireDate = getNextDay(mergeDateTime(startDate, startTime), repeat);
 
-      notifee.createTriggerNotification(
-        {
-          title,
-          android,
-          body: startTime ? formatTime(startTime) : undefined,
-        },
-        {
-          type: TriggerType.TIMESTAMP,
-          timestamp: fireDate.toDate().getTime(),
-          repeatFrequency: getFrequency(event.repeat),
-          alarmManager,
-        },
-      );
+      if (fireDate) {
+        notifee.createTriggerNotification(
+          {
+            title,
+            android,
+            body: startTime ? formatTime(startTime) : undefined,
+          },
+          {
+            type: TriggerType.TIMESTAMP,
+            timestamp: fireDate.toDate().getTime(),
+            repeatFrequency: getFrequency(event.repeat),
+            alarmManager,
+          },
+        );
 
-      Object.keys(defaultReminders).forEach(key => {
-        if (defaultReminders[key as keyof DefaultReminders]) {
-          const offsetInMinutes = Number.parseInt(key, 10);
-          const reminderFireDate = getNextDay(
-            fireDate.subtract(offsetInMinutes, 'minutes'),
-            repeat,
-          );
+        Object.keys(defaultReminders).forEach(key => {
+          if (defaultReminders[key as keyof DefaultReminders]) {
+            const offsetInMinutes = Number.parseInt(key, 10);
+            const reminderFireDate = getNextDay(
+              fireDate.subtract(offsetInMinutes, 'minutes'),
+              repeat,
+            );
 
-          notifee.createTriggerNotification(
-            {
-              title,
-              android,
-              body: reminderFireDate.from(fireDate),
-            },
-            {
-              type: TriggerType.TIMESTAMP,
-              timestamp: reminderFireDate.toDate().getTime(),
-              repeatFrequency: getFrequency(event.repeat),
-              alarmManager,
-            },
-          );
-        }
-      });
+            if (reminderFireDate) {
+              notifee.createTriggerNotification(
+                {
+                  title,
+                  android,
+                  body: reminderFireDate.from(fireDate),
+                },
+                {
+                  type: TriggerType.TIMESTAMP,
+                  timestamp: reminderFireDate.toDate().getTime(),
+                  repeatFrequency: getFrequency(event.repeat),
+                  alarmManager,
+                },
+              );
+            }
+          }
+        });
+      }
     });
   }
 }
