@@ -54,7 +54,7 @@ export default function Timeline() {
       me?.timetables
         .flatMap(timetable => timetable!.events as any)
         .concat(me.unlistedEvents as any) || [],
-    [me?.timetables],
+    [me?.timetables, me?.unlistedEvents],
   );
 
   useEffect(() => {

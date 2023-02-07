@@ -26,7 +26,7 @@ export default function useCreateEvent() {
               {readField}: ModifierDetails,
             ) => {
               const newEventRef = cache.writeFragment({
-                data: createEvent,
+                data: newEvent,
                 fragment: gql`
                   fragment NewEvent on Event {
                     id
