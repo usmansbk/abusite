@@ -32,7 +32,6 @@ export default async function scheduleReminders(
   const channelId = await notifee.createChannel({
     id: 'default',
     name: 'Timetable',
-    vibration: true,
   });
 
   await notifee.cancelAllNotifications();
