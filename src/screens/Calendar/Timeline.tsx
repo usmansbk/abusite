@@ -51,7 +51,9 @@ export default function Timeline() {
 
   const events = useMemo(
     () =>
-      me?.timetables.flatMap(timetable => timetable!.events.map(e => e!)) || [],
+      me?.timetables
+        .flatMap(timetable => timetable!.events as any)
+        .concat(me.unlistedEvents as any) || [],
     [me?.timetables],
   );
 

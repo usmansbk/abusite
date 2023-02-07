@@ -14,6 +14,28 @@ export default gql(`
 			picture
 			createdAt
 			updatedAt
+			unlistedEvents {
+				id
+				title
+				description
+				startDate
+				startTime
+				endTime
+				createdAt
+				updatedAt
+				isOwner
+				repeat
+				cancelledDates
+				owner {
+					id
+					picture
+					fullName
+				}
+				timetable {
+					id
+					title
+				}
+			}
 			timetables {
 				id
 				title
