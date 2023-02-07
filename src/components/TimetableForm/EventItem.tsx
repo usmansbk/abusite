@@ -8,6 +8,7 @@ import {
   Menu,
 } from 'react-native-paper';
 import {EditEventInput} from '~graphql/__generated__/graphql';
+import {formatTime} from '~utils/dateTime';
 import styles from './styles';
 
 export type ItemT = EditEventInput & Record<'key', string>;
@@ -19,12 +20,12 @@ interface Props {
   onDeleteItem?: (item: ItemT) => void;
 }
 
-function formatTime(startTime: string, endTime: string) {
+function formatEventTime(startTime: string, endTime: string) {
   if (startTime && endTime) {
-    return `${startTime} - ${endTime}`;
+    return `${formatTime(startTime)} - ${formatTime(endTime)}`;
   }
 
-  return startTime;
+  return formatTime(startTime);
 }
 
 export default function EventItem({
@@ -36,7 +37,7 @@ export default function EventItem({
   const [visible, setVisible] = useState(false);
   const {title, repeat, startTime, endTime} = item;
 
-  const time = [formatTime(startTime, endTime), repeat].join(' ').trim();
+  const time = [formatEventTime(startTime, endTime), repeat].join(' ').trim();
 
   const openMenu = useCallback(() => setVisible(true), []);
   const closeMenu = useCallback(() => setVisible(false), []);
