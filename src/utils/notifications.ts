@@ -38,7 +38,7 @@ export default async function scheduleReminders(
     events.forEach(event => {
       const {title, id, startDate, startTime, repeat} = event;
 
-      const eventDate = getNextDay(mergeDateTime(startDate, startTime), repeat);
+      const eventDate = mergeDateTime(startDate, startTime);
 
       if (eventDate) {
         Object.keys(defaultReminders).forEach(minutes => {
