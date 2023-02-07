@@ -21,7 +21,7 @@ export default StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
+    padding: 16,
     paddingRight: 0,
   },
   span: {

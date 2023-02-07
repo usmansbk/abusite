@@ -63,7 +63,9 @@ export default function EventItem({
         <Menu
           visible={visible}
           onDismiss={closeMenu}
-          anchor={<IconButton icon="more-vertical" onPress={openMenu} />}>
+          anchor={
+            <IconButton size={20} icon="more-vertical" onPress={openMenu} />
+          }>
           <Menu.Item onPress={onDuplicate} title="Duplicate" />
           <Menu.Item onPress={onDelete} title="Delete" />
         </Menu>

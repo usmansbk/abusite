@@ -9,30 +9,35 @@ interface Props {
   onChange: (key: keyof DefaultReminders) => void;
 }
 
-const options = [
+type Option = {
+  key: keyof DefaultReminders;
+  label: string;
+};
+
+const options: Option[] = [
   {
     label: '5 minutes before',
-    key: '5m',
+    key: '5',
   },
   {
     label: '10 minutes before',
-    key: '10m',
+    key: '10',
   },
   {
     label: '15 minutes before',
-    key: '15m',
+    key: '15',
   },
   {
     label: '30 minutes before',
-    key: '30m',
+    key: '30',
   },
   {
     label: '45 minutes before',
-    key: '45m',
+    key: '45',
   },
   {
     label: '1 hour before',
-    key: '60m',
+    key: '60',
   },
 ];
 

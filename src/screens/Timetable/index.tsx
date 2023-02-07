@@ -3,7 +3,6 @@ import {Platform, Share} from 'react-native';
 import {Appbar, Menu, ProgressBar} from 'react-native-paper';
 import ConfirmDialog from '~components/ConfirmDialog';
 import Container from '~components/Container';
-import EmptyState from '~components/EmptyState';
 import SaveTimetableButton from '~components/SaveTimetableButton';
 import env from '~config/env';
 import {Timetable as TimetableI} from '~graphql/__generated__/graphql';
@@ -83,12 +82,18 @@ export default function Timetable({
     }
   }, [timetable]);
 
+  useEffect(() => {
+    if (error) {
+      navigation.pop();
+    }
+  }, [error]);
+
   if (loading) {
     return <ProgressBar />;
   }
 
   if (error) {
-    return <EmptyState title="Something went wrong..." />;
+    return null;
   }
 
   const {title, isOwner} = timetable!;
