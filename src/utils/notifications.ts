@@ -1,4 +1,9 @@
-import notifee, {RepeatFrequency, TriggerType} from '@notifee/react-native';
+import notifee, {
+  AndroidCategory,
+  AndroidImportance,
+  RepeatFrequency,
+  TriggerType,
+} from '@notifee/react-native';
 import capitalize from 'lodash.capitalize';
 import {
   EditEventInput,
@@ -67,9 +72,23 @@ export default async function scheduleReminders(
                   android: {
                     channelId,
                     groupId: id!,
+                    category:
+                      timeInMinutes === 0
+                        ? AndroidCategory.ALARM
+                        : AndroidCategory.REMINDER,
+                    importance:
+                      timeInMinutes === 0
+                        ? AndroidImportance.HIGH
+                        : AndroidImportance.DEFAULT,
                     pressAction: {
                       id: 'default',
                     },
+                    fullScreenAction:
+                      timeInMinutes === 0
+                        ? {
+                            id: 'default',
+                          }
+                        : undefined,
                   },
                 },
                 {
