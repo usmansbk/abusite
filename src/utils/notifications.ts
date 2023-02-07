@@ -1,9 +1,4 @@
-import notifee, {
-  NotificationAndroid,
-  RepeatFrequency,
-  TimestampTriggerAlarmManager,
-  TriggerType,
-} from '@notifee/react-native';
+import notifee, {RepeatFrequency, TriggerType} from '@notifee/react-native';
 import capitalize from 'lodash.capitalize';
 import {
   EditEventInput,
@@ -42,16 +37,6 @@ export default async function scheduleReminders(
   if (!mute) {
     events.forEach(event => {
       const {title, id, startDate, startTime, repeat} = event;
-      const android: NotificationAndroid = {
-        channelId,
-        groupId: id!,
-        pressAction: {
-          id: 'default',
-        },
-      };
-      const alarmManager: TimestampTriggerAlarmManager = {
-        allowWhileIdle: true,
-      };
 
       const eventDate = getNextDay(mergeDateTime(startDate, startTime), repeat);
 
@@ -65,26 +50,34 @@ export default async function scheduleReminders(
               repeat,
             );
 
-            let body;
-
-            if (timeInMinutes === 0) {
-              body = startTime ? formatTime(startTime) : undefined;
-            } else {
-              body = capitalize(eventDate.from(fireDate));
-            }
-
             if (fireDate) {
+              let body;
+
+              if (timeInMinutes === 0) {
+                body = startTime ? formatTime(startTime) : undefined;
+              } else {
+                body = capitalize(eventDate.from(fireDate));
+              }
+
               notifee.createTriggerNotification(
                 {
                   title,
                   body,
-                  android,
+                  android: {
+                    channelId,
+                    groupId: id!,
+                    pressAction: {
+                      id: 'default',
+                    },
+                  },
                 },
                 {
                   type: TriggerType.TIMESTAMP,
                   timestamp: fireDate.toDate().getTime(),
                   repeatFrequency: getFrequency(event.repeat),
-                  alarmManager,
+                  alarmManager: {
+                    allowWhileIdle: true,
+                  },
                 },
               );
             }
