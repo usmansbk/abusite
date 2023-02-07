@@ -1,5 +1,6 @@
 import RNLocalize from 'react-native-localize';
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import duration from 'dayjs/plugin/duration';
@@ -10,6 +11,7 @@ import isTomorrow from 'dayjs/plugin/isTomorrow';
 import isYesterday from 'dayjs/plugin/isYesterday';
 
 dayjs.extend(utc);
+dayjs.extend(timezone);
 dayjs.extend(customParseFormat);
 dayjs.extend(duration);
 dayjs.extend(calendar);
@@ -78,10 +80,6 @@ export function mergeDateTime(date: Date, time?: string) {
   }
 
   return day;
-}
-
-export function getTimestamp(date: Date, time?: string) {
-  return mergeDateTime(date, time).toDate().getTime();
 }
 
 export default dayjs;
