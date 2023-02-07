@@ -50,7 +50,8 @@ export default function Timeline() {
   }, [open]);
 
   const events = useMemo(
-    () => me?.timetables.flatMap(timetable => timetable!.events) || [],
+    () =>
+      me?.timetables.flatMap(timetable => timetable!.events.map(e => e!)) || [],
     [me?.timetables],
   );
 
@@ -64,7 +65,7 @@ export default function Timeline() {
   return (
     <>
       {loading && <ProgressBar indeterminate />}
-      <TimetableCalendar />
+      <TimetableCalendar events={events} />
       {isFocused && !eventFormVisible && (
         <Portal>
           <FAB.Group

@@ -1,8 +1,14 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import EmptyState from '~components/EmptyState';
+import {EditEventInput} from '~graphql/__generated__/graphql';
 
-export default function TimetableCalendar() {
+interface Props {
+  events: EditEventInput[];
+}
+
+export default function TimetableCalendar({events}: Props) {
+  console.log(events);
   const {t} = useTranslation();
   return (
     <EmptyState
