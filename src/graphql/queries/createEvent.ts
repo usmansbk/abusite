@@ -18,6 +18,11 @@ mutation CreateEvent($input: EditEventInput!) {
       id
       title
     }
+    owner {
+      id
+      picture
+      fullName
+    }
   }
 }
 `);
