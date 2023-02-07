@@ -71,15 +71,11 @@ export function transformTime(date: Date) {
 }
 
 export function mergeDateTime(date: Date, time?: string) {
-  let day = dayjs(date, DATE_FORMAT);
-
   if (time) {
-    const dayTime = dayjs(time, TIME_FORMAT);
-
-    day = day.hour(dayTime.hour()).minute(dayTime.minute());
+    return dayjs(`${date}T${time}`, `${DATE_FORMAT}T${TIME_FORMAT}`);
   }
 
-  return day;
+  return dayjs(date, DATE_FORMAT);
 }
 
 export default dayjs;

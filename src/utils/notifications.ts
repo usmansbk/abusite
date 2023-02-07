@@ -74,7 +74,7 @@ export default async function scheduleReminders(
                 },
                 {
                   type: TriggerType.TIMESTAMP,
-                  timestamp: fireDate.toDate().getTime(),
+                  timestamp: fireDate.unix() * 1000,
                   repeatFrequency: getFrequency(event.repeat),
                   alarmManager: {
                     allowWhileIdle: true,
