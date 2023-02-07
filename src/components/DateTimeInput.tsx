@@ -35,6 +35,7 @@ export default function DateTimeInput({
 
   const onConfirm = useCallback(
     (date: Date) => {
+      hidePicker();
       if (date) {
         if (mode === 'date') {
           onChange(date.toISOString());
@@ -42,7 +43,6 @@ export default function DateTimeInput({
           onChange(formatDateToTime(date));
         }
       }
-      hidePicker();
     },
     [mode],
   );
