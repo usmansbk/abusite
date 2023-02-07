@@ -29,6 +29,13 @@ const getFrequency = (repeat: RepeatFrequencyT | undefined | null) => {
   }
 };
 
+notifee.onBackgroundEvent(async ({detail}) => {
+  const {notification} = detail;
+  if (notification) {
+    await notifee.cancelNotification(notification.id!);
+  }
+});
+
 export default async function scheduleReminders(
   events: EditEventInput[],
   {defaultReminders, mute}: ConfigOptions,
