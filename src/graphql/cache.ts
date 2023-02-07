@@ -4,6 +4,7 @@ import {AsyncStorageWrapper, CachePersistor} from 'apollo3-cache-persist';
 import {DefaultReminders} from '~types';
 
 const defaultReminders: DefaultReminders = {
+  '0': true,
   '5': true,
   '10': true,
   '15': false,

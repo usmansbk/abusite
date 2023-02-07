@@ -16,6 +16,10 @@ type Option = {
 
 const options: Option[] = [
   {
+    label: 'Exact time',
+    key: '0',
+  },
+  {
     label: '5 minutes before',
     key: '5',
   },

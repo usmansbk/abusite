@@ -57,40 +57,36 @@ export default async function scheduleReminders(
         allowWhileIdle: true,
       };
 
-      const fireDate = getNextDay(mergeDateTime(startDate, startTime), repeat);
+      const eventDate = getNextDay(mergeDateTime(startDate, startTime), repeat);
 
-      if (fireDate) {
-        notifee.createTriggerNotification(
-          {
-            title,
-            android,
-            body: startTime ? formatTime(startTime) : undefined,
-          },
-          {
-            type: TriggerType.TIMESTAMP,
-            timestamp: fireDate.toDate().getTime(),
-            repeatFrequency: getFrequency(event.repeat),
-            alarmManager,
-          },
-        );
-
+      if (eventDate) {
         Object.keys(defaultReminders).forEach(minutes => {
           if (defaultReminders[minutes as keyof DefaultReminders]) {
-            const reminderFireDate = getNextDay(
-              fireDate.subtract(Number.parseInt(minutes, 10), 'minutes'),
+            const timeInMinutes = Number.parseInt(minutes, 10);
+
+            const fireDate = getNextDay(
+              eventDate.subtract(timeInMinutes, 'minutes'),
               repeat,
             );
 
-            if (reminderFireDate) {
+            let body;
+
+            if (timeInMinutes === 0) {
+              body = startTime ? formatTime(startTime) : undefined;
+            } else {
+              body = capitalize(eventDate.from(fireDate));
+            }
+
+            if (fireDate) {
               notifee.createTriggerNotification(
                 {
                   title,
+                  body,
                   android,
-                  body: capitalize(fireDate.from(reminderFireDate)),
                 },
                 {
                   type: TriggerType.TIMESTAMP,
-                  timestamp: reminderFireDate.toDate().getTime(),
+                  timestamp: fireDate.toDate().getTime(),
                   repeatFrequency: getFrequency(event.repeat),
                   alarmManager,
                 },
