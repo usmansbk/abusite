@@ -55,13 +55,8 @@ export default function Event({
         title: 'Cancel',
         onPress: () => null,
       },
-      {
-        icon: 'move',
-        title: 'Move',
-        onPress: () => null,
-      },
     ],
-    [navigation],
+    [],
   );
 
   if (loading) {
@@ -118,6 +113,12 @@ export default function Event({
           {!!repeat && <Text variant="labelSmall">{repeat}</Text>}
         </View>
         <Divider />
+        <List.Item
+          titleStyle={styles.title}
+          title="Organizer"
+          description={owner.fullName}
+        />
+        <Divider />
         {!!timetable && (
           <>
             <List.Item
@@ -133,12 +134,6 @@ export default function Event({
             <Divider />
           </>
         )}
-        <List.Item
-          titleStyle={styles.title}
-          title="Organizer"
-          description={owner.fullName}
-        />
-        <Divider />
         <View style={styles.footer}>
           {!!description && <Text>{description}</Text>}
         </View>
