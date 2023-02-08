@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {Appbar, Modal, Portal, Text, useTheme} from 'react-native-paper';
 import UserAvatar from '~components/UserAvatar';
 import {Timetable} from '~graphql/__generated__/graphql';
-import {formatCalendarDate} from '~utils/dateTime';
+import {formatFullDate} from '~utils/dateTime';
 import styles from './styles';
 
 interface Props {
@@ -31,7 +31,7 @@ export default function InfoDialog({visible, onDismiss, timetable}: Props) {
             <UserAvatar size={40} uri={owner?.picture} />
             <View style={styles.gap}>
               <Text variant="titleMedium">{owner.fullName}</Text>
-              <Text>{formatCalendarDate(createdAt)}</Text>
+              <Text>{formatFullDate(createdAt)}</Text>
             </View>
           </View>
         </View>
