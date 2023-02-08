@@ -4,6 +4,7 @@ import {Appbar, Menu, ProgressBar} from 'react-native-paper';
 import ConfirmDialog from '~components/ConfirmDialog';
 import Container from '~components/Container';
 import SaveTimetableButton from '~components/SaveTimetableButton';
+import TimetableCalendar from '~components/TimetableCalendar';
 import env from '~config/env';
 import {Timetable as TimetableI} from '~graphql/__generated__/graphql';
 import useDeleteTimetable from '~hooks/api/useDeleteTimetable';
@@ -96,7 +97,7 @@ export default function Timetable({
     return null;
   }
 
-  const {title, isOwner} = timetable!;
+  const {title, isOwner, events} = timetable!;
 
   return (
     <Container>
@@ -129,6 +130,7 @@ export default function Timetable({
         )}
       </Appbar>
       {isDeleting && <ProgressBar visible />}
+      <TimetableCalendar events={events as any} />
       <ConfirmDialog
         visible={deleteVisible}
         onDismiss={closeDeleteDialog}
