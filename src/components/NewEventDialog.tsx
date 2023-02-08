@@ -7,16 +7,18 @@ import useTimetables from '~hooks/useTimetables';
 interface Props {
   visible: boolean;
   onDismiss: () => void;
+  onSuccess?: () => void;
   defaultValues?: Event;
 }
 
-function NewEventDialog({visible, onDismiss, defaultValues}: Props) {
+function NewEventDialog({visible, onDismiss, defaultValues, onSuccess}: Props) {
   const {handleCreateEvent, loading, event} = useCreateEvent();
   const {timetables} = useTimetables();
 
   useEffect(() => {
     if (event) {
       onDismiss();
+      onSuccess?.();
     }
   }, [event]);
 

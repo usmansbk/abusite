@@ -9,13 +9,13 @@ import {
   Text,
 } from 'react-native-paper';
 import Container from '~components/Container';
+import NewEventDialog from '~components/NewEventDialog';
 import {Event as EventT} from '~graphql/__generated__/graphql';
 import useGetEventById from '~hooks/api/useGetEventById';
 import {RootStackScreenProps} from '~types';
 import {formatFullDate} from '~utils/dateTime';
 import {formatEventTime} from '~utils/event';
 import DeleteDialog from './DeleteDialog';
-import DuplicateEvent from './DuplicateEvent';
 import EditEvent from './EditEvent';
 import styles from './styles';
 
@@ -153,10 +153,11 @@ export default function Event({
       {isOwner && (
         <>
           <DeleteDialog visible={deleteVisible} onDismiss={closeDelete} />
-          <DuplicateEvent
-            event={event as EventT}
+          <NewEventDialog
             visible={duplicateVisible}
             onDismiss={closeDuplicate}
+            defaultValues={event as EventT}
+            onSuccess={navigation.popToTop}
           />
           <EditEvent
             event={event as EventT}
