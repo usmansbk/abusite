@@ -1,6 +1,7 @@
 import React, {memo, useEffect} from 'react';
 import EventFormModal from '~components/EventFormModal';
 import useCreateEvent from '~hooks/api/useCreateEvent';
+import useTimetables from '~hooks/useTimetables';
 
 interface Props {
   visible: boolean;
@@ -9,6 +10,7 @@ interface Props {
 
 function NewEventDialog({visible, onDismiss}: Props) {
   const {handleCreateEvent, loading, event} = useCreateEvent();
+  const {timetables} = useTimetables();
 
   useEffect(() => {
     if (event) {
@@ -21,7 +23,7 @@ function NewEventDialog({visible, onDismiss}: Props) {
       autoFocus
       visible={visible}
       onDismiss={onDismiss}
-      timetables={[]}
+      timetables={timetables}
       loading={loading}
       onSubmit={handleCreateEvent}
     />

@@ -9,10 +9,14 @@ import {
   Text,
 } from 'react-native-paper';
 import Container from '~components/Container';
+import {Event as EventT} from '~graphql/__generated__/graphql';
 import useGetEventById from '~hooks/api/useGetEventById';
 import {RootStackScreenProps} from '~types';
 import {formatFullDate} from '~utils/dateTime';
 import {formatEventTime} from '~utils/event';
+import DeleteDialog from './DeleteDialog';
+import DuplicateEvent from './DuplicateEvent';
+import EditEvent from './EditEvent';
 import styles from './styles';
 
 export default function Event({
@@ -23,9 +27,18 @@ export default function Event({
 
   const {loading, error, event} = useGetEventById(id);
   const [menuVisible, setMenuVisible] = useState(false);
+  const [deleteVisible, setDeleteVisible] = useState(false);
+  const [duplicateVisible, setDuplicateVisible] = useState(false);
+  const [editVisible, setEditVisible] = useState(false);
 
   const openMenu = useCallback(() => setMenuVisible(true), []);
   const closeMenu = useCallback(() => setMenuVisible(false), []);
+  const openDelete = useCallback(() => setDeleteVisible(true), []);
+  const closeDelete = useCallback(() => setDeleteVisible(false), []);
+  const openDuplicate = useCallback(() => setDuplicateVisible(true), []);
+  const closeDuplicate = useCallback(() => setDuplicateVisible(false), []);
+  const openEdit = useCallback(() => setEditVisible(true), []);
+  const closeEdit = useCallback(() => setEditVisible(false), []);
 
   useEffect(() => {
     if (error) {
@@ -38,17 +51,17 @@ export default function Event({
       {
         icon: 'edit',
         title: 'Edit',
-        onPress: () => null,
+        onPress: openEdit,
       },
       {
         icon: 'copy',
         title: 'Duplicate',
-        onPress: () => null,
+        onPress: openDuplicate,
       },
       {
         icon: 'trash',
         title: 'Delete',
-        onPress: () => null,
+        onPress: openDelete,
       },
       {
         icon: 'slash',
@@ -85,7 +98,6 @@ export default function Event({
       <Appbar>
         <Appbar.Action icon="x" onPress={navigation.goBack} />
         <Appbar.Content title="" />
-        <Appbar.Action icon="bell" onPress={() => null} />
         {isOwner && (
           <Menu
             visible={menuVisible}
@@ -138,6 +150,21 @@ export default function Event({
           {!!description && <Text>{description}</Text>}
         </View>
       </ScrollView>
+      {isOwner && (
+        <>
+          <DeleteDialog visible={deleteVisible} onDismiss={closeDelete} />
+          <DuplicateEvent
+            event={event as EventT}
+            visible={duplicateVisible}
+            onDismiss={closeDuplicate}
+          />
+          <EditEvent
+            event={event as EventT}
+            visible={editVisible}
+            onDismiss={closeEdit}
+          />
+        </>
+      )}
     </Container>
   );
 }
