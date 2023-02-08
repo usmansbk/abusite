@@ -223,9 +223,7 @@ export default function TimetableForm({
             )}
           />
         }
-        ListEmptyComponent={
-          <EmptyState style={styles.empty} title="No events" />
-        }
+        ListEmptyComponent={<EmptyState title="No events" />}
         ItemSeparatorComponent={Divider}
         SectionSeparatorComponent={Divider}
         ListFooterComponent={<View style={styles.footer} />}

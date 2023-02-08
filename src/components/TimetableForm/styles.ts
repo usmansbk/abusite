@@ -30,8 +30,4 @@ export default StyleSheet.create({
   footer: {
     height: 100,
   },
-  empty: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 });

@@ -7,7 +7,7 @@
     },
     "empty": {
       "title": "No upcoming event",
-      "message": "When you create or save a timetable, their events will appear here."
+      "message": "Your timetable events will appear here."
     }
   },
   "explore": {
