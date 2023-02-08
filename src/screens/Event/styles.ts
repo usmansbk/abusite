@@ -8,6 +8,9 @@ export default StyleSheet.create({
     padding: 16,
     paddingTop: 0,
   },
+  footer: {
+    padding: 16,
+  },
   title: {
     fontSize: 10,
     textTransform: 'uppercase',

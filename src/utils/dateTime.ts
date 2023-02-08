@@ -63,7 +63,7 @@ export function formatDateToTime(date: Date) {
 }
 
 export function formatFullDate(date: Date) {
-  return dayjs(date).format('DD MMMM, YYYY');
+  return dayjs(date).format('dddd, DD MMMM, YYYY');
 }
 
 export function transformDate(date: Date) {
