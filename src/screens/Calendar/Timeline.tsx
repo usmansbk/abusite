@@ -38,7 +38,7 @@ export default function Timeline() {
   const actions = useMemo(
     () => [
       {
-        icon: 'list',
+        icon: 'layout',
         label: t('buttons.timetable'),
         onPress: () => navigation.navigate('NewTimetable'),
       },
@@ -87,7 +87,7 @@ export default function Timeline() {
           <FAB.Group
             visible={drawerStatus === 'closed'}
             open={open}
-            icon={open ? 'edit-2' : 'plus'}
+            icon={open ? 'calendar' : 'plus'}
             style={styles.fab}
             onStateChange={onStateChange}
             onPress={handlePress}
