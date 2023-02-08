@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {FAB, Portal, ProgressBar} from 'react-native-paper';
+import {Banner, FAB, Portal, ProgressBar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useDrawerStatus} from '@react-navigation/drawer';
@@ -9,6 +9,7 @@ import scheduleReminders from '~utils/notifications';
 import {EditEventInput} from '~graphql/__generated__/graphql';
 import useNotificationSettings from '~hooks/useNotificationSettings';
 import useDefaultReminders from '~hooks/useDefaultReminders';
+import useIsOptimizationEnabled from '~hooks/useIsOptimizationEnabled';
 import NewEventDialog from './NewEventDialog';
 import styles from './styles';
 
@@ -22,6 +23,8 @@ export default function Timeline() {
   const [eventFormVisible, setEventFormVisible] = useState(false);
   const {mute} = useNotificationSettings();
   const {defaultReminders} = useDefaultReminders();
+  const {isBatteryOptimizationEnabled, openBatterySettings} =
+    useIsOptimizationEnabled();
 
   const toggleEventFormVisible = useCallback(
     () => setEventFormVisible(visible => !visible),
@@ -66,6 +69,19 @@ export default function Timeline() {
 
   return (
     <>
+      {isBatteryOptimizationEnabled && (
+        <Banner
+          visible={isBatteryOptimizationEnabled}
+          actions={[
+            {
+              label: 'Fix it',
+              onPress: openBatterySettings,
+            },
+          ]}>
+          To ensure notifications are delivered, please disable battery
+          optimization for the app and relaunch.
+        </Banner>
+      )}
       {loading && <ProgressBar indeterminate />}
       <TimetableCalendar events={events} />
       {isFocused && !eventFormVisible && (
