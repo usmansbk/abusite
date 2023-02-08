@@ -40,6 +40,7 @@ function Timetables({navigation}: {navigation: DrawerNavigationHelpers}) {
         <PaperDrawer.Item
           key={timetable?.id}
           label={timetable!.title}
+          icon="layout"
           onPress={() =>
             navigation.navigate('Timetable', {
               id: timetable?.id,
