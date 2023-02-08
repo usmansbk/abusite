@@ -6,7 +6,7 @@ import Container from '~components/Container';
 import SaveTimetableButton from '~components/SaveTimetableButton';
 import TimetableCalendar from '~components/TimetableCalendar';
 import env from '~config/env';
-import {Timetable as TimetableI} from '~graphql/__generated__/graphql';
+import {Event, Timetable as TimetableI} from '~graphql/__generated__/graphql';
 import useDeleteTimetable from '~hooks/api/useDeleteTimetable';
 import useGetTimetableById from '~hooks/api/useGetTimetableById';
 import {RootStackScreenProps} from '~types';
@@ -130,7 +130,7 @@ export default function Timetable({
         )}
       </Appbar>
       {isDeleting && <ProgressBar visible />}
-      <TimetableCalendar events={events as any} />
+      <TimetableCalendar events={events as Event[]} />
       <ConfirmDialog
         visible={deleteVisible}
         onDismiss={closeDeleteDialog}

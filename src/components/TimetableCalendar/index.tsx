@@ -1,9 +1,9 @@
 import React from 'react';
-import {EditEventInput} from '~graphql/__generated__/graphql';
+import {Event} from '~graphql/__generated__/graphql';
 import Agenda from './Agenda';
 
 interface Props {
-  events: EditEventInput[];
+  events: Event[];
 }
 
 export default function TimetableCalendar({events}: Props) {

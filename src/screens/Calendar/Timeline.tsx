@@ -6,7 +6,7 @@ import {useDrawerStatus} from '@react-navigation/drawer';
 import TimetableCalendar from '~components/TimetableCalendar';
 import useMe from '~hooks/api/useMe';
 import scheduleReminders from '~utils/notifications';
-import {EditEventInput} from '~graphql/__generated__/graphql';
+import {EditEventInput, Event} from '~graphql/__generated__/graphql';
 import useNotificationSettings from '~hooks/useNotificationSettings';
 import useDefaultReminders from '~hooks/useDefaultReminders';
 import useIsOptimizationEnabled from '~hooks/useIsOptimizationEnabled';
@@ -55,8 +55,8 @@ export default function Timeline() {
   const events = useMemo(
     () =>
       me?.timetables
-        .flatMap(timetable => timetable!.events as any)
-        .concat(me.unlistedEvents as any) || [],
+        .flatMap(timetable => timetable!.events as Event[])
+        .concat(me.unlistedEvents as Event[]) || [],
     [me?.timetables, me?.unlistedEvents],
   );
 

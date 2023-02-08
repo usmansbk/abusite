@@ -1,10 +1,17 @@
 import React from 'react';
 import {Text, TouchableRipple} from 'react-native-paper';
+import {EditEventInput} from '~graphql/__generated__/graphql';
+import styles from './styles';
 
-export default function AgendaItem() {
+interface Props {
+  item: EditEventInput;
+  onPress: () => void;
+}
+export default function AgendaItem({onPress, item}: Props) {
+  const {title} = item;
   return (
-    <TouchableRipple>
-      <Text>Hello</Text>
+    <TouchableRipple style={styles.itemContainer} onPress={onPress}>
+      <Text numberOfLines={1}>{title}</Text>
     </TouchableRipple>
   );
 }
