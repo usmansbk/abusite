@@ -9,10 +9,9 @@ export default StyleSheet.create({
   },
   fab: {
     position: 'absolute',
-    right: 0,
     bottom: 0,
-    marginBottom: 100,
-    marginRight: 16,
+    right: 0,
+    margin: 16,
   },
   sectionHeader: {
     paddingHorizontal: 16,
@@ -26,5 +25,12 @@ export default StyleSheet.create({
   },
   span: {
     flex: 1,
+  },
+  footer: {
+    height: 100,
+  },
+  empty: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

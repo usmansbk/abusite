@@ -21,6 +21,10 @@ interface Props {
 }
 
 function formatEventTime(startTime: string, endTime: string) {
+  if (!startTime) {
+    return null;
+  }
+
   if (startTime && endTime) {
     return `${formatTime(startTime)} - ${formatTime(endTime)}`;
   }

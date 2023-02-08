@@ -223,11 +223,19 @@ export default function TimetableForm({
             )}
           />
         }
-        ListEmptyComponent={<EmptyState title="Add events" />}
+        ListEmptyComponent={
+          <EmptyState style={styles.empty} title="No events" />
+        }
         ItemSeparatorComponent={Divider}
         SectionSeparatorComponent={Divider}
+        ListFooterComponent={<View style={styles.footer} />}
       />
-      <FAB icon="edit-2" style={styles.fab} onPress={toggleAddEventForm} />
+      <FAB
+        icon="plus"
+        style={styles.fab}
+        label="Add event"
+        onPress={toggleAddEventForm}
+      />
       <EventFormModal
         autoFocus
         visible={addEventModalVisible}
