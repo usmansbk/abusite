@@ -69,19 +69,17 @@ export default function Timeline() {
 
   return (
     <>
-      {isBatteryOptimizationEnabled && (
-        <Banner
-          visible={isBatteryOptimizationEnabled}
-          actions={[
-            {
-              label: 'Fix it',
-              onPress: openBatterySettings,
-            },
-          ]}>
-          To ensure notifications are delivered, please disable battery
-          optimization for the app.
-        </Banner>
-      )}
+      <Banner
+        visible={isBatteryOptimizationEnabled}
+        actions={[
+          {
+            label: 'Fix it',
+            onPress: openBatterySettings,
+          },
+        ]}>
+        To ensure notifications are delivered, please disable battery
+        optimization for the app.
+      </Banner>
       {loading && <ProgressBar indeterminate />}
       <TimetableCalendar events={events} />
       {isFocused && !eventFormVisible && (
