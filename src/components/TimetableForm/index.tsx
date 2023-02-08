@@ -232,9 +232,6 @@ export default function TimetableForm({
       />
       <FAB
         icon="plus"
-        visible={
-          !(addEventModalVisible || !!editEvent || confirmDiscardVisible)
-        }
         style={styles.fab}
         label="Add event"
         onPress={toggleAddEventForm}

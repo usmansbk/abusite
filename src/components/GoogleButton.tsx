@@ -1,4 +1,5 @@
 import React, {useCallback, useState} from 'react';
+import {Platform} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {Button} from 'react-native-paper';
 import {
@@ -27,7 +28,7 @@ export default function GoogleButton() {
     try {
       await GoogleSignin.hasPlayServices();
 
-      if (await GoogleSignin.isSignedIn()) {
+      if (Platform.OS === 'android' && (await GoogleSignin.isSignedIn())) {
         const tokens = await GoogleSignin.getTokens();
 
         if (tokens.idToken) {
