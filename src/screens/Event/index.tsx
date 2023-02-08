@@ -154,6 +154,7 @@ export default function Event({
         <>
           <DeleteDialog visible={deleteVisible} onDismiss={closeDelete} />
           <NewEventDialog
+            autoFocus={false}
             visible={duplicateVisible}
             onDismiss={closeDuplicate}
             defaultValues={event as EventT}

@@ -28,7 +28,7 @@ export default function Agenda({events}: Props) {
     [],
   );
 
-  const data = useMemo(() => events.sort(byTime), [events]);
+  const data = useMemo(() => Array.from(events).sort(byTime), [events]);
 
   return (
     <FlatList

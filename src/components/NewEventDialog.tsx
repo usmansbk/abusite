@@ -5,13 +5,20 @@ import useCreateEvent from '~hooks/api/useCreateEvent';
 import useTimetables from '~hooks/useTimetables';
 
 interface Props {
+  autoFocus?: boolean;
   visible: boolean;
   onDismiss: () => void;
   onSuccess?: () => void;
   defaultValues?: Event;
 }
 
-function NewEventDialog({visible, onDismiss, defaultValues, onSuccess}: Props) {
+function NewEventDialog({
+  visible,
+  onDismiss,
+  defaultValues,
+  onSuccess,
+  autoFocus = true,
+}: Props) {
   const {handleCreateEvent, loading, event} = useCreateEvent();
   const {timetables} = useTimetables();
 
@@ -24,7 +31,7 @@ function NewEventDialog({visible, onDismiss, defaultValues, onSuccess}: Props) {
 
   return (
     <EventFormModal
-      autoFocus
+      autoFocus={autoFocus}
       visible={visible}
       onDismiss={onDismiss}
       timetables={timetables}
