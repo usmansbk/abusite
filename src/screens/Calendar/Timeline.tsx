@@ -79,7 +79,7 @@ export default function Timeline() {
             },
           ]}>
           To ensure notifications are delivered, please disable battery
-          optimization for the app and relaunch.
+          optimization for the app and restart.
         </Banner>
       )}
       {loading && <ProgressBar indeterminate />}
