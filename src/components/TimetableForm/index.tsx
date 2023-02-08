@@ -22,6 +22,7 @@ import {
   EditEventInput,
   EditTimetableInput,
 } from '~graphql/__generated__/graphql';
+import {byTime} from '~utils/event';
 import EventItem, {ItemT} from './EventItem';
 import DateHeader from './DateHeader';
 import styles from './styles';
@@ -154,17 +155,7 @@ export default function TimetableForm({
       Object.entries(groupBy(fields, 'startDate'))
         .map(([title, data]) => ({
           title,
-          data: data.sort((a, b) => {
-            if (a.startTime && b.startTime) {
-              return a.startTime.localeCompare(b.startTime);
-            }
-
-            if (!(a.startTime || b.startTime)) {
-              return 0;
-            }
-
-            return !a.startTime ? -1 : 0;
-          }),
+          data: data.sort(byTime),
         }))
         .sort((a, b) => a.title.localeCompare(b.title)),
     [fields],
