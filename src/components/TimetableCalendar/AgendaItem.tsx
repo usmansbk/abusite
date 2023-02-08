@@ -1,17 +1,20 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View} from 'react-native';
 import {Text, TouchableRipple} from 'react-native-paper';
-import {EditEventInput} from '~graphql/__generated__/graphql';
+import {Event} from '~graphql/__generated__/graphql';
 import {formatEventTime} from '~utils/event';
 import styles from './styles';
 
 interface Props {
-  item: EditEventInput;
-  onPress: () => void;
+  item: Event;
+  onPressItem: (item: Event) => void;
 }
-export default function AgendaItem({onPress, item}: Props) {
+export default function AgendaItem({onPressItem, item}: Props) {
   const {title, startTime, endTime} = item;
   const time = formatEventTime(startTime, endTime);
+
+  const onPress = useCallback(() => onPressItem(item), []);
+
   return (
     <TouchableRipple style={styles.itemContainer} onPress={onPress}>
       <View style={styles.itemContent}>

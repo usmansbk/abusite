@@ -30,6 +30,7 @@ export type RootStackParamList = {
   Search: undefined;
   ExploreSettings: undefined;
   Settings: undefined;
+  Event: {id: string};
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

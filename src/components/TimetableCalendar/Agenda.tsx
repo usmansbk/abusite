@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
 import {FlatList, ListRenderItem, View} from 'react-native';
@@ -14,9 +15,16 @@ interface Props {
 
 export default function Agenda({events}: Props) {
   const {t} = useTranslation();
+  const navigation = useNavigation();
+
+  const onPressItem = useCallback((item: Event) => {
+    navigation.navigate('Event', {
+      id: item.id,
+    });
+  }, []);
 
   const renderItem: ListRenderItem<Event> = useCallback(
-    ({item}) => <AgendaItem item={item} onPress={() => null} />,
+    ({item}) => <AgendaItem item={item} onPressItem={onPressItem} />,
     [],
   );
 

@@ -19,6 +19,7 @@ import Timetable from './Timetable';
 import NewTimetable from './NewTimetable';
 import DuplicateTimetable from './DuplicateTimetable';
 import EditTimetable from './EditTimetable';
+import Event from './Event';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -87,6 +88,7 @@ function MainStack() {
             screenOptions={{
               headerShown: false,
             }}>
+            <Stack.Screen name="Event" component={Event} />
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Timetable" component={Timetable} />
             <Stack.Screen name="NewTimetable" component={NewTimetable} />
