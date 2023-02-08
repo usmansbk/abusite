@@ -6,10 +6,11 @@ export default StyleSheet.create({
     height: ITEM_HEIGHT,
   },
   itemContainer: {
-    padding: 16,
     height: ITEM_HEIGHT,
   },
   itemContent: {
+    flex: 1,
     justifyContent: 'center',
+    padding: 16,
   },
 });
