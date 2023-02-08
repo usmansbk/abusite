@@ -1,5 +1,5 @@
 import React from 'react';
-import EventFormModal from '~components/EventFormModal';
+import NewEventDialog from '~components/NewEventDialog';
 import {Event} from '~graphql/__generated__/graphql';
 
 interface Props {
@@ -10,10 +10,9 @@ interface Props {
 
 export default function DuplicateEvent({visible, onDismiss, event}: Props) {
   return (
-    <EventFormModal
+    <NewEventDialog
       visible={visible}
       onDismiss={onDismiss}
-      onSubmit={() => null}
       defaultValues={event}
     />
   );

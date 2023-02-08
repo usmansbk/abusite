@@ -10,7 +10,7 @@ import {EditEventInput, Event} from '~graphql/__generated__/graphql';
 import useNotificationSettings from '~hooks/useNotificationSettings';
 import useDefaultReminders from '~hooks/useDefaultReminders';
 import useIsOptimizationEnabled from '~hooks/useIsOptimizationEnabled';
-import NewEventDialog from './NewEventDialog';
+import NewEventDialog from '~components/NewEventDialog';
 import styles from './styles';
 
 export default function Timeline() {
