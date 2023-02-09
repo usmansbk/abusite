@@ -17,6 +17,7 @@ import useGetEventById from '~hooks/api/useGetEventById';
 import {RootStackScreenProps} from '~types';
 import {formatFullDate} from '~utils/dateTime';
 import {formatEventTime} from '~utils/event';
+import CancelEvent from './CancelEvent';
 import EditEvent from './EditEvent';
 import styles from './styles';
 
@@ -36,6 +37,7 @@ export default function EventDetails({
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [duplicateVisible, setDuplicateVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
+  const [cancelVisible, setCancelVisible] = useState(false);
 
   const openMenu = useCallback(() => setMenuVisible(true), []);
   const closeMenu = useCallback(() => setMenuVisible(false), []);
@@ -45,6 +47,8 @@ export default function EventDetails({
   const closeDuplicate = useCallback(() => setDuplicateVisible(false), []);
   const openEdit = useCallback(() => setEditVisible(true), []);
   const closeEdit = useCallback(() => setEditVisible(false), []);
+  const openCancel = useCallback(() => setCancelVisible(true), []);
+  const closeCancel = useCallback(() => setCancelVisible(false), []);
 
   useEffect(() => {
     if (error) {
@@ -72,7 +76,7 @@ export default function EventDetails({
       {
         icon: 'slash',
         title: 'Cancel',
-        onPress: () => null,
+        onPress: openCancel,
       },
     ],
     [],
@@ -187,6 +191,11 @@ export default function EventDetails({
             defaultValues={defaultValues}
             visible={editVisible}
             onDismiss={closeEdit}
+          />
+          <CancelEvent
+            event={event as Event}
+            visible={cancelVisible}
+            onDismiss={closeCancel}
           />
         </>
       )}
