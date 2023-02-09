@@ -112,9 +112,7 @@ export default function Timetable({
           <Menu
             visible={menuVisible}
             onDismiss={closeMenu}
-            anchor={
-              <Appbar.Action icon="more-horizontal" onPress={openMenu} />
-            }>
+            anchor={<Appbar.Action icon="more-vertical" onPress={openMenu} />}>
             {menuItems.map(({icon, onPress, title}) => (
               <Menu.Item
                 key={title}
