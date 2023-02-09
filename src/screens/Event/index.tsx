@@ -94,7 +94,7 @@ export default function EventDetails({
     [event],
   );
 
-  if (loading || isDeleting) {
+  if (loading) {
     return <ProgressBar indeterminate />;
   }
 
@@ -139,6 +139,7 @@ export default function EventDetails({
           </Menu>
         )}
       </Appbar>
+      {isDeleting && <ProgressBar indeterminate />}
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.header}>
           <Text variant="displayMedium">{title}</Text>

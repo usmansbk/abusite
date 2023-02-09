@@ -12,7 +12,7 @@ interface Props {
 
 export default function CancelEvent({visible, event, onDismiss}: Props) {
   const {repeat, startDate} = event;
-  const [value, setValue] = useState('all');
+  const [value, setValue] = useState(startDate);
   return (
     <Dialog visible={visible} onDismiss={onDismiss}>
       <Dialog.Title>Cancel</Dialog.Title>
@@ -22,7 +22,7 @@ export default function CancelEvent({visible, event, onDismiss}: Props) {
             <RadioButton.Item label="All" value="all" />
             <RadioButton.Item
               label={formatCalendarDate(startDate)}
-              value="date"
+              value={startDate}
             />
           </RadioButton.Group>
         </Dialog.Content>
