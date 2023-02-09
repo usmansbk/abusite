@@ -8,24 +8,30 @@ import {
   ProgressBar,
   Text,
 } from 'react-native-paper';
+import ConfirmDialog from '~components/ConfirmDialog';
 import Container from '~components/Container';
 import NewEventDialog from '~components/NewEventDialog';
-import {EditEventInput} from '~graphql/__generated__/graphql';
+import {EditEventInput, Event} from '~graphql/__generated__/graphql';
+import useDeleteEvent from '~hooks/api/useDeleteEvent';
 import useGetEventById from '~hooks/api/useGetEventById';
 import {RootStackScreenProps} from '~types';
 import {formatFullDate} from '~utils/dateTime';
 import {formatEventTime} from '~utils/event';
-import DeleteDialog from './DeleteDialog';
 import EditEvent from './EditEvent';
 import styles from './styles';
 
-export default function Event({
+export default function EventDetails({
   route,
   navigation,
 }: RootStackScreenProps<'Event'>) {
   const {id} = route.params;
 
   const {loading, error, event} = useGetEventById(id);
+  const {
+    loading: isDeleting,
+    handleDelete,
+    event: deletedEvent,
+  } = useDeleteEvent();
   const [menuVisible, setMenuVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [duplicateVisible, setDuplicateVisible] = useState(false);
@@ -72,12 +78,19 @@ export default function Event({
     [],
   );
 
+  useEffect(() => {
+    if (deletedEvent) {
+      closeDelete();
+      navigation.pop();
+    }
+  }, [deletedEvent]);
+
   const defaultValues = useMemo(
     () => ({...event, timetableId: event?.timetable?.id} as EditEventInput),
     [event],
   );
 
-  if (loading) {
+  if (loading || isDeleting) {
     return <ProgressBar indeterminate />;
   }
 
@@ -157,7 +170,12 @@ export default function Event({
       </ScrollView>
       {isOwner && (
         <>
-          <DeleteDialog visible={deleteVisible} onDismiss={closeDelete} />
+          <ConfirmDialog
+            visible={deleteVisible}
+            onDismiss={closeDelete}
+            title="Delete this event?"
+            onConfirm={() => handleDelete(event as Event)}
+          />
           <NewEventDialog
             autoFocus={false}
             visible={duplicateVisible}
