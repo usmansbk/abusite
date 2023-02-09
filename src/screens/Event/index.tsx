@@ -10,7 +10,7 @@ import {
 } from 'react-native-paper';
 import Container from '~components/Container';
 import NewEventDialog from '~components/NewEventDialog';
-import {Event as EventT} from '~graphql/__generated__/graphql';
+import {EditEventInput} from '~graphql/__generated__/graphql';
 import useGetEventById from '~hooks/api/useGetEventById';
 import {RootStackScreenProps} from '~types';
 import {formatFullDate} from '~utils/dateTime';
@@ -70,6 +70,11 @@ export default function Event({
       },
     ],
     [],
+  );
+
+  const defaultValues = useMemo(
+    () => ({...event, timetableId: event?.timetable?.id} as EditEventInput),
+    [event],
   );
 
   if (loading) {
@@ -157,11 +162,11 @@ export default function Event({
             autoFocus={false}
             visible={duplicateVisible}
             onDismiss={closeDuplicate}
-            defaultValues={event as EventT}
+            defaultValues={defaultValues}
             onSuccess={navigation.popToTop}
           />
           <EditEvent
-            event={event as EventT}
+            event={defaultValues}
             visible={editVisible}
             onDismiss={closeEdit}
           />

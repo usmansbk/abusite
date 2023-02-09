@@ -1,11 +1,11 @@
 import React from 'react';
 import EventFormModal from '~components/EventFormModal';
-import {Event} from '~graphql/__generated__/graphql';
+import {EditEventInput} from '~graphql/__generated__/graphql';
 
 interface Props {
   visible: boolean;
   onDismiss: () => void;
-  event: Event;
+  event: EditEventInput;
 }
 
 export default function EditEvent({visible, onDismiss, event}: Props) {
