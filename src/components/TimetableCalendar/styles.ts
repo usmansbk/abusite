@@ -13,4 +13,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     padding: 16,
   },
+  contentContainer: {
+    flexGrow: 1,
+  },
 });

@@ -34,6 +34,7 @@ export default function Agenda({events}: Props) {
     <FlatList
       data={data}
       renderItem={renderItem}
+      contentContainerStyle={styles.contentContainer}
       ItemSeparatorComponent={Divider}
       ListEmptyComponent={
         <EmptyState
