@@ -22,6 +22,7 @@ const documents = {
     "\nmutation LoginWithSocialProvider($input: SocialLoginInput!) {\n  loginWithSocialProvider(input: $input) {\n    token\n  }\n}": types.LoginWithSocialProviderDocument,
     "\nmutation SaveTimetable($id: ID!) {\n  saveTimetable(id: $id) {\n    id\n    title\n    description\n    createdAt\n    updatedAt\n    isOwner\n    isSaved\n    owner {\n      id\n      picture\n      fullName\n    }\n    events {\n      id\n      title\n      description\n      startDate\n      startTime\n      endTime\n      createdAt\n      updatedAt\n      isOwner\n      repeat\n      cancelledDates\n      owner {\n        id\n        picture\n        fullName\n      }\n      timetable {\n        id\n        title\n      }\n    }\n  }\n}\n": types.SaveTimetableDocument,
     "\nmutation UnsaveTimetable($id: ID!) {\n  unsaveTimetable(id: $id) {\n    id\n    isSaved\n  }\n}\n": types.UnsaveTimetableDocument,
+    "\nmutation UpdateEvent($input: EditEventInput!) {\n  updateEvent(input: $input) {\n    id\n    title\n    description\n    updatedAt\n    startDate\n    startTime\n    endTime\n    repeat\n  }\n}\n": types.UpdateEventDocument,
     "\nmutation UpdateProfile($input: UpdateUserProfileInput!) {\n  updateProfile(input: $input) {\n    id\n    fullName\n    firstName\n    lastName\n    updatedAt\n  }\n}\n": types.UpdateProfileDocument,
     "\nmutation UpdateTimetable($input: EditTimetableInput!) {\n  updateTimetable(input: $input) {\n    id\n    title\n    updatedAt\n    events {\n      id\n      title\n      description\n      startDate\n      startTime\n      endTime\n      updatedAt\n      createdAt\n      isOwner\n      repeat\n      cancelledDates\n      owner {\n        id\n        fullName\n        picture\n      }\n      timetable {\n        id\n        title\n      }\n    }\n  }\n}\n": types.UpdateTimetableDocument,
 };
@@ -76,6 +77,10 @@ export function gql(source: "\nmutation SaveTimetable($id: ID!) {\n  saveTimetab
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\nmutation UnsaveTimetable($id: ID!) {\n  unsaveTimetable(id: $id) {\n    id\n    isSaved\n  }\n}\n"): (typeof documents)["\nmutation UnsaveTimetable($id: ID!) {\n  unsaveTimetable(id: $id) {\n    id\n    isSaved\n  }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nmutation UpdateEvent($input: EditEventInput!) {\n  updateEvent(input: $input) {\n    id\n    title\n    description\n    updatedAt\n    startDate\n    startTime\n    endTime\n    repeat\n  }\n}\n"): (typeof documents)["\nmutation UpdateEvent($input: EditEventInput!) {\n  updateEvent(input: $input) {\n    id\n    title\n    description\n    updatedAt\n    startDate\n    startTime\n    endTime\n    repeat\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

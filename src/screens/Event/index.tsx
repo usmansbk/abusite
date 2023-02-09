@@ -166,7 +166,7 @@ export default function Event({
             onSuccess={navigation.popToTop}
           />
           <EditEvent
-            event={defaultValues}
+            defaultValues={defaultValues}
             visible={editVisible}
             onDismiss={closeEdit}
           />
