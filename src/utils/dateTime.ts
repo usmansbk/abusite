@@ -82,4 +82,8 @@ export function mergeDateTime(date: Date, time?: string) {
   return dayjs(date, DATE_FORMAT);
 }
 
+export function formatDuration(minutes: number) {
+  return dayjs.duration(minutes, 'minutes').humanize(true);
+}
+
 export default dayjs;

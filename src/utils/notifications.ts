@@ -10,7 +10,7 @@ import {
   RepeatFrequency as RepeatFrequencyT,
 } from '~graphql/__generated__/graphql';
 import {DefaultReminders} from '~types';
-import {formatTime, mergeDateTime} from './dateTime';
+import {formatDuration, formatTime, mergeDateTime} from './dateTime';
 import {getNextDay} from './recurrence';
 
 interface ConfigOptions {
@@ -62,7 +62,7 @@ export default async function scheduleReminders(
               if (timeInMinutes === 0) {
                 body = startTime ? formatTime(startTime) : undefined;
               } else {
-                body = capitalize(eventDate.from(fireDate));
+                body = capitalize(formatDuration(timeInMinutes));
               }
 
               notifee.createTriggerNotification(
