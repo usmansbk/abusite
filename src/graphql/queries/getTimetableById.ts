@@ -26,7 +26,7 @@ export default gql(`
       updatedAt
       isOwner
       repeat
-			isCancelled
+			isAllCancelled
       cancelledDates
       owner {
         id

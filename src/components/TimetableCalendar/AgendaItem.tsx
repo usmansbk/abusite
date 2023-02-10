@@ -10,10 +10,11 @@ interface Props {
   onPressItem: (item: Event) => void;
 }
 export default function AgendaItem({onPressItem, item}: Props) {
-  const {title, startTime, endTime, isCancelled} = item;
+  const {title, startTime, endTime, isAllCancelled} = item;
   const time = formatEventTime(startTime, endTime);
 
   const onPress = useCallback(() => onPressItem(item), []);
+  console.log(isAllCancelled);
 
   return (
     <TouchableRipple style={styles.itemContainer} onPress={onPress}>
@@ -22,7 +23,7 @@ export default function AgendaItem({onPressItem, item}: Props) {
           variant="titleMedium"
           numberOfLines={1}
           style={{
-            textDecorationLine: isCancelled ? 'line-through' : 'none',
+            textDecorationLine: isAllCancelled ? 'line-through' : 'none',
           }}>
           {title}
         </Text>

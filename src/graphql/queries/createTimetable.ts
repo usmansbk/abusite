@@ -26,7 +26,7 @@ mutation CreateTimetable($input: EditTimetableInput!) {
       updatedAt
       isOwner
       repeat
-			isCancelled
+			isAllCancelled
       cancelledDates
       owner {
         id

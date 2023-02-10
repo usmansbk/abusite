@@ -27,7 +27,7 @@ export default function CancelEvent({visible, event, onDismiss}: Props) {
       id,
       date: value === 'all' ? undefined : startDate,
     });
-  }, [handleCancelEvent, id]);
+  }, [handleCancelEvent, id, value]);
 
   return (
     <Dialog visible={visible} onDismiss={onDismiss}>
