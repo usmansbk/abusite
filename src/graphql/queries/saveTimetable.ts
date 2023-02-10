@@ -26,6 +26,7 @@ mutation SaveTimetable($id: ID!) {
       updatedAt
       isOwner
       repeat
+			isCancelled
       cancelledDates
       owner {
         id

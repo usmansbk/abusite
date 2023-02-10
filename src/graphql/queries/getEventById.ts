@@ -13,6 +13,7 @@ query GetEventById($getEventByIdId: ID!) {
 		updatedAt
 		isOwner
 		repeat
+		isCancelled
 		cancelledDates
 		owner {
 			id

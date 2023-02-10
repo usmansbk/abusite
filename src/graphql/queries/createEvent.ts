@@ -9,6 +9,7 @@ mutation CreateEvent($input: EditEventInput!) {
     startDate
     startTime
     endTime
+		isCancelled
     cancelledDates
     repeat
     isOwner

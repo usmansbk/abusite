@@ -25,6 +25,7 @@ export default gql(`
 				updatedAt
 				isOwner
 				repeat
+				isCancelled
 				cancelledDates
 				owner {
 					id
@@ -60,6 +61,7 @@ export default gql(`
 					updatedAt
 					isOwner
 					repeat
+					isCancelled
 					cancelledDates
 					owner {
 						id
