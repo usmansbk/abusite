@@ -19,6 +19,7 @@ import {formatFullDate} from '~utils/dateTime';
 import {formatEventTime} from '~utils/event';
 import CancelEvent from './CancelEvent';
 import EditEvent from './EditEvent';
+import EventReminder from './EventReminder';
 import styles from './styles';
 
 export default function EventDetails({
@@ -38,6 +39,7 @@ export default function EventDetails({
   const [duplicateVisible, setDuplicateVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
   const [cancelVisible, setCancelVisible] = useState(false);
+  const [reminderVisible, setReminderVisible] = useState(false);
 
   const openMenu = useCallback(() => setMenuVisible(true), []);
   const closeMenu = useCallback(() => setMenuVisible(false), []);
@@ -49,6 +51,8 @@ export default function EventDetails({
   const closeEdit = useCallback(() => setEditVisible(false), []);
   const openCancel = useCallback(() => setCancelVisible(true), []);
   const closeCancel = useCallback(() => setCancelVisible(false), []);
+  const openReminder = useCallback(() => setReminderVisible(true), []);
+  const closeReminder = useCallback(() => setReminderVisible(false), []);
 
   useEffect(() => {
     if (error) {
@@ -123,6 +127,7 @@ export default function EventDetails({
       <Appbar>
         <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
         <Appbar.Content title="" />
+        <Appbar.Action icon="clock" onPress={openReminder} />
         {isOwner && (
           <Menu
             visible={menuVisible}
@@ -204,6 +209,7 @@ export default function EventDetails({
           />
         </>
       )}
+      <EventReminder visible={reminderVisible} onDismiss={closeReminder} />
     </Container>
   );
 }
