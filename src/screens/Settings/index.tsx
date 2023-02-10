@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {Platform, ScrollView} from 'react-native';
-import {useTheme, Appbar, List, Switch} from 'react-native-paper';
+import {useTheme, Appbar, List, Switch, Divider} from 'react-native-paper';
 import notifee from '@notifee/react-native';
 import Container from '~components/Container';
 import useNotificationSettings from '~hooks/useNotificationSettings';
@@ -45,6 +45,7 @@ export default function Settings({
               />
             )}
           />
+          <Divider />
           <List.Item
             disabled={mute}
             title="Default reminders"
@@ -53,11 +54,13 @@ export default function Settings({
           />
           {Platform.OS === 'android' && (
             <>
+              <Divider />
               <List.Item
                 title="Sound and Vibration"
                 onPress={() => notifee.openNotificationSettings('default')}
                 right={props => <List.Icon icon="chevron-right" {...props} />}
               />
+              <Divider />
               <List.Item
                 title="Alarm settings"
                 onPress={notifee.openAlarmPermissionSettings}

@@ -5,6 +5,6 @@ export default StyleSheet.create({
     flex: 1,
   },
   fab: {
-    paddingBottom: 72,
+    paddingBottom: 100,
   },
 });
