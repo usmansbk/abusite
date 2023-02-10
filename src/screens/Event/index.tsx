@@ -118,7 +118,7 @@ export default function EventDetails({
   return (
     <Container>
       <Appbar>
-        <Appbar.Action icon="x" onPress={navigation.goBack} />
+        <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
         <Appbar.Content title="" />
         {isOwner && (
           <Menu

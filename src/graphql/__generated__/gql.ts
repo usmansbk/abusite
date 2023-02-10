@@ -13,6 +13,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
+    "\nmutation CancelEvent($id: ID!, $date: Date) {\n  cancelEvent(id: $id, date: $date) {\n    id\n    isCancelled\n    cancelledDates\n  }\n}\n": types.CancelEventDocument,
     "\nmutation CreateEvent($input: EditEventInput!) {\n  createEvent(input: $input) {\n    id\n    title\n    description\n    startDate\n    startTime\n    endTime\n    cancelledDates\n    repeat\n    isOwner\n    createdAt\n    updatedAt\n    timetable {\n      id\n      title\n    }\n    owner {\n      id\n      picture\n      fullName\n    }\n  }\n}\n": types.CreateEventDocument,
     "\nmutation CreateTimetable($input: EditTimetableInput!) {\n  createTimetable(input: $input) {\n    id\n    title\n    description\n    createdAt\n    updatedAt\n    isOwner\n    isSaved\n    owner {\n      id\n      picture\n      fullName\n    }\n    events {\n      id\n      title\n      description\n      startDate\n      startTime\n      endTime\n      createdAt\n      updatedAt\n      isOwner\n      repeat\n      cancelledDates\n      owner {\n        id\n        picture\n        fullName\n      }\n      timetable {\n        id\n        title\n      }\n    }\n  }\n}\n": types.CreateTimetableDocument,
     "\nmutation DeleteEvent($deleteEventId: ID!) {\n  deleteEvent(id: $deleteEventId) {\n    id\n  }\n}\n": types.DeleteEventDocument,
@@ -42,6 +43,10 @@ const documents = {
  */
 export function gql(source: string): unknown;
 
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nmutation CancelEvent($id: ID!, $date: Date) {\n  cancelEvent(id: $id, date: $date) {\n    id\n    isCancelled\n    cancelledDates\n  }\n}\n"): (typeof documents)["\nmutation CancelEvent($id: ID!, $date: Date) {\n  cancelEvent(id: $id, date: $date) {\n    id\n    isCancelled\n    cancelledDates\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
