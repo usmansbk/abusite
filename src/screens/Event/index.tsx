@@ -112,8 +112,11 @@ export default function EventDetails({
     owner,
     description,
     isOwner,
+    isAllCancelled,
+    cancelledDates,
   } = event!;
   const time = formatEventTime(startTime, endTime);
+  const isCancelled = isAllCancelled || cancelledDates.includes(startDate);
 
   return (
     <Container>
@@ -146,6 +149,7 @@ export default function EventDetails({
           <Text variant="titleLarge">{formatFullDate(startDate)}</Text>
           {!!time && <Text variant="labelLarge">{time}</Text>}
           {!!repeat && <Text variant="labelSmall">{repeat}</Text>}
+          {isCancelled && <Text variant="labelSmall">Cancelled</Text>}
         </View>
         <Divider />
         <List.Item

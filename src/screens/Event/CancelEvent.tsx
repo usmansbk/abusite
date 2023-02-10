@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function CancelEvent({visible, event, onDismiss}: Props) {
-  const {repeat, startDate, id} = event;
+  const {repeat, startDate, id, isAllCancelled, cancelledDates} = event;
   const [value, setValue] = useState(startDate);
   const {handleCancelEvent, loading, event: cancelledEvent} = useCancelEvent();
 
@@ -29,10 +29,12 @@ export default function CancelEvent({visible, event, onDismiss}: Props) {
     });
   }, [handleCancelEvent, id, value]);
 
+  const isDateCancelled = cancelledDates.includes(startDate);
+
   return (
     <Dialog visible={visible} onDismiss={onDismiss}>
-      <Dialog.Title>Cancel</Dialog.Title>
-      {!!repeat && (
+      <Dialog.Title>Cancel{isDateCancelled && ' all'}</Dialog.Title>
+      {!!repeat && !isDateCancelled && (
         <Dialog.Content>
           <RadioButton.Group onValueChange={setValue} value={value}>
             <RadioButton.Item label="All" value="all" />
@@ -50,7 +52,11 @@ export default function CancelEvent({visible, event, onDismiss}: Props) {
           </Button>
         </View>
         <View>
-          <Button loading={loading} mode="outlined" onPress={onConfirm}>
+          <Button
+            loading={loading}
+            mode="outlined"
+            onPress={onConfirm}
+            disabled={!!isAllCancelled}>
             Yes
           </Button>
         </View>
