@@ -7,6 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import {Platform, ToastAndroid} from 'react-native';
 import {Snackbar} from 'react-native-paper';
 import Icon from '~components/Icon';
 
@@ -28,7 +29,13 @@ function ToastProvider({children}: PropsWithChildren) {
   const [message, setMessage] = useState('');
 
   const hide = useCallback(() => setMessage(''), []);
-  const show = useCallback((msg: string) => setMessage(msg), []);
+  const show = useCallback((msg: string) => {
+    if (Platform.OS === 'android') {
+      ToastAndroid.show(msg, ToastAndroid.SHORT);
+    } else {
+      setMessage(msg);
+    }
+  }, []);
 
   const ctx = useMemo(
     () => ({
