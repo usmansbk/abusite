@@ -13,10 +13,17 @@ const defaultReminders: DefaultReminders = {
   '60': true,
 };
 
+export const reminders: {[key: string]: DefaultReminders} = {};
+
 const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
+        reminders: {
+          read(value = reminders) {
+            return value;
+          },
+        },
         defaultReminders: {
           read(value: DefaultReminders = defaultReminders) {
             return value;

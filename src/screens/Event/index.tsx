@@ -207,7 +207,11 @@ export default function EventDetails({
           />
         </>
       )}
-      <EventReminder visible={reminderVisible} onDismiss={closeReminder} />
+      <EventReminder
+        id={id}
+        visible={reminderVisible}
+        onDismiss={closeReminder}
+      />
     </Container>
   );
 }
