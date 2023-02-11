@@ -77,11 +77,6 @@ export default function EventDetails({
         title: 'Delete',
         onPress: openDelete,
       },
-      {
-        icon: 'slash',
-        title: 'Cancel',
-        onPress: openCancel,
-      },
     ],
     [],
   );
@@ -127,7 +122,10 @@ export default function EventDetails({
       <Appbar>
         <Appbar.Action icon="arrow-left" onPress={navigation.goBack} />
         <Appbar.Content title="" />
-        <Appbar.Action icon="clock" onPress={openReminder} />
+        {isOwner && !isAllCancelled && (
+          <Appbar.Action icon="x" onPress={openCancel} />
+        )}
+        <Appbar.Action icon="bell" onPress={openReminder} />
         {isOwner && (
           <Menu
             visible={menuVisible}
