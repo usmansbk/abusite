@@ -41,71 +41,82 @@ export default async function scheduleReminders(
   });
 
   await notifee.cancelAllNotifications();
-  if (!mute) {
-    events.forEach(event => {
-      const {title, id, startDate, startTime, repeat} = event;
 
-      const eventDate = mergeDateTime(startDate, startTime);
+  if (mute) {
+    return;
+  }
 
-      if (eventDate) {
-        const eventReminder = {...defaultReminders, ...reminders[id!]};
-        Object.keys(eventReminder).forEach(minutes => {
-          if (eventReminder[minutes as keyof DefaultReminders]) {
-            const timeInMinutes = Number.parseInt(minutes, 10);
+  events.forEach(event => {
+    const {title, id, startDate, startTime, repeat, isAllCancelled} = event;
 
-            const fireDate = getNextDay(
-              eventDate.subtract(timeInMinutes, 'minutes'),
-              repeat,
-            );
+    if (isAllCancelled) {
+      return;
+    }
 
-            if (fireDate) {
-              let body;
+    const eventDate = mergeDateTime(startDate, startTime);
 
-              if (timeInMinutes === 0) {
-                body = startTime ? formatTime(startTime) : undefined;
-              } else {
-                body = capitalize(formatDuration(timeInMinutes));
-              }
+    if (!eventDate) {
+      return;
+    }
 
-              notifee.createTriggerNotification(
-                {
-                  title,
-                  body,
-                  android: {
-                    channelId,
-                    groupId: id!,
-                    category:
-                      timeInMinutes === 0
-                        ? AndroidCategory.ALARM
-                        : AndroidCategory.REMINDER,
-                    importance:
-                      timeInMinutes === 0
-                        ? AndroidImportance.HIGH
-                        : AndroidImportance.DEFAULT,
-                    pressAction: {
+    const eventReminder = {...defaultReminders, ...reminders[id!]};
+    Object.keys(eventReminder).forEach(minutes => {
+      if (eventReminder[minutes as keyof DefaultReminders]) {
+        const timeInMinutes = Number.parseInt(minutes, 10);
+
+        const fireDate = getNextDay(
+          eventDate.subtract(timeInMinutes, 'minutes'),
+          repeat,
+        );
+
+        if (!fireDate) {
+          return;
+        }
+
+        let body;
+
+        if (timeInMinutes === 0) {
+          body = startTime ? formatTime(startTime) : undefined;
+        } else {
+          body = capitalize(formatDuration(timeInMinutes));
+        }
+
+        notifee.createTriggerNotification(
+          {
+            title,
+            body,
+            android: {
+              channelId,
+              groupId: id!,
+              category:
+                timeInMinutes === 0
+                  ? AndroidCategory.ALARM
+                  : AndroidCategory.REMINDER,
+              importance:
+                timeInMinutes === 0
+                  ? AndroidImportance.HIGH
+                  : AndroidImportance.DEFAULT,
+              pressAction: {
+                id: 'default',
+              },
+              fullScreenAction:
+                timeInMinutes === 0
+                  ? {
                       id: 'default',
-                    },
-                    fullScreenAction:
-                      timeInMinutes === 0
-                        ? {
-                            id: 'default',
-                          }
-                        : undefined,
-                  },
-                },
-                {
-                  type: TriggerType.TIMESTAMP,
-                  timestamp: fireDate.unix() * 1000,
-                  repeatFrequency: getFrequency(event.repeat),
-                  alarmManager: {
-                    allowWhileIdle: true,
-                  },
-                },
-              );
-            }
-          }
-        });
+                    }
+                  : undefined,
+            },
+          },
+          {
+            type: TriggerType.TIMESTAMP,
+            timestamp: fireDate.unix() * 1000,
+            repeatFrequency: getFrequency(event.repeat),
+            alarmManager: {
+              allowWhileIdle: true,
+            },
+          },
+        );
       }
     });
-  }
+  });
 }
