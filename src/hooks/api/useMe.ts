@@ -8,6 +8,7 @@ export default function useMe() {
   const {loading, data, error, refetch} = useQuery(getMe, {
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-only',
+    notifyOnNetworkStatusChange: true,
     onError: e => {
       toast.show(e.message);
     },
