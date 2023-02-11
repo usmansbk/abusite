@@ -6,7 +6,7 @@ import notifee, {
 } from '@notifee/react-native';
 import capitalize from 'lodash.capitalize';
 import {
-  EditEventInput,
+  Event,
   RepeatFrequency as RepeatFrequencyT,
 } from '~graphql/__generated__/graphql';
 import {DefaultReminders} from '~types';
@@ -16,6 +16,7 @@ import {getNextDay} from './recurrence';
 interface ConfigOptions {
   mute: boolean;
   defaultReminders: DefaultReminders;
+  reminders: {[key: string]: DefaultReminders};
 }
 
 const getFrequency = (repeat: RepeatFrequencyT | undefined | null) => {
@@ -30,8 +31,8 @@ const getFrequency = (repeat: RepeatFrequencyT | undefined | null) => {
 };
 
 export default async function scheduleReminders(
-  events: EditEventInput[],
-  {defaultReminders, mute}: ConfigOptions,
+  events: Event[],
+  {defaultReminders, mute, reminders}: ConfigOptions,
 ) {
   await notifee.requestPermission();
   const channelId = await notifee.createChannel({
@@ -47,8 +48,9 @@ export default async function scheduleReminders(
       const eventDate = mergeDateTime(startDate, startTime);
 
       if (eventDate) {
-        Object.keys(defaultReminders).forEach(minutes => {
-          if (defaultReminders[minutes as keyof DefaultReminders]) {
+        const eventReminder = {...defaultReminders, ...reminders[id!]};
+        Object.keys(eventReminder).forEach(minutes => {
+          if (eventReminder[minutes as keyof DefaultReminders]) {
             const timeInMinutes = Number.parseInt(minutes, 10);
 
             const fireDate = getNextDay(

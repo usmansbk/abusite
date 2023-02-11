@@ -6,9 +6,10 @@ import {useDrawerStatus} from '@react-navigation/drawer';
 import TimetableCalendar from '~components/TimetableCalendar';
 import useMe from '~hooks/api/useMe';
 import scheduleReminders from '~utils/notifications';
-import {EditEventInput, Event} from '~graphql/__generated__/graphql';
+import {Event} from '~graphql/__generated__/graphql';
 import useNotificationSettings from '~hooks/useNotificationSettings';
 import useDefaultReminders from '~hooks/useDefaultReminders';
+import useReminders from '~hooks/useReminders';
 import useIsOptimizationEnabled from '~hooks/useIsOptimizationEnabled';
 import NewEventDialog from '~components/NewEventDialog';
 import styles from './styles';
@@ -23,6 +24,7 @@ export default function Timeline() {
   const [eventFormVisible, setEventFormVisible] = useState(false);
   const {mute} = useNotificationSettings();
   const {defaultReminders} = useDefaultReminders();
+  const {reminders} = useReminders();
   const {isBatteryOptimizationEnabled, openBatterySettings} =
     useIsOptimizationEnabled();
 
@@ -61,11 +63,12 @@ export default function Timeline() {
   );
 
   useEffect(() => {
-    scheduleReminders(events as EditEventInput[], {
+    scheduleReminders(events, {
       defaultReminders,
       mute,
+      reminders,
     });
-  }, [events, mute, defaultReminders]);
+  }, [events, mute, defaultReminders, reminders]);
 
   return (
     <>

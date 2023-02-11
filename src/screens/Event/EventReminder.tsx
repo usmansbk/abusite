@@ -14,11 +14,10 @@ export default function EventReminder({visible, onDismiss, id}: Props) {
   const {defaultReminders} = useDefaultReminders();
   const {reminders, setReminders} = useReminders();
 
-  const values = useMemo(() => {
-    const eventReminders = reminders[id];
-
-    return {...defaultReminders, ...eventReminders};
-  }, [reminders, defaultReminders, id]);
+  const values = useMemo(
+    () => ({...defaultReminders, ...reminders[id]}),
+    [reminders, defaultReminders, id],
+  );
 
   const onChange = useCallback(
     (key: keyof DefaultReminders) => {
