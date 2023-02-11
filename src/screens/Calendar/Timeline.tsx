@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {Banner, FAB, Portal, ProgressBar} from 'react-native-paper';
+import {Banner, FAB, Portal, ProgressBar, Appbar} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {useDrawerStatus} from '@react-navigation/drawer';
@@ -14,12 +14,16 @@ import useIsOptimizationEnabled from '~hooks/useIsOptimizationEnabled';
 import NewEventDialog from '~components/NewEventDialog';
 import styles from './styles';
 
-export default function Timeline() {
+interface Props {
+  onPressMenu: () => void;
+}
+
+export default function Timeline({onPressMenu}: Props) {
   const isFocused = useIsFocused();
   const {t} = useTranslation();
   const drawerStatus = useDrawerStatus();
   const navigation = useNavigation();
-  const {loading, me} = useMe();
+  const {loading, me, onRefresh} = useMe();
   const [open, setOpen] = useState(false);
   const [eventFormVisible, setEventFormVisible] = useState(false);
   const {mute} = useNotificationSettings();
@@ -72,6 +76,11 @@ export default function Timeline() {
 
   return (
     <>
+      <Appbar>
+        <Appbar.Action icon="menu" onPress={onPressMenu} />
+        <Appbar.Content title="" />
+        <Appbar.Action icon="refresh-cw" onPress={onRefresh} />
+      </Appbar>
       <Banner
         visible={isBatteryOptimizationEnabled}
         actions={[

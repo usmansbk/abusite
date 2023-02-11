@@ -1,4 +1,5 @@
 import {useQuery} from '@apollo/client';
+import {useCallback} from 'react';
 import {useToast} from '~components/Toast';
 import getMe from '~graphql/queries/getMe';
 
@@ -11,10 +12,12 @@ export default function useMe() {
     },
   });
 
+  const onRefresh = useCallback(() => refetch(), [refetch]);
+
   return {
     loading,
     error,
+    onRefresh,
     me: data?.me,
-    refetch,
   };
 }

@@ -13,17 +13,19 @@ export default function Calendar({navigation}: HomeTabScreenProps<'Calendar'>) {
 
   return (
     <Container>
-      <Appbar>
-        <Appbar.Action icon="menu" onPress={navigation.openDrawer} />
-        <Appbar.Content title="" />
-      </Appbar>
       {isLoggedIn ? (
-        <Timeline />
+        <Timeline onPressMenu={navigation.openDrawer} />
       ) : (
-        <Unauthenticated
-          title={t('calendar.unauthenticated.title')}
-          message={t('calendar.unauthenticated.message')}
-        />
+        <>
+          <Appbar>
+            <Appbar.Action icon="menu" onPress={navigation.openDrawer} />
+            <Appbar.Content title="" />
+          </Appbar>
+          <Unauthenticated
+            title={t('calendar.unauthenticated.title')}
+            message={t('calendar.unauthenticated.message')}
+          />
+        </>
       )}
     </Container>
   );
