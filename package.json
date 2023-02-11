@@ -11,7 +11,8 @@
     "prepare": "husky install",
     "postversion": "react-native-version",
     "codegen": "graphql-codegen --config codegen.ts",
-    "bootsplash": "yarn react-native generate-bootsplash assets/logo.png --assets-path=assets"
+    "bootsplash": "yarn react-native generate-bootsplash assets/logo.png --assets-path=assets",
+    "bump": "npm version patch"
   },
   "dependencies": {
     "@apollo/client": "^3.7.7",
