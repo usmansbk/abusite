@@ -86,8 +86,8 @@ function AppDrawerContent(props: DrawerContentComponentProps) {
       <PaperDrawer.Section>
         <PaperDrawer.Item
           active
-          label={t('drawer.home')}
-          icon="home"
+          label={t('calendar.title')}
+          icon="calendar"
           onPress={navigation.goBack}
         />
         {isLoggedIn &&
