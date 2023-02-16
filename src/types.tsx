@@ -3,17 +3,10 @@ import type {
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import type {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import type {DrawerScreenProps} from '@react-navigation/drawer';
 
-export type HomeTabParamList = {
-  Calendar: undefined;
-  Explore: undefined;
-  Notifications: undefined;
-};
-
 export type AppDrawerParamList = {
-  HomeTabs: NavigatorScreenParams<HomeTabParamList>;
+  Calendar: undefined;
 };
 
 export type RootStackParamList = {
@@ -40,12 +33,6 @@ export type AppDrawerScreenProps<T extends keyof AppDrawerParamList> =
   CompositeScreenProps<
     DrawerScreenProps<AppDrawerParamList, T>,
     RootStackScreenProps<keyof RootStackParamList>
-  >;
-
-export type HomeTabScreenProps<T extends keyof HomeTabParamList> =
-  CompositeScreenProps<
-    BottomTabScreenProps<HomeTabParamList, T>,
-    AppDrawerScreenProps<keyof AppDrawerParamList>
   >;
 
 declare global {
